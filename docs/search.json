@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "teaching.html",
+    "href": "teaching.html",
+    "title": "Teaching",
+    "section": "",
+    "text": "You can find here my classes. Example : Basic phylogeography"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Personnal_website",
@@ -12,13 +19,6 @@
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "teaching.html",
-    "href": "teaching.html",
-    "title": "Teaching",
-    "section": "",
-    "text": "You can find here my classes. Example : Basic phylogeography"
   },
   {
     "objectID": "Teaching/TD_Biodiversite/biodiversity_tutorial.html",
