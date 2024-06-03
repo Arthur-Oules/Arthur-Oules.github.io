@@ -11,6 +11,11 @@ website:
       - about.qmd
       - href: teaching.qmd
         text: Teaching
+    tools:
+      - icon: github
+        menu:
+          - text: Source Code
+            href:  https://github.com/Arthur-Oules/Arthur-Oules.github.io
 
 format:
   html:
