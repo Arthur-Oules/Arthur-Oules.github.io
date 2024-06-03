@@ -9,6 +9,8 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
+      - href: teaching.qmd
+        text: Teaching
 
 format:
   html:
