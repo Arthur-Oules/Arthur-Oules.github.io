@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Arthur Oulès, adapté de Güell et al (2017)">
 
-<title>Arthur Oulès - TD Biodiversité</title>
+<title>TD Biodiversité – Arthur Oulès</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
   </div>
             <div id="quarto-search" class="" title="Recherche"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -137,9 +137,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
     <div class="dropdown">
-      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
           <li>
             <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/Arthur-Oules/Arthur-Oules.github.io">
@@ -204,14 +204,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">TD Biodiversité</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Montrer tout le code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Cacher tout le code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button" data-quarto-source-url="https://github.com/Arthur-Oules/TD_Biodiversite/blob/main/biodiversity_tutorial.qmd">Voir les sources</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">TD Biodiversité</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Montrer tout le code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Cacher tout le code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button" data-quarto-source-url="https://github.com/Arthur-Oules/Arthur-Oules.github.io/tree/main/Teaching/TD_Biodiversite">Voir les sources</a></li></ul></div></div>
 </div>
 
 
@@ -848,9 +848,14 @@ Comment expliquer la similarité avec les arbres précédents ? (10 min)</p>
 <pre><code>model: JC+G(4) 
 loglikelihood: -5641.785 
 unconstrained loglikelihood: -4736.539 
-Discrete gamma model
+Model of rate heterogeneity: Discrete gamma model
 Number of rate categories: 4 
 Shape parameter: 1 
+       Rate Proportion
+1 0.1369538       0.25
+2 0.4767519       0.25
+3 1.0000000       0.25
+4 2.3862944       0.25
 
 Rate matrix:
   a c g t
@@ -949,9 +954,14 @@ Commenter le bloc ce code ci-après. (5 min)</p>
 <pre><code>model: JC+G(4) 
 loglikelihood: -5184.119 
 unconstrained loglikelihood: -4043.367 
-Discrete gamma model
+Model of rate heterogeneity: Discrete gamma model
 Number of rate categories: 4 
 Shape parameter: 1 
+       Rate Proportion
+1 0.1369538       0.25
+2 0.4767519       0.25
+3 1.0000000       0.25
+4 2.3862944       0.25
 
 Rate matrix:
   a c g t
@@ -985,24 +995,17 @@ Base frequencies:
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>optimize edge weights:  -5139.288 --&gt; -5121.539 
-optimize base frequencies:  -5121.539 --&gt; -5121.31 
-optimize rate matrix:  -5121.31 --&gt; -4933.863 
-optimize shape parameter:  -4933.863 --&gt; -4919.639 
-optimize edge weights:  -4919.639 --&gt; -4919.323 
-optimize topology:  -4919.323 --&gt; -4916.185  NNI moves:  2 
-optimize base frequencies:  -4916.185 --&gt; -4915.89 
-optimize rate matrix:  -4915.89 --&gt; -4915.868 
-optimize shape parameter:  -4915.868 --&gt; -4915.868 
-optimize edge weights:  -4915.868 --&gt; -4915.867 
-optimize topology:  -4915.867 --&gt; -4915.867  NNI moves:  0 
-optimize base frequencies:  -4915.867 --&gt; -4915.866 
-optimize rate matrix:  -4915.866 --&gt; -4915.866 
-optimize shape parameter:  -4915.866 --&gt; -4915.866 
-optimize edge weights:  -4915.866 --&gt; -4915.866 
-optimize base frequencies:  -4915.866 --&gt; -4915.866 
-optimize rate matrix:  -4915.866 --&gt; -4915.866 
-optimize shape parameter:  -4915.866 --&gt; -4915.866 
-optimize edge weights:  -4915.866 --&gt; -4915.866 </code></pre>
+optimize rate matrix:  -5121.539 --&gt; -4933.61 
+optimize shape parameter:  -4933.61 --&gt; -4919.39 
+optimize edge weights:  -4919.39 --&gt; -4919.078 
+optimize topology:  -4919.078 --&gt; -4915.934  NNI moves:  2 
+optimize rate matrix:  -4915.934 --&gt; -4915.899 
+optimize shape parameter:  -4915.899 --&gt; -4915.898 
+optimize edge weights:  -4915.898 --&gt; -4915.898 
+optimize topology:  -4915.898 --&gt; -4915.898  NNI moves:  0 
+optimize rate matrix:  -4915.898 --&gt; -4915.898 
+optimize shape parameter:  -4915.898 --&gt; -4915.898 
+optimize edge weights:  -4915.898 --&gt; -4915.898 </code></pre>
 </div>
 <details class="code-fold">
 <summary>Afficher le code</summary>
@@ -1010,22 +1013,27 @@ optimize edge weights:  -4915.866 --&gt; -4915.866 </code></pre>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>model: GTR+G(4) 
-loglikelihood: -4915.866 
+loglikelihood: -4915.898 
 unconstrained loglikelihood: -4043.367 
-Discrete gamma model
+Model of rate heterogeneity: Discrete gamma model
 Number of rate categories: 4 
-Shape parameter: 0.2829869 
+Shape parameter: 0.2826837 
+         Rate Proportion
+1 0.003996013       0.25
+2 0.091111301       0.25
+3 0.565542826       0.25
+4 3.339349861       0.25
 
 Rate matrix:
-          a          c         g          t
-a 0.0000000  2.3834491 8.2951462  0.8556857
-c 2.3834491  0.0000000 0.1486637 10.0773098
-g 8.2951462  0.1486637 0.0000000  1.0000000
-t 0.8556857 10.0773098 1.0000000  0.0000000
+         a          c         g         t
+a 0.000000  2.3849152 8.3016092  0.863043
+c 2.384915  0.0000000 0.1472685 10.080389
+g 8.301609  0.1472685 0.0000000  1.000000
+t 0.863043 10.0803894 1.0000000  0.000000
 
 Base frequencies:  
         a         c         g         t 
-0.3416376 0.1953256 0.2243397 0.2386970 </code></pre>
+0.3398051 0.1966759 0.2259102 0.2376088 </code></pre>
 </div>
 </div>
 <p>Comparons notre arbre optimal avec l’arbre initial généré par Neighbour-Joining :</p>
@@ -1038,7 +1046,7 @@ Base frequencies:
 <pre><code>Likelihood Ratio Test Table
   Log lik.  Df Df change Diff log lik. Pr(&gt;|Chi|)    
 1  -5184.1 158                                       
-2  -4915.9 166         8        536.51  &lt; 2.2e-16 ***
+2  -4915.9 166         8        536.44  &lt; 2.2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
@@ -1049,7 +1057,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>                df      AIC
 ML_tree_init_L 158 10684.24
-ML_tree        166 10163.73</code></pre>
+ML_tree        166 10163.80</code></pre>
 </div>
 </div>
 <p>Lire l’aide de la fonction <code>AIC</code>. À quoi sert l’indice d’Akaike ? (5 min) Affichons notre super arbre !</p>
@@ -1120,18 +1128,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1163,7 +1160,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
   const viewSource = window.document.getElementById('quarto-view-source') ||
                      window.document.getElementById('quarto-code-tools-source');
   if (viewSource) {
@@ -1222,7 +1241,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
