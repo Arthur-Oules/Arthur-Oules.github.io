@@ -8,7 +8,7 @@ format:
     toc-title: Sommaire
     toc-location: left
     code-tools:
-      source: https://github.com/Arthur-Oules/TD_Biodiversite/blob/main/biodiversity_tutorial.qmd
+      source: https://github.com/Arthur-Oules/Arthur-Oules.github.io/tree/main/Teaching/TD_Biodiversite
     code-fold: true
     code-summary: Afficher le code
     code-copy: true
