@@ -3,7 +3,11 @@ title: "TD 2 de Phylogénie"
 lang: fr
 ---
 
-![**Un Xenomorphe de la saga Alien nous faisant de jolis sourires**](figures/xenomorph.png)
+::: {}
+![](figures/xenomorph.png)
+
+**Un Xenomorphe de la saga Alien nous faisant de jolis sourires** ([Xenopedia](https://avp.fandom.com/wiki/Inner_jaw))
+:::
 
 Connaissances travaillées :
 
@@ -22,15 +26,28 @@ Compétences travaillées :
 
 Les poissons Téléostéens possèdent, en plus de leurs mâchoires orales, une deuxième paire de mâchoires appelées mâchoires pharyngiennes (@fig-one).
 
-![**Diagramme des os du crâne d’un poisson Téléostéen (ici le** ***Cichlidé Herichtys minckleyi*** **).** *Les os de la mâchoire orale sont colorés en violet et ceux de la mâchoire pharyngienne en bleu. La barre d'échelle représente 5 mm. (Adapté d’A. Oulès)*](figures/Figure_1.svg){#fig-one}
+::: {#fig-one}
+![](figures/Figure_1.svg)
+
+**Diagramme des os du crâne d’un poisson Téléostéen (ici le Cichlidé *Herichtys minckleyi*).**\
+*Les os de la mâchoire orale sont colorés en violet et ceux de la mâchoire pharyngienne en bleu. La barre d'échelle représente 5 mm. (Adapté d’A. Oulès)*
+:::
 
 *Q1 : Quel peut-être l’intérêt fonctionnel de cette seconde paire de mâchoires ?*
 
 ::: {#fig-two layout-ncol=2}
 
-![Mâchoires pharyngiennes d'une Murène (Mehta & Wainright 2007)](figures/eel_pjaws.png){#fig-eel}
+::: {#fig-eel}
+![](figures/eel_pjaws.png)
 
-![Diversité des mâchoires pharyngiennes des Cichlidés (Burress 2015)](figures/Cichlids_pjaws.png){#fig-cichlids}
+Mâchoires pharyngiennes d'une Murène (Mehta & Wainright 2007) DOI : [10.1038/nature06062](https://doi.org/10.1038/nature06062)
+:::
+
+::: {#fig-cichlids}
+![](figures/Cichlids_pjaws.png)
+
+Diversité des mâchoires pharyngiennes des Cichlidés (Burress 2015) DOI : [10.1007/s10750-014-1960-z](https://doi.org/10.1007/s10750-014-1960-z)
+:::
 
 **Diversité des mâchoires pharyngiennes chez les Téléostéens**
 :::
@@ -43,8 +60,9 @@ Chez certains groupes, ce caractère est associé à de nombreuses modifications
 
 ![](figures/Doc_1.svg)
 
-**Impact de la pharyngognathie sur la transition de régime alimentaire chez les poissons marins.** (McGee *et al* 2015 DOI : [10.1126/science.aab0800](doi.org/10.1126/science.aab0800)) *(****A****) Quatre transitions vers la pharyngognathie sur une phylogénie de 851 Actinoptérygiens calibrée temporellement. (1) Les Labres (Labridae et Scaridae); (2) Les Embiotocidae; (3) Les Demoiselles (Pomacentridae); (4) Les Hemirhamphidae (****B****) Comparaison des taux de transitions de régime alimentaire vers la piscivorie (poissons non larvaires) ou vers des proies à mastication intense (détritus, plantes, proies à coquilles dures), pour des pour des poissons pharyngognathes ou non.*
-
+**Impact de la pharyngognathie sur la transition de régime alimentaire chez les poissons marins.** (McGee *et al* 2015 DOI : [10.1126/science.aab0800](doi.org/10.1126/science.aab0800))\
+*(**A**) Quatre transitions vers la pharyngognathie sur une phylogénie de 851 Actinoptérygiens calibrée temporellement. (1) Les Labres (Labridae et Scaridae); (2) Les Embiotocidae; (3) Les Demoiselles (Pomacentridae); (4) Les Hemirhamphidae*\
+*(**B**) Comparaison des taux de transitions de régime alimentaire vers la piscivorie (poissons non larvaires) ou vers des proies à mastication intense (détritus, plantes, proies à coquilles dures), pour des pour des poissons pharyngognathes ou non.*
 :::
 
 ::: {.callout-note}
@@ -84,7 +102,8 @@ We used the `fitDiscrete` function in the R package `geiger` to compare the tran
 
 ![](figures/doc_2.png)
 
-**Phylogénie RAxML des Tropheini calibrée temporellement et faisant apparaître les reconstructions des traits ancestraux pour la spécialisation trophique.** (Singh *et al* 2022 DOI : [10.1002/ece3.9077](doi.org/10.1002/ece3.9077)) *L’arbre a été reconstitué par maximum de vraisemblance. Les temps de divergences ont été inférés avec RelTime à partir d’un schéma de calibration vicariance-dépendant incluant des fossiles datés et la fragmentation du Gondwana. Les abscisses représentent le temps en millions d’années avant le présent. Les intervalles de confiance des nœuds clefs sont marqués par des boîtes bleues.*
+**Phylogénie RAxML des Tropheini calibrée temporellement et faisant apparaître les reconstructions des traits ancestraux pour la spécialisation trophique.** (Singh *et al* 2022 DOI : [10.1002/ece3.9077](doi.org/10.1002/ece3.9077))\
+*L’arbre a été reconstitué par maximum de vraisemblance. Les temps de divergences ont été inférés avec RelTime à partir d’un schéma de calibration vicariance-dépendant incluant des fossiles datés et la fragmentation du Gondwana. Les abscisses représentent le temps en millions d’années avant le présent. Les intervalles de confiance des nœuds clefs sont marqués par des boîtes bleues.*
 
 :::
 
