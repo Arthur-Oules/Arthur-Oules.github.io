@@ -1,9 +1,9 @@
 ---
 title: "Teaching"
-author: "Arthur Oulès"
+listing:
+  contents:
+    - Teaching
+    - "!*_correction*"
 ---
 
-You can find here my classes.
-
-* [Basic phylogeography](Teaching/TD_Biodiversite/biodiversity_tutorial.qmd)
-* [Phylogenetics in Ecology and Evolution](Teaching/TD_Ecologie_Evolution/Ecologie_Evolution_TD1.qmd)
+You can find the materials for my lectures and workshop at the [Biology department](https://biologie.ens-lyon.fr/) of the  [Ecole Normale Supérieure de Lyon](https://www.ens-lyon.fr/).
