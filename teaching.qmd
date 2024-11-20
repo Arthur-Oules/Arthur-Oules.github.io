@@ -4,4 +4,6 @@ author: "Arthur Oulès"
 ---
 
 You can find here my classes.
-Example : [Basic phylogeography](https://arthur-oules.github.io/Teaching/TD_Biodiversite/biodiversity_tutorial.html)
+
+* [Basic phylogeography](Teaching/TD_Biodiversite/biodiversity_tutorial.qmd)
+* [Phylogenetics in Ecology and Evolution](Teaching/TD_Ecologie_Evolution/Ecologie_Evolution_TD1.qmd)

@@ -1,0 +1,15 @@
+format:
+  pdf:
+    pdf-engine: lualatex
+    mainfont: Open Sans
+    fontsize: 9pt
+    toc: false
+    number-sections: true
+    colorlinks: true
+    fig-pos: H
+    include-in-header: 
+      text: |
+        \usepackage{scrlayer-scrpage}
+        \rohead{L3 Biosciences - Evolution et Ecologie}
+        \lofoot{Ecole Normale Supérieure de Lyon}
+    callout-appearance: simple

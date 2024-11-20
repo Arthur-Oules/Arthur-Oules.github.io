@@ -1,0 +1,93 @@
+---
+title: "TD 2 de Phylogénie"
+lang: fr
+---
+
+![**Un Xenomorphe de la saga Alien nous faisant de jolis sourires**](figures/xenomorph.png)
+
+Connaissances travaillées :
+
+-   Le maximum de vraisemblance
+-   Les datations en phylogénie
+-   Estimer l’évolution d’un caractère morphologique sur une phylogénie
+
+Compétences travaillées :
+
+-   Description et interprétation de figures originales tirées d’article
+-   Analyse d’article sur une application de la phylogénie, vers l’écologie et la biologie fonctionnelle.
+
+{{< pagebreak >}}
+
+## La pharyngognathie chez les Téléostéens
+
+Les poissons Téléostéens possèdent, en plus de leurs mâchoires orales, une deuxième paire de mâchoires appelées mâchoires pharyngiennes (@fig-one).
+
+![**Diagramme des os du crâne d’un poisson Téléostéen (ici le** ***Cichlidé Herichtys minckleyi*** **).** *Les os de la mâchoire orale sont colorés en violet et ceux de la mâchoire pharyngienne en bleu. La barre d'échelle représente 5 mm. (Adapté d’A. Oulès)*](figures/Figure_1.svg){#fig-one}
+
+*Q1 : Quel peut-être l’intérêt fonctionnel de cette seconde paire de mâchoires ?*
+
+::: {#fig-two layout-ncol=2}
+
+![Mâchoires pharyngiennes d'une Murène (Mehta & Wainright 2007)](figures/eel_pjaws.png){#fig-eel}
+
+![Diversité des mâchoires pharyngiennes des Cichlidés (Burress 2015)](figures/Cichlids_pjaws.png){#fig-cichlids}
+
+**Diversité des mâchoires pharyngiennes chez les Téléostéens**
+:::
+
+*Q2 : Pouvez-vous émettre une hypothèse sur l’origine développementale de ces mâchoires ?*
+
+Chez certains groupes, ce caractère est associé à de nombreuses modifications comme la fusion des demi-mâchoires pharyngiennes inférieures et une modification de la musculature associée (@fig-two). Ces modifications permettent notamment une force de mastication supérieure et l’apparition de régimes alimentaires à base d’aliments coriaces comme les molluscivores ou les corallivores, ce mode d’alimentation à partir de mâchoires pharyngiennes dérivées est appelé pharyngognathie.
+
+::: {#doc-one}
+
+![](figures/Doc_1.svg)
+
+**Impact de la pharyngognathie sur la transition de régime alimentaire chez les poissons marins.** (McGee *et al* 2015 DOI : [10.1126/science.aab0800](doi.org/10.1126/science.aab0800)) *(****A****) Quatre transitions vers la pharyngognathie sur une phylogénie de 851 Actinoptérygiens calibrée temporellement. (1) Les Labres (Labridae et Scaridae); (2) Les Embiotocidae; (3) Les Demoiselles (Pomacentridae); (4) Les Hemirhamphidae (****B****) Comparaison des taux de transitions de régime alimentaire vers la piscivorie (poissons non larvaires) ou vers des proies à mastication intense (détritus, plantes, proies à coquilles dures), pour des pour des poissons pharyngognathes ou non.*
+
+:::
+
+::: {.callout-note}
+La construction des phylogénies calibrées (ou chronogrammes) est abordée plus en détails dans la section suivante du TD.
+:::
+
+*Q3 : À partir du @doc-one A, décrivez l’évolution de la pharyngognathie chez les Actinoptérygiens.*
+
+**Extrait 1 :** The degree of piscivory was defined as the volumetric percentage of non-larval fish in the diet, and the degree of processing-intensive prey was defined as the volumetric percentage of plants, algae, and detritus combined with the percentage of hard-shelled prey like bivalves, shelled gastropods, and hard-bodied echinoderms (*i. e.* no holothurian “sea cucumbers”).\
+We used the `brownie.lite` function in the `phytools` `R` package to test whether each diet category was best modeled as a one-rate model across the tree, or a model where rates differed between pharyngognathous and non-pharyngognathous marine fishes. There was a strong preference for a two-rate model for both fish prey (∆AICc = -293) and processing-intensive prey (∆AICc = -59). For both traits, the difference between pharyngognaths and non-pharyngognaths for the Brownian rate parameter in the two-rate model was always significant (p < 0.001).
+
+::: {.callout-note}
+AIC = Akaike Information Criterion (Critère d’information d’Akaike) est une mesure de la qualité relative d’un modèle statistique sachant un ensemble de données. Lorsque l'on estime un modèle statistique, il est possible d'augmenter la vraisemblance du modèle en ajoutant un paramètre. Le critère d'information d'Akaike prend cela en compte en pénalisant les modèles en fonction du nombre de paramètres. On choisit alors le modèle avec le critère d'information d'Akaike le plus faible.
+:::
+
+*Q4 : Qu’est-ce qu’un mouvement Brownien ? Comment peut-il être utilisé pour modéliser l’évolution d’un trait continu ?*
+
+*Q5 : Rappeler le principe du maximum de vraisemblance. La fonction `brownie.lite` inclut ce principe, à votre avis, de quelle façon ?*
+
+*Q6 : Quel est le résultat obtenu à l’issue de ces tests ?*
+
+**Extrait 2 :** Our Brownian rate analysis treated the percentage of either processing-intensive or fish prey as a continuous character. However, if we define each species as a prey specialist if it eats over a certain percentage of that prey in its diet, we can also analyze diet as a categorical variable using stochastic character mapping.
+We also used stochastic character mapping in the `phytools` package to examine transitions between dietary strategies. Fish were scored as processing-intensive if they had a mean value of processing-intensive prey over 25% of their diet, and as piscivorous if the mean value of non-larval fish in their diet was higher than 25%. Each fish was then scored as non-pharyngognath non-piscivore, non-pharyngognath piscivore, pharyngognath non-piscivore, and pharyngognath piscivore.
+We used the `fitDiscrete` function in the R package `geiger` to compare the transition rate matrix for two models of character evolution. Specifically, we tested a model with equal transition rates between non-pharyngognath non-piscivores and non-pharyngognath piscivores versus between pharyngognath non-piscivores and pharyngognath piscivores. We then compared this equal-rate model to one where the transition rates were allowed to differ. All other rates were allowed to differ. Transitions were always modeled as symmetric, i. e. equal rates into and out of a category.
+
+*Q7 : Pourquoi recalculer les taux de transition en considérant, cette-fois, le trait comme discret ? Quelle(s) différence(s) avec le modèle précédent ?*
+
+**Extrait 3 :** AIC strongly favored the model where non-pharyngognaths had a different transition rate into and out of piscivory as compared to pharyngognaths (ΔAIC = -20.3). We used a similar character mapping scheme and analysis for pharyngognathy and processing-intensive prey, and found a preference for different rates of transition within pharyngognaths as compared to non-pharyngognaths (ΔAIC = -8.6). Rates of transition between piscivory and non-piscivory were an order of magnitude higher in non-pharyngognaths (7.96e-03 vs 9.95e-04, @doc-one B). For processing-intensive prey, rates were an order of magnitude lower in non-pharyngognaths (4.03e-03 vs 1.15e-02, @doc-one B).
+
+*Q8 : Ces résultats corroborent-ils ceux obtenus en considérant la variable comme continue ? Quelles différences observe-t-on entre les poissons pharyngognathes et non-pharyngognathes ?*
+
+{{< pagebreak >}}
+
+## Diversification des régimes alimentaires et radiation évolutive chez les Cichlidés des grands lacs Africains
+
+::: {#doc-two}
+
+![](figures/doc_2.png)
+
+**Phylogénie RAxML des Tropheini calibrée temporellement et faisant apparaître les reconstructions des traits ancestraux pour la spécialisation trophique.** (Singh *et al* 2022 DOI : [10.1002/ece3.9077](doi.org/10.1002/ece3.9077)) *L’arbre a été reconstitué par maximum de vraisemblance. Les temps de divergences ont été inférés avec RelTime à partir d’un schéma de calibration vicariance-dépendant incluant des fossiles datés et la fragmentation du Gondwana. Les abscisses représentent le temps en millions d’années avant le présent. Les intervalles de confiance des nœuds clefs sont marqués par des boîtes bleues.*
+
+:::
+
+*Q9 : Quels sont les deux types d’informations utilisés pour calibrer temporellement cet arbre ? En quoi sont-elles complémentaires ? Sont-elles suffisantes pour calibrer l’entièreté de l’arbre ?*
+
+*Q10 : Interpréter le @doc-two*

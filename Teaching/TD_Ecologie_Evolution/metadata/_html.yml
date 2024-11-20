@@ -1,0 +1,10 @@
+format:
+  html:
+    embed-resources: true
+    lightbox: true
+    toc: true
+    toc-title: Summary
+    toc-location: left
+    link-external-newwindow: true
+    link-external-icon: true
+    css: metadata/styles.css
