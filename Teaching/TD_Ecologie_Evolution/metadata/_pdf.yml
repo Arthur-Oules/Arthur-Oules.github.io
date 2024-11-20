@@ -2,7 +2,7 @@ format:
   pdf:
     pdf-engine: lualatex
     mainfont: Open Sans
-    fontsize: 9pt
+    fontsize: 8pt
     toc: false
     number-sections: true
     colorlinks: true

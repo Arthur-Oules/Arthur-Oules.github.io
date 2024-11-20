@@ -26,7 +26,7 @@ Compétences travaillées :
 
 Les poissons Téléostéens possèdent, en plus de leurs mâchoires orales, une deuxième paire de mâchoires appelées mâchoires pharyngiennes (@fig-one).
 
-::: {#fig-one}
+::: {#fig-one layout="[-10, 80, -10]"}
 ![](figures/Figure_1.svg)
 
 **Diagramme des os du crâne d’un poisson Téléostéen (ici le Cichlidé *Herichtys minckleyi*).**\
@@ -43,7 +43,7 @@ Chez les Cyprinidés (famille des poissons rouges), les mâchoires orales sont �
 Les mâchoires pharyngiennes permettent un découplage fonctionnel des mâchoires orales et pharyngiennes et l’occupation de nouvelles niches trophiques.
 :::
 
-::: {#fig-two layout-ncol=2}
+::: {#fig-two layout="[-10, 32.5, -5, 52.5, -10]"}
 
 ::: {#fig-eel}
 ![](figures/eel_pjaws.png)
@@ -52,9 +52,9 @@ Mâchoires pharyngiennes d'une Murène (Mehta & Wainright 2007) DOI : [10.1038/n
 :::
 
 ::: {#fig-cichlids}
-![](figures/Cichlids_pjaws.png)
+![](figures/Cichlids_pjawsteeth.png)
 
-Diversité des mâchoires pharyngiennes des Cichlidés (Burress 2015) DOI : [10.1007/s10750-014-1960-z](https://doi.org/10.1007/s10750-014-1960-z)
+Diversité des mâchoires pharyngiennes des Cichlidés (Burress 2015) DOI : [10.1111/1365-2656.12457]( https://doi.org/10.1111/1365-2656.12457)
 :::
 
 **Diversité des mâchoires pharyngiennes chez les Téléostéens**
