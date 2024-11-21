@@ -42,7 +42,7 @@ Les poissons Téléostéens possèdent, en plus de leurs mâchoires orales, une 
 
 *Q1 : Quel peut-être l’intérêt fonctionnel de cette seconde paire de mâchoires ?*
 
-::: {.callout-tip collapse="true"}
+::: {.callout-tip collapse="false"}
 ## Réponse 1
 
 Chez les poissons chirurgiens (Acanthuridae), les mâchoires pharyngiennes sont réduites à des plaques dentigères dont l’action dans la mastication est très réduite.\
@@ -69,7 +69,7 @@ Diversité des mâchoires pharyngiennes des Cichlidés (Burress 2015) DOI : [10.
 
 *Q2 : Pouvez-vous émettre une hypothèse sur l’origine développementale de ces mâchoires ?*
 
-::: {.callout-tip collapse="true"}
+::: {.callout-tip collapse="false"}
 ## Réponse 2
 
 Les mâchoires pharyngiennes sont positionnées postérieurement aux opercules, à l'emplacement du cinquième arc branchial chez les poissons sans mâchoires pharyngiennes. Une étude de leur ontogénie montre qu’elles sont issues d’une modification du cinquième arc branchial des Téléostéens.
@@ -92,7 +92,7 @@ La construction des phylogénies calibrées (ou chronogrammes) est abordée plus
 
 *Q3 : À partir du @doc-one A, décrivez l’évolution de la pharyngognathie chez les Actinoptérygiens.*
 
-::: {.callout-tip collapse="true"}
+::: {.callout-tip collapse="false"}
 ## Réponse 3
 
 C'est un chronogramme, donc un arbre phylogénétique calibré temporellement. Ici, il est représenté circulairement bien qu'il ait été raciné avant sa calibration temporelle. Les feuilles, le long du périmètre du cercle, correspondent au présent et la racine, au centre, est le point le plus ancien temporellement. Cet arbre inclut 851 espèces, c'est ce qu'on appelle une méga phylogénie. Les branches de l’arbre correspondant à des espèces pharyngognathes sont colorées en rouge et à des non-pharyngognathes en bleu.\
@@ -109,7 +109,7 @@ Le ∆AICc inclut une correction liée à la taille du jeu de données.
 
 *Q4 : Qu’est-ce qu’un mouvement Brownien ? Comment peut-il être utilisé pour modéliser l’évolution d’un trait continu ?*
 
-::: {.callout-tip collapse="true"}
+::: {.callout-tip collapse="false"}
 ## Réponse 4
 
 La description historique du mouvement Brownien est attribuée à Robert Brown en 1827 alors qu'il observait des grains de pollen dans une goutte d'eau au microscope. Leurs déplacements stochastiques l'ont intrigué mais la modélisation mathématique de ce phénomène n'a eu lieu qu'à la fin du siècle.\
@@ -129,7 +129,7 @@ La modélisation et les hypothèses de travail sont grandement simplifiées dans
 
 *Q5 : Rappeler le principe du maximum de vraisemblance. La fonction `brownie.lite` inclut ce principe, à votre avis, de quelle façon ?*
 
-::: {.callout-tip collapse="true"}
+::: {.callout-tip collapse="false"}
 ## Réponse 5
 
 Commençons par un exemple simple et concret, une pièces de monnaie que l’on lance douze fois avec le tirage suivant :
@@ -168,7 +168,7 @@ Dans le cas de la fonction `brownie.lite`, l’évolution du trait le long d’u
 
 *Q6 : Quel est le résultat obtenu à l’issue de ces tests ?*
 
-::: {.callout-tip collapse="true"}
+::: {.callout-tip collapse="false"}
 ## Réponse 6
 
 Les chercheurs ont testé si le taux d''évolution des régimes alimentaires testés étaient différents en fonction du caractère pharyngognathe ou non-pharyngognathe.\
@@ -183,7 +183,7 @@ We used the `fitDiscrete` function in the `R` package `geiger` to compare the tr
 
 *Q7 : Pourquoi recalculer les taux de transition en considérant, cette-fois, le trait comme discret ? Quelle(s) différence(s) avec le modèle précédent ?*
 
-::: {.callout-tip collapse="true"}
+::: {.callout-tip collapse="false"}
 ## Réponse 7
 
 Des caractères comme le régime alimentaire ont des composantes discrètes et continues. Comme montré par ces chercheurs, on peut catégoriser les régimes alimentaires en variable discrète, ce qui permet de mieux détecter des évènements de convergence par exemple, ou au contraire comme une variable continue. En réalité, le régime alimentaire est rarement discret et, au moins par opportunisme, les organismes peuvent dévier en partie de leur régime alimentaire préféré. Ce degré de liberté dans le régime alimentaire peut être un paramètre pertinent à étudier.\
@@ -195,7 +195,7 @@ Outre ces considérations, multiplier les approches apporte de la robustesse aux
 
 *Q8 : Ces résultats corroborent-ils ceux obtenus en considérant la variable comme continue ? Quelles différences observe-t-on entre les poissons pharyngognathes et non-pharyngognathes ?*
 
-::: {.callout-tip collapse="true"}
+::: {.callout-tip collapse="false"}
 ## Réponse 8
 
 Oui, ces résultats sont en accord avec les résultats précédents. On observe que, pour un régime alimentaire donné, le taux de transition est différent entre pharyngognathes et non-pharyngognathes.\
@@ -217,7 +217,7 @@ Ce taux est plus important pour les pharyngognathes pour une transition vers la 
 
 *Q9 : Quels sont les deux types d’informations utilisés pour calibrer temporellement cet arbre ? En quoi sont-elles complémentaires ? Sont-elles suffisantes pour calibrer l’entièreté de l’arbre ?*
 
-::: {.callout-tip collapse="true"}
+::: {.callout-tip collapse="false"}
 ## Réponse 9
 
 Les deux types d’informations utilisés sont les fossiles datés (par datation relatives ou absolues) et certains évènements géologiques datés et corrélés à des évènements de spéciation ou de divergence. Ces informations permettent de placer des “points d’ancrages” en datant certains nœuds de la phylogénie, avec une incertitude, mais il faut encore associer une date aux autres points.\
@@ -226,7 +226,7 @@ C'est avec des modèles d'évolution moléculaires que l'on peut dater les autre
 
 *Q10 : Interpréter le @doc-two*
 
-::: {.callout-tip collapse="true"}
+::: {.callout-tip collapse="false"}
 ## Réponse 10
 
 Pas fait en TD.
