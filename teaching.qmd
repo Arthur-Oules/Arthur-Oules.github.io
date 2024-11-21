@@ -6,4 +6,4 @@ listing:
     - "!*_correction*"
 ---
 
-You can find the materials for my lectures and workshop at the [Biology department](https://biologie.ens-lyon.fr/) of the  [Ecole Normale Supérieure de Lyon](https://www.ens-lyon.fr/).
+You can find the materials for my lectures and workshop at the [Biology department](https://biologie.ens-lyon.fr/) of the [Ecole Normale Supérieure de Lyon](https://www.ens-lyon.fr/).
