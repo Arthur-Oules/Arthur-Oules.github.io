@@ -3,7 +3,7 @@ format:
     embed-resources: true
     lightbox: true
     toc: true
-    toc-title: Summary
+    toc-title: Table des matières
     toc-location: left
     link-external-newwindow: true
     link-external-icon: true

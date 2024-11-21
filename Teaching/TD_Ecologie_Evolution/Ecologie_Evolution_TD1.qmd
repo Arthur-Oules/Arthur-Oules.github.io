@@ -1,6 +1,8 @@
 ---
 title: "TD 2 de Phylogénie"
+
 lang: fr
+
 crossref:
   custom:
     - kind: float
@@ -8,6 +10,25 @@ crossref:
       key: doc
       latex-env: docu
 
+notebook-links: global
+
+format:
+  html:
+    css: metadata/styles.css
+  pdf:
+    pdf-engine: lualatex
+    mainfont: Open Sans
+    fontsize: 8pt
+    toc: false
+    number-sections: true
+    colorlinks: true
+    fig-pos: H
+    include-in-header: 
+      text: |
+        \usepackage{scrlayer-scrpage}
+        \rohead{L3 Biosciences - Evolution et Ecologie}
+        \lofoot{Ecole Normale Supérieure de Lyon}
+    callout-appearance: simple
 ---
 
 ::: {}
@@ -63,7 +84,7 @@ Diversité des mâchoires pharyngiennes des Cichlidés (Burress 2015) DOI : [10.
 
 Chez certains groupes, ce caractère est associé à de nombreuses modifications comme la fusion des demi-mâchoires pharyngiennes inférieures et une modification de la musculature associée (@fig-two). Ces modifications permettent notamment une force de mastication supérieure et l’apparition de régimes alimentaires à base d’aliments coriaces comme les molluscivores ou les corallivores, ce mode d’alimentation à partir de mâchoires pharyngiennes dérivées est appelé pharyngognathie.
 
-::: {#doc-one}
+::: {#doc-one layouy="[-10, 80, -10]"}
 
 ![](figures/Doc_1.svg)
 
