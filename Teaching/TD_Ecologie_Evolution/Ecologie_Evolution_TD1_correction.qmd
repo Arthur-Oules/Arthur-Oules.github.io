@@ -38,9 +38,9 @@ Les poissons Téléostéens possèdent, en plus de leurs mâchoires orales, une 
 ::: {.callout-tip collapse="true"}
 ## Réponse 1
 
-Chez les Cyprinidés (famille des poissons rouges), les mâchoires orales sont édentées et seules les mâchoires pharyngiennes portent des dents. Ainsi la mâchoire orale permet la capture de proies par succion et les mâchoires pharyngiennes permettent la mastication.\
-À l’inverse, chez les Acanthuridae (poissons chirurgiens) les mâchoires pharyngiennes sont réduites à des plaques dentigères dont l’action dans la mastication est très réduite.\
-Les mâchoires pharyngiennes permettent un découplage fonctionnel des mâchoires orales et pharyngiennes et l’occupation de nouvelles niches trophiques.
+Chez les poissons chirurgiens (Acanthuridae), les mâchoires pharyngiennes sont réduites à des plaques dentigères dont l’action dans la mastication est très réduite.\
+A l'inverse, chez les poissons rouges (Cyprinidés), les mâchoires orales sont édentées et seules les mâchoires pharyngiennes portent des dents. Ainsi la mâchoire orale permet la capture de proies par succion et les mâchoires pharyngiennes permettent la mastication.\
+La présence de mâchoires pharyngiennes permet un découplage fonctionnel des mâchoires orales et pharyngiennes et le relâchement d'une partie des pressions de sélection exercées sur les mâchoires orales. Permettant ainsi l’occupation de nouvelles niches trophiques.
 :::
 
 ::: {#fig-two layout-ncol=2}
