@@ -19,8 +19,13 @@ website:
 
 format:
   html:
-    theme: cosmo
+    theme:
+      light: flatly
+      dark: darkly
+    lightbox: true
     css: styles.css
+    link-external-newwindow: true
+    link-external-icon: true
     toc: true
 
 execute:

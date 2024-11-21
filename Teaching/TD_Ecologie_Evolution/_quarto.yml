@@ -6,13 +6,6 @@ notebook-links: global
 execute:
   freeze: auto
 
-crossref:
-  custom:
-    - kind: float
-      reference-prefix: Document
-      key: doc
-      latex-env: docu
-
 number-sections: true
 
 metadata-files:

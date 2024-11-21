@@ -1,6 +1,13 @@
 ---
 title: "TD 2 de Phylogénie"
 lang: fr
+crossref:
+  custom:
+    - kind: float
+      reference-prefix: Document
+      key: doc
+      latex-env: docu
+
 ---
 
 ::: {}
