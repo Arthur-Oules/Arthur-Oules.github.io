@@ -177,7 +177,7 @@ Formellement, la vraisemblance d'un modèle sachant un jeu de donnée est la pro
 Ainsi, on peut définir une fonction qui à un ensemble de modèles va attribuer une valeur de vraisemblance : la fonction de vraisemblance. C'est cette fonction que l'on cherche à maximiser afin de trouver le modèle qui, sachant nos donnée, est le "meilleur" d'après nos critères.
 
 Dans notre exemple simplifié, on peut écrire que pour toute chance $p$ de tomber sur Face qui décrit un modèle on a : $$
-\mathcal{L}(modèle(p) | \text{Tirage}) = P(\text{Tirage} | modèle(p)) = (p)^7 \cdot (1-p)^5
+\mathcal{L}(\text{modele}(p) | \text{Tirage}) = P(\text{Tirage} | \text{modele}(p)) = (p)^7 \cdot (1-p)^5
 $$ Où $\mathcal{L}$ est la fonction de vraisemblance du modèle sachant le tirage qu'on a eu. Il est donc simple de trouver une solution analytique dans ce cas !
 
 Cependant, quand on travaille avec des phylogénie ou des modèles complexes de manière générale, on a bien plus de paramètres et pas toujours de solution analytique et il faut passer par des estimations de cette fonction qui sont gourmandes en puissance et temps de calcul.

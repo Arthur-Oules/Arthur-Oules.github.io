@@ -426,7 +426,7 @@ P(\text{Tirage}|\text{Pièce truquée})&nbsp;=&nbsp;(0,7)^7 \times (0,3)^5 = 2,0
 <p>Formellement, la vraisemblance d’un modèle sachant un jeu de donnée est la probabilité conditionnelle d’obtenir un jeu de données sachant un modèle.<br>
 Ainsi, on peut définir une fonction qui à un ensemble de modèles va attribuer une valeur de vraisemblance&nbsp;: la fonction de vraisemblance. C’est cette fonction que l’on cherche à maximiser afin de trouver le modèle qui, sachant nos donnée, est le “meilleur” d’après nos critères.</p>
 <p>Dans notre exemple simplifié, on peut écrire que pour toute chance <span class="math inline">\(p\)</span> de tomber sur Face qui décrit un modèle on a&nbsp;: <span class="math display">\[
-\mathcal{L}(modèle(p) | \text{Tirage}) = P(\text{Tirage} | modèle(p)) = (p)^7 \cdot (1-p)^5
+\mathcal{L}(\text{modele}(p) | \text{Tirage}) = P(\text{Tirage} | \text{modele}(p)) = (p)^7 \cdot (1-p)^5
 \]</span> Où <span class="math inline">\(\mathcal{L}\)</span> est la fonction de vraisemblance du modèle sachant le tirage qu’on a eu. Il est donc simple de trouver une solution analytique dans ce cas&nbsp;!</p>
 <p>Cependant, quand on travaille avec des phylogénie ou des modèles complexes de manière générale, on a bien plus de paramètres et pas toujours de solution analytique et il faut passer par des estimations de cette fonction qui sont gourmandes en puissance et temps de calcul.</p>
 <p>Dans le cas de la fonction <code>brownie.lite</code>, l’évolution du trait le long d’un arbre est modélisée par un mouvement Brownien de paramètres <span class="math inline">\(\bar{z}(0)\)</span> et <span class="math inline">\(\sigma^2\)</span> comme vu en réponse à la question précédente et le maximum de vraisemblance permet de trouver le jeu de paramètres (le taux d’évolution du degré de piscivorie et le caractère ancestral) le plus vraisemblable sachant notre jeu de donnée (la topologie d’arbre et les caractères actuels).</p>
@@ -1120,7 +1120,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom","loop":false});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","loop":false,"closeEffect":"zoom","openEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
