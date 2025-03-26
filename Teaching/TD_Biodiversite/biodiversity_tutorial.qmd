@@ -17,9 +17,51 @@ format:
     lang: fr
 ---
 
+# Installation de R et RStudio
+
+Dans ce TP/TD, nous allons utiliser le language de programmation R et plus particulièrement depuis RStudio, un Environnement de Développmenet Intégré (IDE).
+Pour l'installation de R et Rstudio, le plus simple est encore de se rendre [directement sur le site de RStudio](https://posit.co/download/rstudio-desktop/) et de se laisser guider.
+
+La première étape est d'installer R, ici, le site de RStudio nous redirige vers la page d'accueil du CRAN (The Comprehensive R Archive Network) qui liste les différentes distributions de R dans sa version la plus récente. Ici, je vous laisse choisir la version qui correspond à votre système d'exploitation. Si vous avez un vieux système d'exploitation, il sera peut-être nécessaire d'installer une ancienne distribution de R.
+
+# Installation des packages
+
+Revenons au CRAN, en plus de stocker différentes version de R disponibles partout dans le monde, cette archive est sera aussi notre principale source de packages. Les packages sont des extensions à la version de base de R, codées soit en R soit en C ou Fortran compilé et souvent créés avec une utilisation précise en tête, par exemple, au hasard, la construction d'arbres phylogénétiques.
+
+
+```{r}
+#| echo: false
+#| eval: false
+
+install.packages("here")
+install.packages("tidyverse")
+install.packages("rentrez")
+
+install.packages("ape")
+install.packages("phangorn")
+
+install.packages("viridis")
+```
+
+Notre seconde source de package sera [Bioconductor](https://www.bioconductor.org/) qui centralise de nombreux packages avec des usages très orientés vers la bioinformatique et tout particulièrement le traitement de données issues de wet-lab.\
+Cette fois, sur une installation de zéro, il faut commencer par installer BiocManager, un package qui permet d'accéder au dépôt Bioconductor directement depuis R. On utilise ensuite une fonction interne à ce package, d'où le préfixe `BiocManager::` avant la fonction, pour télécharger et installer un package de ce dépôt.
+
+```{r}
+#| echo: false
+#| eval: false
+
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("msa")
+BiocManager::install("ggtree")
+```
+
 # Chargement des packages et données
 
 ## Chargement des packages
+
+Une fois un package installé, vous devriez le voir apparaître dans l'onglet package dans la fenêtre en bas à droite par défaut de RStudio. Une manière de charger manuellement un package est de cocher la case tout à gauche qui lui est associée, sinon on peut utiliser les commandes suivantes :
 
 ```{r}
 #| output: false
@@ -41,7 +83,22 @@ library(ggtree)
 library(viridis)
 ```
 
+Pour le beau geste, une version plus compacte :
+
+```{r}
+#| echo: false
+#| eval: false
+
+c("here", "tidyverse", "reshape2", "rentrez", "ape", "msa", "phanghorn",
+  "ggtree", "viridis") |>
+  lapply(library, character.only = TRUE) |> invisible()
+```
+
+
 ## Chargement des fonctions externes
+
+Pour nous simplifier la tâche, j'ai préparé quelques fonctions en avance que nous allons charger avec la fonction `source()`.\
+C'est aussi l'occasion de vous présenter le package `here` et l'organisation de son code en "Projets" via à RStudio.
 
 ```{r}
 source(here("functions", "tidy_functions.R"))
@@ -65,6 +122,7 @@ Charger le fichier `data/usflu.annot.csv` avec la fonction `read_csv()` et le vi
 ```{r}
 #| error: false
 #| warning: false
+
 annotations <- read_csv(
   file           = here("data", "usflu.annot.csv"),
   show_col_types = FALSE
@@ -84,6 +142,7 @@ Nous allons télécharger les séquences correspondantes depuis Genbank avec le 
 ```{r}
 #| error: false
 #| warning: false
+
 annotations |>
   mutate("sequences" = Vectorize(Get_sequence)(accession)) |> 
   select(c(accession, sequences)) |> 
@@ -113,6 +172,7 @@ alignment <- usflu_sequences |> msa(method = "Muscle", type = "dna", order = "in
 ```{r}
 #| echo: false
 #| eval: false
+
 msaPrettyPrint(
   alignment,
   output = "tex",
