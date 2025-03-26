@@ -1,6 +1,6 @@
 ---
 title: "TD Biodiversité"
-author: Arthur Oulès, adapté de [Güell *et al* (2017)](https://fuzzyatelin.github.io/bioanth-stats/module-24/module-24.html#introduction)
+author: Arthur Oulès, adapté de [Thibaut Jombart (2013)](http://adegenet.r-forge.r-project.org/files/MSc-intro-phylo.1.1.pdf)
 editor: source
 format:
   html:
