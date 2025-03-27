@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Arthur Oulès, adapté de Güell et al (2017)">
+<meta name="author" content="Arthur Oulès, adapté de Thibaut Jombart (2013)">
 
 <title>TD Biodiversité – Arthur Oulès</title>
 <style>
@@ -70,12 +70,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-4d91926d31da4e77677e6fe7fa57cbd9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-ce6917c320220c494b35bb15b6c1b65c.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -166,7 +166,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Sommaire</h2>
    
   <ul>
-  <li><a href="#chargement-des-packages-et-données" id="toc-chargement-des-packages-et-données" class="nav-link active" data-scroll-target="#chargement-des-packages-et-données">Chargement des packages et données</a>
+  <li><a href="#installation-de-r-et-rstudio" id="toc-installation-de-r-et-rstudio" class="nav-link active" data-scroll-target="#installation-de-r-et-rstudio">Installation de R et RStudio</a></li>
+  <li><a href="#installation-des-packages" id="toc-installation-des-packages" class="nav-link" data-scroll-target="#installation-des-packages">Installation des packages</a></li>
+  <li><a href="#chargement-des-packages-et-données" id="toc-chargement-des-packages-et-données" class="nav-link" data-scroll-target="#chargement-des-packages-et-données">Chargement des packages et données</a>
   <ul class="collapse">
   <li><a href="#chargement-des-packages" id="toc-chargement-des-packages" class="nav-link" data-scroll-target="#chargement-des-packages">Chargement des packages</a></li>
   <li><a href="#chargement-des-fonctions-externes" id="toc-chargement-des-fonctions-externes" class="nav-link" data-scroll-target="#chargement-des-fonctions-externes">Chargement des fonctions externes</a></li>
@@ -217,7 +219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">TD Biodiversité</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Montrer tout le code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Cacher tout le code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button" data-quarto-source-url="https://github.com/Arthur-Oules/Arthur-Oules.github.io/tree/main/Teaching/TD_Biodiversite">Voir les sources</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">TD Biodiversité</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Montrer tout le code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Cacher tout le code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button" data-quarto-source-url="https://github.com/Arthur-Oules/TD_Biodiversite/blob/main/biodiversity_tutorial.qmd">Voir les sources</a></li></ul></div></div>
 </div>
 
 
@@ -227,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Auteur·rice</div>
     <div class="quarto-title-meta-contents">
-             <p>Arthur Oulès, adapté de <a href="https://fuzzyatelin.github.io/bioanth-stats/module-24/module-24.html#introduction">Güell <em>et al</em> (2017)</a> </p>
+             <p>Arthur Oulès, adapté de <a href="http://adegenet.r-forge.r-project.org/files/MSc-intro-phylo.1.1.pdf">Thibaut Jombart (2013)</a> </p>
           </div>
   </div>
     
@@ -240,10 +242,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="installation-de-r-et-rstudio" class="level1">
+<h1>Installation de R et RStudio</h1>
+<p>Dans ce TP/TD, nous allons utiliser le language de programmation R et plus particulièrement depuis RStudio, un Environnement de Développmenet Intégré (IDE). Pour l’installation de R et Rstudio, le plus simple est encore de se rendre <a href="https://posit.co/download/rstudio-desktop/">directement sur le site de RStudio</a> et de se laisser guider.</p>
+<p>La première étape est d’installer R, ici, le site de RStudio nous redirige vers la page d’accueil du CRAN (The Comprehensive R Archive Network) qui liste les différentes distributions de R dans sa version la plus récente. Ici, je vous laisse choisir la version qui correspond à votre système d’exploitation. Si vous avez un vieux système d’exploitation, il sera peut-être nécessaire d’installer une ancienne distribution de R.</p>
+</section>
+<section id="installation-des-packages" class="level1">
+<h1>Installation des packages</h1>
+<p>Revenons au CRAN, en plus de stocker différentes version de R disponibles partout dans le monde, cette archive est sera aussi notre principale source de packages. Les packages sont des extensions à la version de base de R, codées soit en R soit en C ou Fortran compilé et souvent créés avec une utilisation précise en tête, par exemple, au hasard, la construction d’arbres phylogénétiques.</p>
+<p>Notre seconde source de package sera <a href="https://www.bioconductor.org/">Bioconductor</a> qui centralise de nombreux packages avec des usages très orientés vers la bioinformatique et tout particulièrement le traitement de données issues de wet-lab.<br>
+Cette fois, sur une installation de zéro, il faut commencer par installer BiocManager, un package qui permet d’accéder au dépôt Bioconductor directement depuis R. On utilise ensuite une fonction interne à ce package, d’où le préfixe <code>BiocManager::</code> avant la fonction, pour télécharger et installer un package de ce dépôt.</p>
+</section>
 <section id="chargement-des-packages-et-données" class="level1">
 <h1>Chargement des packages et données</h1>
 <section id="chargement-des-packages" class="level2">
 <h2 class="anchored" data-anchor-id="chargement-des-packages">Chargement des packages</h2>
+<p>Une fois un package installé, vous devriez le voir apparaître dans l’onglet package dans la fenêtre en bas à droite par défaut de RStudio. Une manière de charger manuellement un package est de cocher la case tout à gauche qui lui est associée, sinon on peut utiliser les commandes suivantes :</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
@@ -263,9 +277,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<p>Pour le beau geste, une version plus compacte :</p>
 </section>
 <section id="chargement-des-fonctions-externes" class="level2">
 <h2 class="anchored" data-anchor-id="chargement-des-fonctions-externes">Chargement des fonctions externes</h2>
+<p>Pour nous simplifier la tâche, j’ai préparé quelques fonctions en avance que nous allons charger avec la fonction <code>source()</code>.<br>
+C’est aussi l’occasion de vous présenter le package <code>here</code> et l’organisation de son code en “Projets” via à RStudio.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
@@ -403,7 +420,7 @@ Utiliser la fonction <code>dist.dna()</code> pour générer une matrice de dista
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-10-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -422,7 +439,7 @@ Utiliser la fonction <code>dist.dna()</code> pour générer une matrice de dista
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-11-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -444,7 +461,7 @@ Utiliser la fonction <code>dist.dna()</code> pour générer une matrice de dista
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -473,7 +490,7 @@ Phylogenetic tree with 80 tips and 78 internal nodes.
 Tip labels:
   CY013200, CY013781, CY012128, CY013613, CY012160, CY012272, ...
 
-Unrooted; includes branch lengths.</code></pre>
+Unrooted; includes branch length(s).</code></pre>
 </div>
 <details class="code-fold">
 <summary>Afficher le code</summary>
@@ -484,7 +501,7 @@ Unrooted; includes branch lengths.</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-16-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -499,7 +516,7 @@ Commenter le bloc de code suivant. Cette représentation vous semble-t-elle pert
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-17-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -517,7 +534,7 @@ Commenter le bloc de code suivant. Cette représentation vous semble-t-elle pert
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-18-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -545,7 +562,7 @@ you can set `options(ignore.negative.edge=TRUE)`, then re-run ggtree.</code></pr
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-16-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-19-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -585,7 +602,7 @@ you can set `options(ignore.negative.edge=TRUE)`, then re-run ggtree.</code></pr
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-17-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-20-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -619,7 +636,7 @@ Recommençons avec l’arbre généré par UPGMA :</p>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-18-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-21-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -689,7 +706,7 @@ Calculating bootstrap values... done.</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-20-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-23-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -732,7 +749,7 @@ Calculating bootstrap values... done.</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-22-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-25-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -805,7 +822,7 @@ Phylogenetic tree with 80 tips and 76 internal nodes.
 Tip labels:
   CY013200, CY013781, CY012128, CY013613, CY012160, CY012272, ...
 
-Unrooted; no branch lengths.</code></pre>
+Unrooted; no branch length.</code></pre>
 </div>
 </div>
 <p>Comparer les scores de parcimonie des deux arbres.</p>
@@ -821,7 +838,7 @@ Unrooted; no branch lengths.</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-27-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-30-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -923,7 +940,7 @@ Commenter le bloc ce code ci-après. (5 min)</p>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-32-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-35-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -1088,7 +1105,7 @@ ML_tree        166 10163.80</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-38-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="biodiversity_tutorial_files/figure-html/unnamed-chunk-41-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="biodiversity_tutorial_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -1325,8 +1342,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1495,7 +1510,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -1722,7 +1736,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
