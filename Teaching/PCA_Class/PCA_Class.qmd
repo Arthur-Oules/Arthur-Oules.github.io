@@ -1,0 +1,152 @@
+---
+title: "PCA_Class"
+---
+
+## Mathematical demonstration
+
+$$
+\text{Cov}(X,Y) = E\left[(X - \mu_{x})(Y - \mu_{y})\right]
+$$
+
+Soit $x_{i}$ une composante de $X$ et $w$ n vecteur unitaire (donc $\|w\| = 1$ par définition). On a 
+
+$$
+\text{cos}(\theta) = \frac{x_{i} \cdot w}{\|x_{i}\|\|w\|}
+$$
+Tel que la projection de $x_{i}$ sur $w$ est de longueur :
+
+$$
+\|x_{i}\| \text{cos}(\theta) = \|x_{i}\|  \frac{x_{i} \cdot w}{\|x_{i}\|\|w\|} = x_{i} \cdot w
+$$
+
+On a donc le résidut associé :
+$$
+\| x_{i} - (x_{i} \cdot w)w \|^2 = x_{i} \cdot x_{i} - (w \cdot x_{i})^2
+$$
+
+On a donc la somme des rédisus ou Mean Squared Error (MSE)
+
+\begin{align}
+
+\text{MSE}(w) &= \frac{1}{n} \sum_{i = 1}^n(\|x\|^2 - (w \cdot x_{i})^2) \\
+&= \frac{1}{n} \sum_{i = 1}^n\|x\|^2 - \frac{1}{n} \sum_{i = 1}^n(w \cdot x_{i})^2 \\
+
+\end{align}
+
+On veut trouver $w$ tel que $\text{MSE}(w)$ soit minimale. Le premier terme est constant en fonction de $w$, il reste donc à maximiser le second terme (il y a un $-$ !). On remarque que le second terme peut s'écrire $\frac{1}{n} \sum_{i = 1}^n(w \cdot x_{i})^2 = E\left[(w \cdot x_{i})^2\right]$ or on a la relation $\text{Var}(X) = E[X^2] - E[X]^2$ d'où l'égalite :
+
+\begin{align}
+
+\frac{1}{n} \sum_{i = 1}^n(w \cdot x_{i})^2 &= (\frac{1}{n} \sum_{i = 1}^n w \cdot x_{i})^2 + \text{Var}(w \cdot x_{i}) \\
+&= \text{Var}(w \cdot x_{i})
+
+\end{align}
+
+Car $w \cdot x_{i} = x_{i}$ puisque $w$ est unitaire et $X$ est centrée donc de moyenne nulle donc $\frac{1}{n} \sum_{i = 1}^n x_{i} = E(X) = 0$.
+
+Ainsi on a :
+
+$$
+\text{MSE}(w) = \frac{1}{n}\sum_{i = 1}^n \|x\|^2 - \text{Var}(w \cdot x_{i})
+$$
+
+Minimiser MSE revient donc à maximiser la variance des projections des $x_{i}$ mais comment faire ?
+
+En posant :
+
+$$
+x = \begin{bmatrix} x_{1} \dots x_{n}\end{bmatrix} \text{et } x^T = \begin{bmatrix}
+      x_{1}\\
+      \vdots \\
+      x_{n}
+    \end{bmatrix} \text{on a } \text{Var}(X) = \frac{1}{n}x^Tx = \frac{1}{n} \sum_{i = 1}^nx_{i}^2
+$$
+
+On note :
+
+$$
+\begin{align}
+
+\sigma_{w}^2 = \text{Var}(w \cdot x_{i}) &= \frac{1}{n} \sum_{i = 1}^n(w \cdot x_{i})^2 \\
+&= \frac{1}{n}(xw)^T(xw) \\
+&= \frac{1}{n}x^Tw^Txw \\
+\sigma_{w}^2 &= w^Tcov_{X^T,X}w
+
+\end{align}
+$$
+
+*N.B* : Attention à la dimensionnalité, $\frac{1}{n}xx^T = cov_{X^T,X}$ est une **matrice** de covariance de $X^T$ et $X$ (de dimension $n \times n$) alors que $\frac{1}{n}x^Tx = \frac{1}{n} \sum_{i = 1}^nx_{i}^2$ est un nombre (de dimension $1 \times 1$).
+
+Ainsi, minimiser $\text{MSE}(w)$ revient à trouver $w$, vecteur unitaire, tel que $\sigma_{w}^2$ soit minimisé.\
+Pour minimiser $\sigma_{w}^2$, on peut utiliser l'opérateur Lagrangien avec la contrainte que $w$ doit être un vecteur unitaire, c'est à dire que $\|w\| = w^Tw = 1$ comme suit :
+
+\begin{align}
+
+\mathcal{L}(w, \lambda) &\equiv \sigma_{w}^2 - \lambda(w^Tw - 1) \\
+\frac{\partial\mathcal{L}}{\partial \lambda} &= (w^Tw - 1) \\
+\frac{\partial\mathcal{L}}{\partial w} &= 2cov_{X^T,X}w - 2\lambda w
+
+\end{align}
+
+On résout le Lagrangien en posant les dérivées partielles nulles ce qui donne le système d'équations :
+
+\begin{align}
+
+w^Tw&= 1 \\
+cov_{X^T,X}w &= \lambda w
+
+\end{align}
+
+Ce qui revient à trouver les valeurs et vecteurs propres de la matrice de covariance de X ! De plus le vecteur propre associé à la valeur propre la plus élevée maximisera la covariance.
+
+## Results and interpretation
+
+```{r}
+library(tidyverse)
+library(FactoMineR)
+library(factoextra)
+
+data("iris")
+```
+
+```{r}
+iris_pca <- iris |> select(-c(Species)) |> PCA(scale.unit = TRUE, ncp = 5, graph = FALSE)
+
+iris_pca
+```
+
+```{r}
+fviz_eig(iris_pca, addlabels = TRUE)
+```
+
+```{r}
+fviz_pca_var(iris_pca, col.var = "black")
+```
+
+```{r}
+fviz_pca_var(iris_pca, col.var = "cos2",
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             repel = TRUE # Avoid text overlapping
+             )
+```
+
+```{r}
+library(corrplot)
+
+var <- get_pca_var(iris_pca)
+corrplot(var$cos2, is.corr = FALSE)
+fviz_cos2(iris_pca, choice = "var", axes = 1:2)
+fviz_contrib(iris_pca, choice = "var", axes = 1, top = 10)
+fviz_contrib(iris_pca, choice = "var", axes = 2, top = 10)
+```
+
+```{r}
+fviz_pca_ind(iris_pca, geom.ind = "point", col.ind = iris$Species, 
+             palette = c("#00AFBB", "#E7B800", "#FC4E07"),
+             mean.point = FALSE)
+```
+
+
+## Examples
+
+## Related analyses
