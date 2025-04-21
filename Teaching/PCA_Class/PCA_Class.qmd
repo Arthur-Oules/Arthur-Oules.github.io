@@ -160,8 +160,8 @@ On a donc la somme des rédisus ou Mean Squared Error (MSE)
 
 \begin{align}
 
-\text{MSE}(w) &= \frac{1}{n} \sum_{i = 1}^n(\|x\|^2 - (w \cdot x_{i})^2) \\
-&= \frac{1}{n} \sum_{i = 1}^n\|x\|^2 - \frac{1}{n} \sum_{i = 1}^n(w \cdot x_{i})^2 \\
+\text{MSE}(w) &= \frac{1}{n} \sum_{i = 1}^n(\|x_{i}\|^2 - (w \cdot x_{i})^2) \\
+&= \frac{1}{n} \sum_{i = 1}^n\|x_{i}\|^2 - \frac{1}{n} \sum_{i = 1}^n(w \cdot x_{i})^2 \\
 
 \end{align}
 
