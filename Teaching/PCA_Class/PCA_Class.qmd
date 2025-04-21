@@ -196,24 +196,24 @@ On obtient :
 
 \sigma_{w}^2 = \text{Var}(w \cdot x_{i}) &= \frac{1}{n} \sum_{i = 1}^n(w \cdot x_{i})^2 \\
 &= \frac{1}{n}(xw)^T(xw) \\
-&= \frac{1}{n}x^Tw^Txw \\
-\sigma_{w}^2 &= w^Tcov_{X^T,X}w
+&= \frac{1}{n}w^Tx^Txw \\
+\sigma_{w}^2 &= w^Tcov_{x^T,x}w
 
 \end{align}
 
-avec $cov_{X^T,X}$ la matrice de variance-covariance des $X_{p}$ variables aléatoires correspondants à nos paramètres :
+avec $cov_{x^T,x}$ la matrice de variance-covariance des $X_{p}$ variables aléatoires correspondants à nos paramètres :
 \begin{align}
 
-cov_{X^T,X} = \text{Cov}\left[X^T,X\right] &= E\left[(X - \mu_{X^T})(X - \mu_{X})\right] \\
-&= E\left[X^TX\right] \text{ en centrant les } X_{p}\\
+cov_{x^T,x} = \text{Cov}\left[x^T,x\right] &= E\left[(x - \mu_{x})^T(x - \mu_{x})\right] \\
+&= E\left[x^Tx\right] \text{ en centrant les } X_{p}\\
 \text{En développant :} \\
-cov_{X^T,X} &= \begin{bmatrix} \text{Var}(X_{1}) & \dots & \text{Cov}(X_{1}, X_{p}) \\
+cov_{x^T,x} &= \begin{bmatrix} \text{Var}(X_{1}) & \dots & \text{Cov}(X_{1}, X_{p}) \\
                               \vdots & \ddots & \vdots \\
                               \text{Cov}(X_{p}, X_{1}) & \dots & \text{Var}(X_{p}) \end{bmatrix}
 
 \end{align}
 
-*N.B* : Attention à la dimensionnalité, $\frac{1}{n}xx^T = cov_{X^T,X}$ est une **matrice** de covariance de $X^T$ et $X$ (de dimension $n \times n$) alors que $\frac{1}{n}x^Tx = \frac{1}{n} \sum_{i = 1}^nx_{i}^2$ est un nombre (de dimension $1 \times 1$).
+*N.B* : Attention à la dimensionnalité, $\frac{1}{n}x^Tx = cov_{x^T,x}$ est une **matrice** de covariance (de dimension $p \times p$) alors que $\frac{1}{n}xx^T = \frac{1}{n} \sum_{i = 1}^nx_{i}^2$ est un nombre (de dimension $1 \times 1$).
 
 Ainsi, minimiser $\text{MSE}(w)$ revient à trouver $w$, vecteur unitaire, tel que $\sigma_{w}^2$ soit minimisé.\
 Pour minimiser $\sigma_{w}^2$, on peut utiliser l'opérateur Lagrangien avec la contrainte que $w$ doit être un vecteur unitaire, c'est à dire que $\|w\| = w^Tw = 1$ comme suit :
@@ -226,12 +226,12 @@ Pour minimiser $\sigma_{w}^2$, on peut utiliser l'opérateur Lagrangien avec la 
 
 \end{align}
 
-On résout le Lagrangien en posant les dérivées partielles nulles ce qui donne le système d'équations :
+On a donc à l'optimum, en posant les dérivées partielles nulles, le système d'équations :
 
 \begin{align}
 
 w^Tw&= 1 \\
-cov_{X^T,X}w &= \lambda w
+cov_{x^T,x}w &= \lambda w
 
 \end{align}
 
