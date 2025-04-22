@@ -7,7 +7,7 @@ execute:
 lang: fr
 ---
 
-## Mathematical demonstration
+## Les mathématiques de l'ACP
 Source : <https://medium.com/intuition/mathematical-understanding-of-principal-component-analysis-6c761004c2f8>
 
 ```{r}
@@ -237,17 +237,61 @@ cov_{x^T,x}w &= \lambda w
 
 Ce qui revient à trouver les valeurs et vecteurs propres de la matrice de covariance de X ! De plus le vecteur propre associé à la valeur propre la plus élevée maximisera la covariance.
 
-## 3D Views
+Et ça nous arrange bien car la matrice de covariance a des propriétés intéressantes : c'est une matrice carrée, positive, symétrique et inversible. Donc il existe une décomposition en valeurs propres de cette matrice tel que $cov_{x^T,x}$ se factorise sous la forme :
+
+$$
+cov_{x^T,x} = x^Tx = W \Lambda W^{-1}
+$$
+Avec $W$, de taille $p \times p$, la matrice diagonlae des vecteurs propres et $\Lambda$, de taille $p \times p$, la matrice des valeurs propres de $cov_{x^T,x}$.\
+Les vecteurs propres ainsi trouvés sont tous unitaires et orthogonaux et forment une base de l'espace à $p$ dimensions de départ.
+
+On a alors les coordonnées de notre nuage de points initial dans le nouveau repère défini par $W$ qui sont données par :
+
+$$
+T = xW
+$$
+
+On appelle T la matrice des poids.
+
+En pratique, la diagonalisation de $cov_{x^T,x}$ est gourmande en calculs car elle nécessite le passer par l'intermédiaire $x^T$. Une "astuce" informatique consiste à réaliser une décomposition en valeurs singulières de $x$ tel que :
+
+$$
+x = U \Sigma V^T
+$$
+
+avec U une matrice unitaire (càd $UU^T = I$) de taille $n \times n$, V une matrice unitaire (càd $UU^T = I$) de taille $p \times p$ et $\Sigma$ une matrice diagonale rectangulaire de taille $n \times p$ dont les coefficients diagonaux sont les $\sqrt{\lambda_{i}}$ non nuls.\
+On a alors la relation :
+
+$$
+x^Tx = V (\Sigma^T\Sigma) V^T =  W \Lambda W^{-1}
+$$
+
+On retrouve une décomposition en valeurs propres. En décomposant $x$ en valeurs singulièress, on s'évite de passer par le calcul de son inverse.
+
+## Example simple à trois dimensions
 
 ```{r}
 library(FactoMineR)
 ```
 
 ```{r}
+#| echo: false
+#| label: tbl-iris
+#| tbl-cap: "Extrait des valeurs des données Iris"
+
 data("iris")
+
+iris_3D <- iris |> 
+  select(c(Species, Sepal.Width, Petal.Width, Petal.Length))
+
+kable(head(iris_3D))
 ```
 
 ```{r}
+#| echo: false
+#| label: fig-iris
+#| fig-cap: Plots des valeurs de Iris
+
 iris |> plot_ly(
   x      = ~Sepal.Width,
   y      = ~Petal.Width,
@@ -267,6 +311,10 @@ iris |> plot_ly(
 ```
 
 ```{r}
+#| echo: false
+#| label: fig-irisscaled
+#| fig-cap: Plots des valeurs de Iris centrées et réduites
+
 iris |> 
   mutate(
     Sepal.Length = scale(Sepal.Length),
@@ -293,6 +341,10 @@ iris |>
 ```
 
 ```{r}
+#| echo: false
+#| label: fig-irispca
+#| fig-cap: Plots des valeurs de l'ACP de Iris
+
 iris |>
   select(-c(Sepal.Length, Species)) |> 
   PCA(graph = FALSE) |> 
@@ -319,11 +371,11 @@ iris |>
   )
 ```
 
-
-## Results and interpretation
+## Et en pratique ?
 
 ```{r}
 library(factoextra)
+library(patchwork)
 ```
 
 ```{r}
@@ -339,30 +391,64 @@ iris_pca
 ```
 
 ```{r}
-fviz_eig(iris_pca, addlabels = TRUE)
+iris |>
+  select(-c(Species)) |>
+  prcomp(scale. = TRUE)
 ```
 
-```{r}
-fviz_pca_var(iris_pca, col.var = "black")
-```
+[Aide](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/prcomp) de la fonction `prcomp()`.
+
+On commence par deux types de graphiques : Un Screeplot et un cercle des corrélations.
 
 ```{r}
-iris_pca |> fviz_pca_var(
-  col.var       = "cos2",
-  gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
-  repel         = TRUE # Avoid text overlapping
-)
+#| echo: false
+#| label: fig-screecirc
+#| fig-cap: Screeplot et cercle des corrélations pour Iris
+
+fviz_eig(iris_pca, addlabels = TRUE) + fviz_pca_var(iris_pca, col.var = "black")
 ```
+
+La fonction `fviz_pca_var()` permet de colorer les vecteurs des variables par le carré de leur cosinus avec les vecteurs propres :
+
+```{r}
+iris_pca |>
+  fviz_pca_var(
+    col.var       = "cos2",
+    gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+    repel         = TRUE # Avoid text overlapping
+  )
+```
+
+Une autre manière de visualiser ces contributions :
 
 ```{r}
 library(corrplot)
 
 var <- get_pca_var(iris_pca)
 corrplot(var$cos2, is.corr = FALSE)
+
 fviz_cos2(iris_pca, choice = "var", axes = 1:2)
-fviz_contrib(iris_pca, choice = "var", axes = 1, top = 10)
-fviz_contrib(iris_pca, choice = "var", axes = 2, top = 10)
+fviz_contrib(iris_pca,
+             choice = "var",
+             axes  = 1,
+             top   = 10) + 
+  fviz_contrib(iris_pca,
+               choice = "var",
+               axes   = 2,
+               top  = 10)
 ```
+
+On peut maintenant regarder ce qu'il se passe du côté des individus :
+
+```{r}
+iris_pca |> fviz_pca_ind(
+  axes       = c(1, 2),
+  geom.ind   = "point",
+  mean.point = FALSE
+)
+```
+
+Il semble y avoir plusieurs groupes, ajoutons une variable catégorielle pour aider à la visualisation :
 
 ```{r}
 iris_pca |> fviz_pca_ind(
@@ -372,7 +458,11 @@ iris_pca |> fviz_pca_ind(
   palette    = c("#00AFBB", "#E7B800", "#FC4E07"),
   mean.point = FALSE
 )
+```
 
+Les axes 1 et 2 de l'ACP nous permettent de distinguer clairement deux groupes qui correspondent bien à des espèces différentes.
+
+```{r}
 iris_pca |> fviz_pca_ind(
   axes       = c(2, 3),
   geom.ind   = "point",
@@ -390,6 +480,61 @@ iris_pca |> fviz_pca_ind(
 )
 ```
 
-## Examples
+Par contre les axes 2 et 3 sont moins informatifs dans ce cas, comme prédis par le screeplot.
 
-## Related analyses
+## A retenir de l'ACP
+
+*   C'est une analyse exploratoire d'un jeu de données *a priori* corrélées, pas un test statistique. Elle permet de décrire la variance d'un jeu de données
+
+*   Cette analyse permet de réduire la dimensionnalité des données et les résumes par des composantes principales
+
+* Ces composantes principales sont orthogonales (*i. e* non corrélés) et participent de manière décroissante à la variance totale du jeu de données
+
+* Le nouvel espace est Euclidien, on peut y mesurer des ditances et des angles. Attention cependant à leur interprétation !
+
+## Analyses de la même famille
+
+WORK IN PROGRESS
+
+<!-- Source : <http://factominer.free.fr/factomethods/index_fr.html> -->
+
+<!-- ### Méthodes Classiques -->
+
+<!-- Quand des individus sont décrits par un jeu de variables, plusieurs méthodes sont possibles selon le type de variables considéré (quantitatives ou qualitatives): -->
+
+<!-- #### Ordination sans contraintes -->
+
+<!-- -   Quand les variables sont quantitatives, on peut réaliser une Analyse en Composantes Principales (ACP ou PCA). On a alors des *distances Euclidiennes* entre individus -->
+
+<!-- -     Analyse en *Coordonnées* Principales (ACoP ou PCoA) si on veut utiliser une distance encore différente. C'est la version la plus générale de ces analyses -->
+
+<!-- #### Ordination sous contraintes -->
+
+<!-- -   Quand les individus sont décrits par deux variables qualitatives, on peut construire un tableau de contingence et réaliser une Analyse Factorielle des Correspondances (AFC ou CA). L’une des hypothèses clefs de la PCA postule que les individus sont liés façon linéaire. Quand ce n'est pas le cas on peut avoir des artéfacts, on peut alors utiliser une distance du Chi2 -->
+
+<!-- -   Quand les individus sont décrits par un jeu de variables qualitatives, on peut réaliser une Analyse des Correspondances Multiples (ACM ou MCA). -->
+
+<!-- La fonction HCPC (Classification Hiérarchique sur Composantes principales) permet de réaliser une classification non supervisée des individus. Cette fonction combine les facteurs principaux, la classification hérarchique et le partitionnement pour mieux visualiser et mettre l'accent sur les similarités entre individus. -->
+
+<!-- ### Méthodes Avancées -->
+
+<!-- #### Un groupe d'individus et plusieurs groupes de variables -->
+
+<!-- Quand des individus sont décrits par plusieurs groupes de variables, plusieurs types d'analyses sont proposées: -->
+
+<!-- -   AFM (Analyse Factorielle Multiple), où les variables d'un même groupe peuvent être quantitatives ou qualitatives -->
+
+<!-- -   AFMH (Analyse Factorielle Multiple Hiérarchique), une extension de l'AFM où les variables sont structurées selon une hiérarchie. -->
+
+<!-- -   GPA (Analyse Procustéenne Généralisée), où les variables doivent être quantitatives. -->
+
+<!-- #### Un groupe de variables, plusieurs groupes d'individus -->
+
+<!-- Quand plusieurs groupes d'individus sont décrits par un groupe de variables quantitatives, l'analyse que l'on propose est une extension de l'AFM appelée AFM Duale. -->
+
+<!-- #### Un groupe d'individus, deux types de variables -->
+
+<!-- Quand un groupe d'individus est décrit par un groupe de variables quantitatives et/ou qualitatives, on propose comme analyse un cas particulier de l'AFM appelé Analyse Factorielle de Données Mixtes. -->
+
+<!-- ### Analyses discriminantes -->
+
