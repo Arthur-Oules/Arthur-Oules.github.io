@@ -25,7 +25,7 @@ Considérons une matrice $x$ de taille $n \times p$ représentant $n$ individus 
 ```{r}
 #| echo: false
 #| label: tbl-values
-#| tbl-cap: "Extrait de traits de 100 individus"
+#| tbl-cap: "Extrait de traits de 50 individus"
 
 x <- rnorm(50, mean = 5, sd = .5)
 y <- 2*x + rnorm(50)
@@ -107,7 +107,7 @@ C'est aussi équivalent à minimiser la somme du carré des résidus :
 ```{r}
 #| echo: false
 #| label: fig-VarMSE
-#| fig-cap: Equivalentre entre MSE et Variance
+#| fig-cap: Equivalence entre MSE et Variance
 
 variance <- ggplot(data = data_anim) +
   geom_segment(
