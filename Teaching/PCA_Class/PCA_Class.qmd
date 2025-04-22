@@ -27,8 +27,8 @@ Considérons une matrice $x$ de taille $n \times p$ représentant $n$ individus 
 #| label: tbl-values
 #| tbl-cap: "Extrait de traits de 100 individus"
 
-x <- rnorm(100, mean = 5, sd = .5)
-y <- 2*x + rnorm(100)
+x <- rnorm(50, mean = 5, sd = .5)
+y <- 2*x + rnorm(50)
 data <- data.frame(x, y)
 rm(x, y)
 
