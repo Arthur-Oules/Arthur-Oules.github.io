@@ -16,6 +16,8 @@ Source : <https://medium.com/intuition/mathematical-understanding-of-principal-c
 library(tidyverse)
 library(plotly)
 library(knitr)
+
+set.seed(248655)
 ```
 
 Considérons une matrice $x$ de taille $n \times p$ représentant $n$ individus et leurs $p$ paramètres associés :
@@ -89,6 +91,8 @@ data_anim <- data_anim |>
 
 ```{r}
 #| echo: false
+#| label: fig-traitssclaed
+#| fig-cap: Biplot des deux traits d'intérêt centrés et réduits
 
 ggplot(data = data_anim) +
   geom_point(aes(x = scale_x, y = scale_y)) + 
@@ -102,6 +106,8 @@ C'est aussi équivalent à minimiser la somme du carré des résidus :
 
 ```{r}
 #| echo: false
+#| label: fig-VarMSE
+#| fig-cap: Equivalentre entre MSE et Variance
 
 variance <- ggplot(data = data_anim) +
   geom_segment(
@@ -132,7 +138,7 @@ subplot(ggplotly(variance), ggplotly(MSE))
 
 Posons le problème mathématiquement :
 
-![Projection de $x_{i}$ sur $w$](figures/angle.png)
+![Projection de $x_{i}$ sur $w$](figures/angle.png){#fig-proj}
 
 Soit $x_{i}$ une composante de $x$ et $w$ un vecteur unitaire (donc $\|w\| = 1$ par définition). On a :
 
@@ -266,7 +272,9 @@ $$
 x^Tx = V (\Sigma^T\Sigma) V^T =  W \Lambda W^{-1}
 $$
 
-On retrouve une décomposition en valeurs propres. En décomposant $x$ en valeurs singulièress, on s'évite de passer par le calcul de son inverse.
+On retrouve une décomposition en valeurs propres. En décomposant $x$ en valeurs singulières, on s'évite de passer par le calcul de son inverse.
+
+![Interprétation graphique de la Décomposition en Valeurs Singulières](figures/Singular-Value-Decomposition.png){#fig-svd}
 
 ## Example simple à trois dimensions
 
@@ -486,11 +494,11 @@ Par contre les axes 2 et 3 sont moins informatifs dans ce cas, comme prédis par
 
 *   C'est une analyse exploratoire d'un jeu de données *a priori* corrélées, pas un test statistique. Elle permet de décrire la variance d'un jeu de données
 
-*   Cette analyse permet de réduire la dimensionnalité des données et les résumes par des composantes principales
+*   Cette analyse permet de réduire la dimensionnalité des données et les résume par des composantes principales
 
 * Ces composantes principales sont orthogonales (*i. e* non corrélés) et participent de manière décroissante à la variance totale du jeu de données
 
-* Le nouvel espace est Euclidien, on peut y mesurer des ditances et des angles. Attention cependant à leur interprétation !
+* Le nouvel espace est Euclidien, on peut y mesurer des distances et des angles. Attention cependant à leur interprétation !
 
 ## Analyses de la même famille
 
