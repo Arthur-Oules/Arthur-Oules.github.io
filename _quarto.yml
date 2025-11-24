@@ -4,6 +4,7 @@ project:
 
 website:
   title: "Arthur Oulès"
+  description: "Arthur Oulès' personnal website containing hobbies and teaching ressources."
   navbar:
     left:
       - href: index.qmd
