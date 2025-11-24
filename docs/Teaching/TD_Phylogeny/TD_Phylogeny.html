@@ -1,2 +1,1114 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"></html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Arthur Oulès">
+<meta name="author" content="Marie Sémon">
+
+<title>TD Ecologie-Evolution&nbsp;: Phylogénie – Arthur Oulès</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-f3c2ea88cadbcfb37ba28ffa2c97cfc1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-ae2d0dcda2edce4ab590422bb373b64f.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="metadata/styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Arthur Oulès</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Recherche"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/Arthur-Oules/Arthur-Oules.github.io">
+            Source Code
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Basculer le mode sombre"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table des matières</h2>
+   
+  <ul>
+  <li><a href="#sweet-tooth-with-a-beak" id="toc-sweet-tooth-with-a-beak" class="nav-link active" data-scroll-target="#sweet-tooth-with-a-beak">Sweet tooth (with a beak)</a></li>
+  <li><a href="#phylogéographie" id="toc-phylogéographie" class="nav-link" data-scroll-target="#phylogéographie">Phylogéographie</a></li>
+  <li><a href="#bonus" id="toc-bonus" class="nav-link" data-scroll-target="#bonus">Bonus</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Autres formats</h2><ul><li><a href="TD_Phylogeny.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">TD Ecologie-Evolution&nbsp;: Phylogénie</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Auteur·rice·s</div>
+  <div class="quarto-title-meta-heading">Affiliations</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Arthur Oulès <a href="mailto:arthur.oules@ens-lyon.fr" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0009-0005-0455-1824" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            <a href="https://lbti.ibcp.fr/?page_id=1826">
+            Laboratoire de Biologie Tissulaire et d’Ingénierie Thérapeutique – UMR 5305
+            </a>
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Marie Sémon <a href="mailto:marie.semon@ens-lyon.fr" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0003-3479-7524" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            <a href="https://www.ens-lyon.fr/LBMC/">
+            Laboratoire de Biologie et Modélisation de la Cellule - UMR 5239 - Inserm 1293
+            </a>
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[-10,80,-10]">
+<div class="quarto-layout-row">
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 80.0%;justify-content: center;">
+<p><a href="images/Anna_hummingbird_Becky_Matsubara.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/Anna_hummingbird_Becky_Matsubara.png" class="img-fluid"></a></p>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 80.0%;justify-content: flex-start;">
+<p>Colibri d’Anna (<em>Calypte anna</em>). Crédit&nbsp;: Becky Matsubara</p>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+<section id="sweet-tooth-with-a-beak" class="level2">
+<h2 class="anchored" data-anchor-id="sweet-tooth-with-a-beak">Sweet tooth (with a beak)</h2>
+<p>Chez les vertébrés, les goûts sucré et umami sont détectés par des récepteurs couplés à une protéine G appelés T1Rs (pour Taste Receptors). La plupart des vertébrés en possèdent trois versions, avec l’hétérodimère T1R1-T1R3 qui détecte le goût umami et l’hétérodimère T1R2-T1R3 qui détecte le goût sucré.<br>
+Des expériences de knockout pour T1R2 ou T1R3 chez des souris montrent que ces souris ont une capacité de détection du goût sucré altérée.<br>
+Par ailleurs, des expériences comportementales montrent que le poulet n’a aucun goût pour le sucré.</p>
+<p><em>Question 1&nbsp;: Proposez une hypothèse pour expliquer cette observation chez le poulet.</em></p>
+<p><em>Question 2&nbsp;: Cherchez les séquences de T1R1, T1R2 et T1R3 chez l’Homme puis chez le poulet&nbsp;: partagez-vous le travail dans la classe !</em><br>
+<em>Pour ce faire, vous utiliserez la base de données Ensembl&nbsp;: <a href="http://www.ensembl.org/index.html" class="uri">http://www.ensembl.org/index.html</a></em><br>
+<em>Vous pourrez aussi vérifier ces observations en utilisant BLAST&nbsp;: <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi" class="uri">https://blast.ncbi.nlm.nih.gov/Blast.cgi</a></em><br>
+<em>Ces deux outils sont très utilisés dans beaucoup de domaines de la biologie, prenez le temps de les découvrir.</em></p>
+<p><em>Question 3&nbsp;: Proposez une méthode pour généraliser ces observations.</em></p>
+<p>Baldwin <em>et al.</em> ont annoté tous les récepteurs T1Rs dans les génomes complets de 10 oiseaux et l’alligator et ont obtenu l’arbre de la <a href="#fig-one" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<div id="fig-one" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-one-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/T1R_birds_Baldwin_2014.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;1: Analyse des séquences de T1R chez les oiseaux. (Baldwin et al. 2014, DOI&nbsp;: 10.1126/science.1255097) Un arbre a été construit par maximum de vraisemblance en utilisant les séquences T1R de 13 oiseaux et de l’alligator chinois (∇ = bootstrap <80%; échelle&nbsp;: 0.4 substitutions par site)."><img src="images/T1R_birds_Baldwin_2014.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-one-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: <strong>Analyse des séquences de T1R chez les oiseaux.</strong> (Baldwin <em>et al.</em> 2014, DOI&nbsp;: <a href="https://doi.org/10.1126/science.1255097">10.1126/science.1255097</a>)<br>
+<em>Un arbre a été construit par maximum de vraisemblance en utilisant les séquences T1R de 13 oiseaux et de l’alligator chinois (∇ = bootstrap &lt;80%; échelle&nbsp;: 0.4 substitutions par site).</em>
+</figcaption>
+</figure>
+</div>
+<p><em>Question 4&nbsp;: Décrivez cet arbre. Pourquoi tous les T1Rs figurent-ils sur le même arbre&nbsp;? Comment les bootstraps sont-ils calculés et que signifie le symbole <span class="math inline">\(\nabla\)</span>&nbsp;? Interprétez cet arbre. Est-ce en accord avec vos observations précédentes&nbsp;?</em></p>
+<p>En dépit des résultats obtenus <a href="#fig-one" class="quarto-xref">Figure&nbsp;1</a>, des lignées variées d’oiseaux (dont les colibris, les perroquets, et les “honeyeaters” (Meliphagidae)) consomment des fruits et du nectar riches en sucre. D’autres, comme le poulet, ne montrent aucun intérêt pour le sucre. Pour comprendre comment cela est possible, les réponses des T1Rs de différentes espèces ont été mesurées en cellules hétérologues (<a href="#fig-two" class="quarto-xref">Figure&nbsp;2</a>).</p>
+<div id="fig-two" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-two-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><a href="images/Reponse_TR1_A_Baldwin_2014.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;2: Réponses des récepteurs T1Rs dans différentes espèces. (Baldwin et al. 2014, DOI&nbsp;: 10.1126/science.1255097 (A) Réponses au stimuli des récepteurs de goût chez des oiseaux et rongeurs. (n = 6 experiments, mean ± SE, ★ P ≤ 0,05). (B) Réponse au sucre des T1Rs de colibri, seuls ou en dimères (n = 6 independent experiments, mean ± SE, ★ P ≤ 0,05). (C) Réponses des dimères T1R1-T1R3 aux acides aminés (bleu) et aux sucres (rouges), en fonction de la dose et dans les espèces indiquées."><img src="images/Reponse_TR1_A_Baldwin_2014.png" class="img-fluid figure-img"></a></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 37.1%;justify-content: center;">
+<p><a href="images/Reponse_TR1_B_Baldwin_2014.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;2: Réponses des récepteurs T1Rs dans différentes espèces. (Baldwin et al. 2014, DOI&nbsp;: 10.1126/science.1255097 (A) Réponses au stimuli des récepteurs de goût chez des oiseaux et rongeurs. (n = 6 experiments, mean ± SE, ★ P ≤ 0,05). (B) Réponse au sucre des T1Rs de colibri, seuls ou en dimères (n = 6 independent experiments, mean ± SE, ★ P ≤ 0,05). (C) Réponses des dimères T1R1-T1R3 aux acides aminés (bleu) et aux sucres (rouges), en fonction de la dose et dans les espèces indiquées."><img src="images/Reponse_TR1_B_Baldwin_2014.png" class="img-fluid figure-img"></a></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 62.9%;justify-content: center;">
+<p><a href="images/Reponse_TR1_C_Baldwin_2014.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;2: Réponses des récepteurs T1Rs dans différentes espèces. (Baldwin et al. 2014, DOI&nbsp;: 10.1126/science.1255097 (A) Réponses au stimuli des récepteurs de goût chez des oiseaux et rongeurs. (n = 6 experiments, mean ± SE, ★ P ≤ 0,05). (B) Réponse au sucre des T1Rs de colibri, seuls ou en dimères (n = 6 independent experiments, mean ± SE, ★ P ≤ 0,05). (C) Réponses des dimères T1R1-T1R3 aux acides aminés (bleu) et aux sucres (rouges), en fonction de la dose et dans les espèces indiquées."><img src="images/Reponse_TR1_C_Baldwin_2014.png" class="img-fluid figure-img"></a></p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-two-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: <strong>Réponses des récepteurs T1Rs dans différentes espèces.</strong> (Baldwin <em>et al.</em> 2014, DOI&nbsp;: <a href="https://doi.org/10.1126/science.1255097">10.1126/science.1255097</a><br>
+<em>(<strong>A</strong>) Réponses au stimuli des récepteurs de goût chez des oiseaux et rongeurs. (n = 6 experiments, mean ± SE, ★ P ≤ 0,05). (<strong>B</strong>) Réponse au sucre des T1Rs de colibri, seuls ou en dimères (n = 6 independent experiments, mean ± SE, ★ P ≤ 0,05). (<strong>C</strong>) Réponses des dimères T1R1-T1R3 aux acides aminés (bleu) et aux sucres (rouges), en fonction de la dose et dans les espèces indiquées.</em>
+</figcaption>
+</figure>
+</div>
+<p><em>Question 5&nbsp;: Interprétez la <a href="#fig-two" class="quarto-xref">Figure&nbsp;2</a>, et donnez une hypothèse évolutive.</em></p>
+<p>Toda <em>et al.</em> ont étendu l’étude à d’autres espèces d’oiseaux, pour comprendre l’origine du phénomène.</p>
+<div id="fig-three" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-three-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p><a href="images/Dimere_response_Toda_2021.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;3: Les passereaux (songbirds) de régime alimentaire différent sont capables de détecter le goût sucré. (Toda et al. 2021, DOI&nbsp;: 10.1126/science.abf6505) (A) Réponse du dimère T1R1-T1R3 aux carbohydrates et aux acides aminés pour 7 espèces d’oiseaux. (n = 6 to 8, mean ± SE; ★ P < 0,01). (B) Position phylogénétique des espèces testées (en rouge&nbsp;: familles contenant >1% d’espèces nectarivores)."><img src="images/Dimere_response_Toda_2021.png" class="img-fluid figure-img"></a></p>
+<p><a href="images/species_phylogeny_Toda_2021.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;3: Les passereaux (songbirds) de régime alimentaire différent sont capables de détecter le goût sucré. (Toda et al. 2021, DOI&nbsp;: 10.1126/science.abf6505) (A) Réponse du dimère T1R1-T1R3 aux carbohydrates et aux acides aminés pour 7 espèces d’oiseaux. (n = 6 to 8, mean ± SE; ★ P < 0,01). (B) Position phylogénétique des espèces testées (en rouge&nbsp;: familles contenant >1% d’espèces nectarivores)."><img src="images/species_phylogeny_Toda_2021.png" class="img-fluid figure-img"></a></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-three-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: <strong>Les passereaux (songbirds) de régime alimentaire différent sont capables de détecter le goût sucré.</strong> (Toda <em>et al.</em> 2021, DOI&nbsp;: <a href="https://doi.org/10.1126/science.abf6505">10.1126/science.abf6505</a>)<br>
+<em>(<strong>A</strong>) Réponse du dimère T1R1-T1R3 aux carbohydrates et aux acides aminés pour 7 espèces d’oiseaux. (n = 6 to 8, mean ± SE; ★ P &lt; 0,01). (<strong>B</strong>) Position phylogénétique des espèces testées (en rouge&nbsp;: familles contenant &gt;1% d’espèces nectarivores).</em>
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><em>N. B.</em>&nbsp;: les martinets (“swift”) et les colibris (“hummingbirds”) appartiennent à une autre lignée d’oiseau que les passereaux (“songbirds”) représentés Figure 3D.</p>
+</div>
+</div>
+<p><em>Question 6&nbsp;: Interprétez la <a href="#fig-three" class="quarto-xref">Figure&nbsp;3</a>, en regard de la phylogénie et de l’alimentation (diet) des oiseaux. De quand date probablement la capacité à détecter le sucre chez les passereaux&nbsp;? Pourquoi&nbsp;?</em></p>
+<div id="fig-four" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-four-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 7.5%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 37.7%;justify-content: center;">
+<p><a href="images/Honeyeater_dimere_Toda_2014.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figure&nbsp;4: Activité de l’hétérodimère T1R3, du colibri (orange), du honeyeater (rouge), et des chimères interspécifiques. (Toda et al. 2021, DOI&nbsp;: 10.1126/science.abf6505)"><img src="images/Honeyeater_dimere_Toda_2014.png" class="img-fluid figure-img"></a></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 47.3%;justify-content: center;">
+<p><a href="images/Honeyeater_dimere_data_Toda_2014.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Figure&nbsp;4: Activité de l’hétérodimère T1R3, du colibri (orange), du honeyeater (rouge), et des chimères interspécifiques. (Toda et al. 2021, DOI&nbsp;: 10.1126/science.abf6505)"><img src="images/Honeyeater_dimere_data_Toda_2014.png" class="img-fluid figure-img"></a></p>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 7.5%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-four-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: <strong>Activité de l’hétérodimère T1R3, du colibri (orange), du honeyeater (rouge), et des chimères interspécifiques.</strong> (Toda <em>et al.</em> 2021, DOI&nbsp;: <a href="https://doi.org/10.1126/science.abf6505">10.1126/science.abf6505</a>)
+</figcaption>
+</figure>
+</div>
+<p><em>Question 7&nbsp;: Interprétez la <a href="#fig-four" class="quarto-xref">Figure&nbsp;4</a>, et émettre une hypothèse sur l’évolution de la capacité à détecter le sucre dans les radiations indépendantes des colibris et des passereaux.</em></p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="phylogéographie" class="level2">
+<h2 class="anchored" data-anchor-id="phylogéographie">Phylogéographie</h2>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout="[-10, 80, -10]">
+<div class="quarto-layout-row">
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 80.0%;justify-content: center;">
+<p><a href="images/el_drago_milenaro.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="images/el_drago_milenaro.png" class="img-fluid"></a></p>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 80.0%;justify-content: flex-start;">
+<p><em>El Drago Milenaro</em>, le plus grand et plus ancien dragonnier des Îles Canaries (<em>Dracaena draco</em>). Crédit&nbsp;: <a href="https://www.lagavetavoladora.com/icod-de-los-vinos-que-ver-drago-milenario">lagavetavoladora.com</a></p>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+<p>“One of the best known examples of continental floristic disjunctions is the so-called ‘Rand Flora’ pattern: an Afro-Mediterranean phytogeographic pattern that evolutionarily relates floras of disjunct regions such as Macaronesia (the Azores, Madeira, Canary and Cape Verde archipelagos), northwest Africa, southern Arabia and western Asia, with the floras of east and south Africa. The most-cited example of this enigmatic floristic pattern is the Canary Islands ‘dragon tree’ (Dracaena draco) that presumably has its closest relatives in northeast Africa, the Socotra islands and southern Arabia, but many other plant groups have also been suggested as having a similar distribution pattern.<br>
+Two main hypotheses about the evolutionary origin for the Rand Flora pattern have been suggested: the ‘vicariance hypothesis’: extant species are the remnants of an ancient widespread African flora that went partly extinct as a result of increasing aridification from the Miocene onwards, leaving relict biotas in climatic refuges at the east and west continental margins of Africa, or the ‘dispersal hypothesis’: the species’ present disjunct distributions are the result of more recent long-distance dispersal events between geographically isolated areas, followed by in situ diversification.“</p>
+<p><em>Question 8&nbsp;: Un peu d’anglais ! Sur la base de cette introduction, utilisez le fond de carte de la <a href="#fig-five" class="quarto-xref">Figure&nbsp;5</a> pour dessiner les deux scénarios envisagés pour expliquer la distribution de la “flore de Rand”.</em></p>
+<div id="fig-five" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-five-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 80.0%;justify-content: flex-start;">
+<a href="images/empty_map.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Figure&nbsp;5: Fond de carte pour la question 8."><img src="images/empty_map.png" class="img-fluid figure-img"></a>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-five-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: <strong>Fond de carte pour la question 8.</strong>
+</figcaption>
+</figure>
+</div>
+<p>Sanmartin <em>et al.</em> ont obtenu des séquences pour 800 espèces de plantes appartenant à 13 familles différentes. Ils ont défini cinq aires de distribution en Afrique&nbsp;: (A) Macaronesia–northwest Africa, (B) eastern Africa and southern Arabia, (C) southern Africa, and the ‘outside’ areas, (D) Mediterranean region and (E) western Asia. Les auteurs ont ensuite implémenté un modèle biogéographique, avec deux types de paramètres&nbsp;:</p>
+<ul>
+<li><p>Les <span class="math inline">\(π_{i}\)</span>, les “carrying capacities”, qui sont les richesses relatives en espèces dans chaque zone, attendues à l’équilibre.</p></li>
+<li><p><span class="math inline">\(r_{AB}\)</span>, <span class="math inline">\(r_{AC}\)</span>, <em>etc.</em>&nbsp;: Les taux de dispersion relatifs, qui sont les taux d’échanges entre les aires A et B, etc. Ces taux sont analogues à des taux de substitution relatifs dans un modèle de substitution GTR.</p></li>
+</ul>
+<p><em>Question 9&nbsp;: Expliquez le principe de cette modélisation.</em></p>
+<div id="fig-six" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-six-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 6.7%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><a href="images/Burn-in_Sanmartin_2010.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Figure&nbsp;6: Exemple de résultat brut de MCMC. (Sanmartín et al. 2010, DOI&nbsp;: 10.1098/rsbl.2010.0095) (A) Trace montrant la valeur du paramètre r_{NW, EAF} (dispersion entre les régions Macaronesia-northwest Africa et eastern Africa, en ordonnée) au cours des 60 millions de générations du MCMC (en abscisse). (B) Distribution des valeurs du paramètre r_{NW, EAF} sur les mêmes générations. Cette distribution donne une estimation des probabilités postérieures, on peut reporter la moyenne, la médiane, et l’intervalle de crédibilité à 95% (bornes rouges)."><img src="images/Burn-in_Sanmartin_2010.png" class="img-fluid figure-img"></a></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 53.3%;justify-content: center;">
+<p><a href="images/MCMC_Sanmartin_2010.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Figure&nbsp;6: Exemple de résultat brut de MCMC. (Sanmartín et al. 2010, DOI&nbsp;: 10.1098/rsbl.2010.0095) (A) Trace montrant la valeur du paramètre r_{NW, EAF} (dispersion entre les régions Macaronesia-northwest Africa et eastern Africa, en ordonnée) au cours des 60 millions de générations du MCMC (en abscisse). (B) Distribution des valeurs du paramètre r_{NW, EAF} sur les mêmes générations. Cette distribution donne une estimation des probabilités postérieures, on peut reporter la moyenne, la médiane, et l’intervalle de crédibilité à 95% (bornes rouges)."><img src="images/MCMC_Sanmartin_2010.png" class="img-fluid figure-img"></a></p>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 6.7%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-six-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: <strong>Exemple de résultat brut de MCMC.</strong> (Sanmartín <em>et al.</em> 2010, DOI&nbsp;: <a href="https://www.doi.org/10.1098/rsbl.2010.0095">10.1098/rsbl.2010.0095</a>)<br>
+<em>(<strong>A</strong>) Trace montrant la valeur du paramètre</em> <span class="math inline">\(r_{NW, EAF}\)</span> (dispersion entre les régions Macaronesia-northwest Africa et eastern Africa, en ordonnée) au cours des 60 millions de générations du MCMC (en abscisse).<br>
+<em>(<strong>B</strong>) Distribution des valeurs du paramètre</em> <span class="math inline">\(r_{NW, EAF}\)</span> sur les mêmes générations. Cette distribution donne une estimation des probabilités postérieures, on peut reporter la moyenne, la médiane, et l’intervalle de crédibilité à 95% (bornes rouges).
+</figcaption>
+</figure>
+</div>
+<p>Les auteurs ont ensuite utilisé le MCMC (Markov Chain Monte Carlo) pour échantillonner les topologies des arbres, les longueurs de branche et les paramètres du modèle biogéographique. Un résultat type issu du MCMC est décrit en <a href="#fig-six" class="quarto-xref">Figure&nbsp;6</a>.</p>
+<p><em>Question 10&nbsp;: Pourquoi utiliser le MCMC&nbsp;? Interprétez la <a href="#fig-six" class="quarto-xref">Figure&nbsp;6</a>.</em></p>
+<div id="fig-seven" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-seven-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 80.0%;justify-content: center;">
+<p><a href="images/model_Ronquist&amp;Sanmartin_2011.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Figure&nbsp;7: Modèle retenu pour décrire la phylogéographie du Dragonnier des Canaries. (Ronquist&amp;Sanmartín 2011, DOI&nbsp;: 10.1146/annurev-ecolsys-102209-144710) (A) Différents modèles de dispersion&nbsp;: dans le premier cas toutes les zones et taux de dispersion sont les mêmes, dans le second cas (modèle «&nbsp;stepping-stone&nbsp;») la dispersion n’est possible qu’entre zones adjacentes dans la chaîne et dans le troisième cas les intensités d’échanges biotiques (r_{i}) et capacités d’accueil (\pi) sont variables (modèle type General-Time-Reversible GTR). (B) Résultats d’analyse Bayesienne en utilisant le modèle GTR sur des données issues de la flore de Rand."><img src="images/model_Ronquist&amp;Sanmartin_2011.png" class="img-fluid figure-img"></a></p>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 80.0%;justify-content: center;">
+<p><a href="images/map_model_Ronquist&amp;Sanmartin_2011.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Figure&nbsp;7: Modèle retenu pour décrire la phylogéographie du Dragonnier des Canaries. (Ronquist&amp;Sanmartín 2011, DOI&nbsp;: 10.1146/annurev-ecolsys-102209-144710) (A) Différents modèles de dispersion&nbsp;: dans le premier cas toutes les zones et taux de dispersion sont les mêmes, dans le second cas (modèle «&nbsp;stepping-stone&nbsp;») la dispersion n’est possible qu’entre zones adjacentes dans la chaîne et dans le troisième cas les intensités d’échanges biotiques (r_{i}) et capacités d’accueil (\pi) sont variables (modèle type General-Time-Reversible GTR). (B) Résultats d’analyse Bayesienne en utilisant le modèle GTR sur des données issues de la flore de Rand."><img src="images/map_model_Ronquist&amp;Sanmartin_2011.png" class="img-fluid figure-img"></a></p>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-seven-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: <strong>Modèle retenu pour décrire la phylogéographie du Dragonnier des Canaries.</strong> (Ronquist&amp;Sanmartín 2011, DOI&nbsp;: <a href="https://www.doi.org/10.1146/annurev-ecolsys-102209-144710">10.1146/annurev-ecolsys-102209-144710</a>)<br>
+<em>(<strong>A</strong>) Différents modèles de dispersion&nbsp;: dans le premier cas toutes les zones et taux de dispersion sont les mêmes, dans le second cas (modèle «&nbsp;stepping-stone&nbsp;») la dispersion n’est possible qu’entre zones adjacentes dans la chaîne et dans le troisième cas les intensités d’échanges biotiques (<span class="math inline">\(r_{i}\)</span>) et capacités d’accueil (<span class="math inline">\(\pi\)</span>) sont variables (modèle type General-Time-Reversible GTR). (<strong>B</strong>) Résultats d’analyse Bayesienne en utilisant le modèle GTR sur des données issues de la flore de Rand.</em>
+</figcaption>
+</figure>
+</div>
+<p><em>Question 11&nbsp;: Décrivez les différences entre les modèles présentés en <a href="#fig-seven" class="quarto-xref">Figure&nbsp;7</a>. Lequel est retenu dans la <a href="#fig-seven" class="quarto-xref">Figure&nbsp;7</a>&nbsp;? Interprétez la <a href="#fig-seven" class="quarto-xref">Figure&nbsp;7</a>.</em></p>
+</section>
+<section id="bonus" class="level2">
+<h2 class="anchored" data-anchor-id="bonus">Bonus</h2>
+<div id="fig-eight" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-eight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 15.0%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 70.0%;justify-content: flex-start;">
+<a href="images/Unequal_rates_Ree&amp;Sanmartin_2009_resize.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Figure&nbsp;8: L’effet d’hypothèse de taux de dispersions égaux et différents (avec contrainte) sur les inférences d’aires de répartition ancestrales et d’évènements biogéographiques avec le modèle DEC (Dispersion, Extinction et Clagogenèse). (Ree&amp;Sanmartín 2009, DOI&nbsp;: 10.1111/j.1365-2699.2008.02068.x) Les trois zones géographiques sont nommées A, B et C, les paramètres de dispersion et d’extinction sont respectivements nommés d et e. Pour chaque diagramme est représenté (a) un schéma de la répartition géographique des différentes aires et les taux de dispersion associés (b) la matrice des taux de transitions instantannées entre aires géographiques et (c) une phylogénie hypothétique avec les aires de répartition obervées ainsi que des reconstructions par maximum de vraisemblance d’aires de répartition ancestrales et évènements de transitions associés."><img src="images/Unequal_rates_Ree&amp;Sanmartin_2009_resize.png" class="img-fluid figure-img"></a>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 15.0%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: <strong>L’effet d’hypothèse de taux de dispersions égaux et différents (avec contrainte) sur les inférences d’aires de répartition ancestrales et d’évènements biogéographiques avec le modèle DEC (Dispersion, Extinction et Clagogenèse).</strong> (Ree&amp;Sanmartín 2009, DOI&nbsp;: <a href="https://www.doi.org/10.1111/j.1365-2699.2008.02068.x">10.1111/j.1365-2699.2008.02068.x</a>)<br>
+<em>Les trois zones géographiques sont nommées <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> et <span class="math inline">\(C\)</span>, les paramètres de dispersion et d’extinction sont respectivements nommés <span class="math inline">\(d\)</span> et <span class="math inline">\(e\)</span>. Pour chaque diagramme est représenté (<strong>a</strong>) un schéma de la répartition géographique des différentes aires et les taux de dispersion associés (<strong>b</strong>) la matrice des taux de transitions instantannées entre aires géographiques et (<strong>c</strong>) une phylogénie hypothétique avec les aires de répartition obervées ainsi que des reconstructions par maximum de vraisemblance d’aires de répartition ancestrales et évènements de transitions associés.</em>
+</figcaption>
+</figure>
+</div>
+<div id="fig-nine" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/Historical_biogeography_Ree&amp;Sanmartin_2009_resize.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Figure&nbsp;9: Scénario biogéographique méditerranéen simplifié. (Ree&amp;Sanmartín 2009, DOI&nbsp;: 10.1111/j.1365-2699.2008.02068.x)"><img src="images/Historical_biogeography_Ree&amp;Sanmartin_2009_resize.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: <strong>Scénario biogéographique méditerranéen simplifié.</strong> (Ree&amp;Sanmartín 2009, DOI&nbsp;: <a href="https://www.doi.org/10.1111/j.1365-2699.2008.02068.x">10.1111/j.1365-2699.2008.02068.x</a>)
+</figcaption>
+</figure>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copié");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copié");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>
