@@ -16,7 +16,7 @@ website:
       - icon: github
         menu:
           - text: Source Code
-            href:  https://github.com/Arthur-Oules/Arthur-Oules.github.io
+            href: https://github.com/Arthur-Oules/Arthur-Oules.github.io
 
 format:
   html:

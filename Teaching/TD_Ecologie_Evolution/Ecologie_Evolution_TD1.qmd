@@ -15,6 +15,9 @@ notebook-links: global
 format:
   html:
     css: metadata/styles.css
+    toc: true
+    toc-title: Table des matières
+    toc-location: left
   pdf:
     pdf-engine: lualatex
     mainfont: Open Sans
@@ -29,6 +32,10 @@ format:
         \rohead{L3 Biosciences - Evolution et Ecologie}
         \lofoot{Ecole Normale Supérieure de Lyon}
     callout-appearance: simple
+    
+metadata-files:
+  - metadata/_oules.yml
+  - metadata/_wissel.yml
 ---
 
 ::: {}
