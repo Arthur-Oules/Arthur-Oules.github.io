@@ -1,8 +1,9 @@
 author:
   - name: "Marie Sémon"
+    orcid: 0000-0003-3479-7524
     email: marie.semon@ens-lyon.fr
     affiliation:
-      - name: Laboratoire de Biologie et Modélisation de la Cellule
+      - name: Laboratoire de Biologie et Modélisation de la Cellule - UMR 5239 - Inserm 1293
         city: Lyon
         country: France
         url: https://www.ens-lyon.fr/LBMC/

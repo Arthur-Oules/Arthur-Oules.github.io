@@ -1,10 +1,10 @@
 ---
-title: "TD Ecologie-Evolution : Phylogénie"
-draft: true
+title: "TD Ecologie-Evolution : Phylogénie"
 
 lang: fr
 
 crossref:
+  subref-labels: alpha A
   custom:
     - kind: float
       reference-prefix: Document
@@ -16,6 +16,9 @@ notebook-links: global
 format:
   html:
     css: metadata/styles.css
+    toc: true
+    toc-title: Table des matières
+    toc-location: left
   pdf:
     pdf-engine: lualatex
     mainfont: Open Sans
@@ -23,13 +26,163 @@ format:
     toc: false
     number-sections: true
     colorlinks: true
-    fig-pos: H
+    # fig-pos: H
     include-in-header: 
       text: |
         \usepackage{scrlayer-scrpage}
         \rohead{L3 Biosciences - Evolution et Ecologie}
         \lofoot{Ecole Normale Supérieure de Lyon}
     callout-appearance: simple
+
+metadata-files:
+  - metadata/_oules.yml
+  - metadata/_semon.yml
 ---
 
-WIP
+::: {layout="[-10,80,-10]"}
+
+![](images/Anna_hummingbird_Becky_Matsubara.png)
+
+Colibri d’Anna (*Calypte anna*). Crédit : Becky Matsubara
+
+:::
+
+## Sweet tooth (with a beak)
+
+Chez les vertébrés, les goûts sucré et umami sont détectés par des récepteurs couplés à une protéine G appelés T1Rs (pour Taste Receptors). La plupart des vertébrés en possèdent trois versions, avec l’hétérodimère T1R1-T1R3 qui détecte le goût umami et l’hétérodimère T1R2-T1R3 qui détecte le goût sucré.\
+Des expériences de knockout pour T1R2 ou T1R3 chez des souris montrent que ces souris ont une capacité de détection du goût sucré altérée.\
+Par ailleurs, des expériences comportementales montrent que le poulet n’a aucun goût pour le sucré.
+
+*Question 1 : Proposez une hypothèse pour expliquer cette observation chez le poulet.*
+
+*Question 2 : Cherchez les séquences de T1R1, T1R2 et T1R3 chez l’Homme puis chez le poulet : partagez-vous le travail dans la classe !*\
+*Pour ce faire, vous utiliserez la base de données Ensembl : [http://www.ensembl.org/index.html](http://www.ensembl.org/index.html){.uri}*\
+*Vous pourrez aussi vérifier ces observations en utilisant BLAST : [https://blast.ncbi.nlm.nih.gov/Blast.cgi](https://blast.ncbi.nlm.nih.gov/Blast.cgi){.uri}*\
+*Ces deux outils sont très utilisés dans beaucoup de domaines de la biologie, prenez le temps de les découvrir.*
+
+*Question 3 : Proposez une méthode pour généraliser ces observations.*
+
+Baldwin *et al.* ont annoté tous les récepteurs T1Rs dans les génomes complets de 10 oiseaux et l’alligator et ont obtenu l’arbre de la @fig-one.
+
+::: {#fig-one}
+![](images/T1R_birds_Baldwin_2014.png)
+
+**Analyse des séquences de T1R chez les oiseaux.** (Baldwin *et al.* 2014, DOI : [10.1126/science.1255097](https://doi.org/10.1126/science.1255097))\
+*Un arbre a été construit par maximum de vraisemblance en utilisant les séquences T1R de 13 oiseaux et de l’alligator chinois (∇ = bootstrap \<80%; échelle : 0.4 substitutions par site).*
+:::
+
+*Question 4 : Décrivez cet arbre. Pourquoi tous les T1Rs figurent-ils sur le même arbre ? Comment les bootstraps sont-ils calculés et que signifie le symbole $\nabla$ ? Interprétez cet arbre. Est-ce en accord avec vos observations précédentes ?*
+
+En dépit des résultats obtenus @fig-one, des lignées variées d’oiseaux (dont les colibris, les perroquets, et les “honeyeaters” (Meliphagidae)) consomment des fruits et du nectar riches en sucre. D’autres, comme le poulet, ne montrent aucun intérêt pour le sucre. Pour comprendre comment cela est possible, les réponses des T1Rs de différentes espèces ont été mesurées en cellules hétérologues (@fig-two).
+
+::: {#fig-two layout="[[1], [0.59,1]]"}
+![](images/Reponse_TR1_A_Baldwin_2014.png)
+
+![](images/Reponse_TR1_B_Baldwin_2014.png)
+
+![](images/Reponse_TR1_C_Baldwin_2014.png)
+
+**Réponses des récepteurs T1Rs dans différentes espèces.** (Baldwin *et al.* 2014, DOI : [10.1126/science.1255097](https://doi.org/10.1126/science.1255097)\
+*(**A**) Réponses au stimuli des récepteurs de goût chez des oiseaux et rongeurs. (n = 6 experiments, mean ± SE, ★ P ≤ 0,05). (**B**) Réponse au sucre des T1Rs de colibri, seuls ou en dimères (n = 6 independent experiments, mean ± SE, ★ P ≤ 0,05). (**C**) Réponses des dimères T1R1-T1R3 aux acides aminés (bleu) et aux sucres (rouges), en fonction de la dose et dans les espèces indiquées.*
+:::
+
+*Question 5 : Interprétez la @fig-two, et donnez une hypothèse évolutive.*
+
+Toda *et al.* ont étendu l’étude à d’autres espèces d’oiseaux, pour comprendre l’origine du phénomène.
+
+::: {#fig-three}
+![](images/Dimere_response_Toda_2021.png)
+
+![](images/species_phylogeny_Toda_2021.png)
+
+**Les passereaux (songbirds) de régime alimentaire différent sont capables de détecter le goût sucré.** (Toda *et al.* 2021, DOI : [10.1126/science.abf6505](https://doi.org/10.1126/science.abf6505))\
+*(**A**) Réponse du dimère T1R1-T1R3 aux carbohydrates et aux acides aminés pour 7 espèces d’oiseaux. (n = 6 to 8, mean ± SE; ★ P \< 0,01). (**B**) Position phylogénétique des espèces testées (en rouge : familles contenant \>1% d'espèces nectarivores).*
+:::
+
+::: callout-note
+*N. B.* : les martinets (“swift”) et les colibris (“hummingbirds”) appartiennent à une autre lignée d’oiseau que les passereaux (“songbirds”) représentés Figure 3D.
+:::
+
+*Question 6 : Interprétez la @fig-three, en regard de la phylogénie et de l’alimentation (diet) des oiseaux. De quand date probablement la capacité à détecter le sucre chez les passereaux ? Pourquoi ?*
+
+::: {#fig-four layout="[-.2,1,1.254,-.2]"}
+![](images/Honeyeater_dimere_Toda_2014.png)
+
+![](images/Honeyeater_dimere_data_Toda_2014.png)
+
+**Activité de l’hétérodimère T1R3, du colibri (orange), du honeyeater (rouge), et des chimères interspécifiques.** (Toda *et al.* 2021, DOI : [10.1126/science.abf6505](https://doi.org/10.1126/science.abf6505))
+:::
+
+*Question 7 : Interprétez la @fig-four, et émettre une hypothèse sur l’évolution de la capacité à détecter le sucre dans les radiations indépendantes des colibris et des passereaux.*
+
+
+{{< pagebreak >}}
+
+## Phylogéographie
+
+::: {layout="[-10, 80, -10]"}
+
+![](images/el_drago_milenaro.png)
+
+*El Drago Milenaro*, le plus grand et plus ancien dragonnier des Îles Canaries (*Dracaena draco*). Crédit : [lagavetavoladora.com](https://www.lagavetavoladora.com/icod-de-los-vinos-que-ver-drago-milenario)
+
+:::
+
+“One of the best known examples of continental floristic disjunctions is the so-called ‘Rand Flora’ pattern: an Afro-Mediterranean phytogeographic pattern that evolutionarily relates floras of disjunct regions such as Macaronesia (the Azores, Madeira, Canary and Cape Verde archipelagos), northwest Africa, southern Arabia and western Asia, with the floras of east and south Africa. The most-cited example of this enigmatic floristic pattern is the Canary Islands ‘dragon tree’ (Dracaena draco) that presumably has its closest relatives in northeast Africa, the Socotra islands and southern Arabia, but many other plant groups have also been suggested as having a similar distribution pattern.\
+Two main hypotheses about the evolutionary origin for the Rand Flora pattern have been suggested: the ‘vicariance hypothesis’: extant species are the remnants of an ancient widespread African flora that went partly extinct as a result of increasing aridification from the Miocene onwards, leaving relict biotas in climatic refuges at the east and west continental margins of Africa, or the ‘dispersal hypothesis’: the species’ present disjunct distributions are the result of more recent long-distance dispersal events between geographically isolated areas, followed by in situ diversification.“
+
+*Question 8 : Un peu d’anglais ! Sur la base de cette introduction, utilisez le fond de carte de la @fig-five pour dessiner les deux scénarios envisagés pour expliquer la distribution de la “flore de Rand”.*
+
+::: {#fig-five layout="[-10,80,-10]"}
+![](images/empty_map.png)
+
+**Fond de carte pour la question 8.**
+:::
+
+Sanmartin *et al.* ont obtenu des séquences pour 800 espèces de plantes appartenant à 13 familles différentes. Ils ont défini cinq aires de distribution en Afrique : (A) Macaronesia–northwest Africa, (B) eastern Africa and southern Arabia, (C) southern Africa, and the ‘outside’ areas, (D) Mediterranean region and (E) western Asia. Les auteurs ont ensuite implémenté un modèle biogéographique, avec deux types de paramètres :
+
+-   Les $π_{i}$, les “carrying capacities”, qui sont les richesses relatives en espèces dans chaque zone, attendues à l’équilibre.
+
+-   $r_{AB}$, $r_{AC}$, *etc.* : Les taux de dispersion relatifs, qui sont les taux d’échanges entre les aires A et B, etc. Ces taux sont analogues à des taux de substitution relatifs dans un modèle de substitution GTR.
+
+*Question 9 : Expliquez le principe de cette modélisation.*
+
+::: {#fig-six layout="[-.2,1,1.6,-.2]"}
+![](images/Burn-in_Sanmartin_2010.png)
+
+![](images/MCMC_Sanmartin_2010.png)
+
+**Exemple de résultat brut de MCMC.** (Sanmartín *et al.* 2010, DOI : [10.1098/rsbl.2010.0095](https://www.doi.org/10.1098/rsbl.2010.0095))\
+*(**A**) Trace montrant la valeur du paramètre* $r_{NW, EAF}$ (dispersion entre les régions Macaronesia-northwest Africa et eastern Africa, en ordonnée) au cours des 60 millions de générations du MCMC (en abscisse).\
+*(**B**) Distribution des valeurs du paramètre* $r_{NW, EAF}$ sur les mêmes générations. Cette distribution donne une estimation des probabilités postérieures, on peut reporter la moyenne, la médiane, et l’intervalle de crédibilité à 95% (bornes rouges).
+:::
+
+Les auteurs ont ensuite utilisé le MCMC (Markov Chain Monte Carlo) pour échantillonner les topologies des arbres, les longueurs de branche et les paramètres du modèle biogéographique. Un résultat type issu du MCMC est décrit en @fig-six.
+
+*Question 10 : Pourquoi utiliser le MCMC ? Interprétez la @fig-six.*
+
+::: {#fig-seven layout="[-10,80,-10]"}
+![](images/model_Ronquist&Sanmartin_2011.png)
+
+![](images/map_model_Ronquist&Sanmartin_2011.png)
+
+**Modèle retenu pour décrire la phylogéographie du Dragonnier des Canaries.** (Ronquist&Sanmartín 2011, DOI : [10.1146/annurev-ecolsys-102209-144710](https://www.doi.org/10.1146/annurev-ecolsys-102209-144710))\
+*(**A**) Différents modèles de dispersion : dans le premier cas toutes les zones et taux de dispersion sont les mêmes, dans le second cas (modèle « stepping-stone ») la dispersion n'est possible qu'entre zones adjacentes dans la chaîne et dans le troisième cas les intensités d'échanges biotiques ($r_{i}$) et capacités d'accueil ($\pi$) sont variables (modèle type General-Time-Reversible GTR). (**B**) Résultats d'analyse Bayesienne en utilisant le modèle GTR sur des données issues de la flore de Rand.*
+:::
+
+*Question 11 : Décrivez les différences entre les modèles présentés en @fig-seven. Lequel est retenu dans la @fig-seven ? Interprétez la @fig-seven.*
+
+## Bonus
+
+::: {#fig-eight layout="[-15,70,-15]"}
+![](images/Unequal_rates_Ree&Sanmartin_2009_resize.png)
+
+**L'effet d'hypothèse de taux de dispersions égaux et différents (avec contrainte) sur les inférences d'aires de répartition ancestrales et d'évènements biogéographiques avec le modèle DEC (Dispersion, Extinction et Clagogenèse).** (Ree&Sanmartín 2009, DOI : [10.1111/j.1365-2699.2008.02068.x](https://www.doi.org/10.1111/j.1365-2699.2008.02068.x))\
+*Les trois zones géographiques sont nommées $A$, $B$ et $C$, les paramètres de dispersion et d'extinction sont respectivements nommés $d$ et $e$. Pour chaque diagramme est représenté (**a**) un schéma de la répartition géographique des différentes aires et les taux de dispersion associés (**b**) la matrice des taux de transitions instantannées entre aires géographiques et (**c**) une phylogénie hypothétique avec les aires de répartition obervées ainsi que des reconstructions par maximum de vraisemblance d'aires de répartition ancestrales et évènements de transitions associés.*
+:::
+
+::: {#fig-nine}
+![](images/Historical_biogeography_Ree&Sanmartin_2009_resize.png)
+
+**Scénario biogéographique méditerranéen simplifié.** (Ree&Sanmartín 2009, DOI : [10.1111/j.1365-2699.2008.02068.x](https://www.doi.org/10.1111/j.1365-2699.2008.02068.x))
+:::

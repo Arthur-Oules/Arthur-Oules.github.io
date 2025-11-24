@@ -1,5 +1,5 @@
 ---
-title: "TD 2 de Phylogénie"
+title: "TD Ecologie-Evolution: Phylogénie et Ecologie"
 
 lang: fr
 
@@ -81,7 +81,7 @@ Mâchoires pharyngiennes d'une Murène (Mehta & Wainright 2007) DOI : [10.1038/n
 ::: {#fig-cichlids}
 ![](figures/Cichlids_pjawsteeth.png)
 
-Diversité des mâchoires pharyngiennes des Cichlidés (Burress 2015) DOI : [10.1111/1365-2656.12457]( https://doi.org/10.1111/1365-2656.12457)
+Diversité des mâchoires pharyngiennes des Cichlidés (Burress 2015) DOI :  [10.1111/1365-2656.12457](https://doi.org/10.1111/1365-2656.12457)
 :::
 
 **Diversité des mâchoires pharyngiennes chez les Téléostéens**
@@ -91,7 +91,7 @@ Diversité des mâchoires pharyngiennes des Cichlidés (Burress 2015) DOI : [10.
 
 Chez certains groupes, ce caractère est associé à de nombreuses modifications comme la fusion des demi-mâchoires pharyngiennes inférieures et une modification de la musculature associée (@fig-two). Ces modifications permettent notamment une force de mastication supérieure et l’apparition de régimes alimentaires à base d’aliments coriaces comme les molluscivores ou les corallivores, ce mode d’alimentation à partir de mâchoires pharyngiennes dérivées est appelé pharyngognathie.
 
-::: {#doc-one layouy="[-10, 80, -10]"}
+::: {#doc-one layout="[-10, 80, -10]"}
 
 ![](figures/Doc_1.svg)
 
