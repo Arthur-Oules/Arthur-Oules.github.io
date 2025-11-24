@@ -1,0 +1,35 @@
+---
+title: "TD Ecologie-Evolution : Phylogénie"
+draft: true
+
+lang: fr
+
+crossref:
+  custom:
+    - kind: float
+      reference-prefix: Document
+      key: doc
+      latex-env: docu
+
+notebook-links: global
+
+format:
+  html:
+    css: metadata/styles.css
+  pdf:
+    pdf-engine: lualatex
+    mainfont: Open Sans
+    fontsize: 8pt
+    toc: false
+    number-sections: true
+    colorlinks: true
+    fig-pos: H
+    include-in-header: 
+      text: |
+        \usepackage{scrlayer-scrpage}
+        \rohead{L3 Biosciences - Evolution et Ecologie}
+        \lofoot{Ecole Normale Supérieure de Lyon}
+    callout-appearance: simple
+---
+
+WIP

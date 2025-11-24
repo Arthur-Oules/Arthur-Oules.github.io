@@ -1,0 +1,14 @@
+project: 
+  output-dir: _output
+
+notebook-links: global
+
+execute:
+  freeze: auto
+
+number-sections: true
+
+metadata-files:
+  - metadata/_oules.yml
+  - metadata/_wissel.yml
+  - metadata/_html.yml
