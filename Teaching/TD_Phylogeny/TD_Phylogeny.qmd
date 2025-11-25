@@ -43,7 +43,7 @@ metadata-files:
 
 ![](images/Anna_hummingbird_Becky_Matsubara.png)
 
-Colibri d’Anna (*Calypte anna*). Crédit : Becky Matsubara
+**Colibri d’Anna (*Calypte anna*).** Crédit : Becky Matsubara
 
 :::
 
@@ -124,12 +124,12 @@ Toda *et al.* ont étendu l’étude à d’autres espèces d’oiseaux, pour co
 
 ![](images/el_drago_milenaro.png)
 
-*El Drago Milenaro*, le plus grand et plus ancien dragonnier des Îles Canaries (*Dracaena draco*). Crédit : [lagavetavoladora.com](https://www.lagavetavoladora.com/icod-de-los-vinos-que-ver-drago-milenario)
+***El Drago Milenaro*, le plus grand et plus ancien dragonnier des Îles Canaries (*Dracaena draco*).** Crédit : [lagavetavoladora.com](https://www.lagavetavoladora.com/icod-de-los-vinos-que-ver-drago-milenario)
 
 :::
 
-“One of the best known examples of continental floristic disjunctions is the so-called ‘Rand Flora’ pattern: an Afro-Mediterranean phytogeographic pattern that evolutionarily relates floras of disjunct regions such as Macaronesia (the Azores, Madeira, Canary and Cape Verde archipelagos), northwest Africa, southern Arabia and western Asia, with the floras of east and south Africa. The most-cited example of this enigmatic floristic pattern is the Canary Islands ‘dragon tree’ (Dracaena draco) that presumably has its closest relatives in northeast Africa, the Socotra islands and southern Arabia, but many other plant groups have also been suggested as having a similar distribution pattern.\
-Two main hypotheses about the evolutionary origin for the Rand Flora pattern have been suggested: the ‘vicariance hypothesis’: extant species are the remnants of an ancient widespread African flora that went partly extinct as a result of increasing aridification from the Miocene onwards, leaving relict biotas in climatic refuges at the east and west continental margins of Africa, or the ‘dispersal hypothesis’: the species’ present disjunct distributions are the result of more recent long-distance dispersal events between geographically isolated areas, followed by in situ diversification.“
+“One of the best known examples of continental floristic disjunctions is the so-called ‘Rand Flora’ pattern: an Afro-Mediterranean phytogeographic pattern that evolutionarily relates floras of disjunct regions such as Macaronesia (the Azores, Madeira, Canary and Cape Verde archipelagos), northwest Africa, southern Arabia and western Asia, with the floras of east and south Africa. The most-cited example of this enigmatic floristic pattern is the Canary Islands ‘dragon tree’ (*Dracaena draco*) that presumably has its closest relatives in northeast Africa, the Socotra islands and southern Arabia, but many other plant groups have also been suggested as having a similar distribution pattern.\
+Two main hypotheses about the evolutionary origin for the Rand Flora pattern have been suggested: the ‘vicariance hypothesis’: extant species are the remnants of an ancient widespread African flora that went partly extinct as a result of increasing aridification from the Miocene onwards, leaving relict biotas in climatic refuges at the east and west continental margins of Africa, or the ‘dispersal hypothesis’: the species’ present disjunct distributions are the result of more recent long-distance dispersal events between geographically isolated areas, followed by *in situ* diversification.“
 
 *Question 8 : Un peu d’anglais ! Sur la base de cette introduction, utilisez le fond de carte de la @fig-five pour dessiner les deux scénarios envisagés pour expliquer la distribution de la “flore de Rand”.*
 
