@@ -1,5 +1,55 @@
 ---
-title: "About"
+title: "Arthur Oulès"
+subtitles: |
+  Third year Phd student
+draft: true
+about:
+  template: trestles
+  links:
+    - icon: github
+      href: https://github.com/Arthur-Oules
+    - icon: envelope-at
+      href: mailto:arthur.oules@gmail.com
+    - text: '{{< iconify simple-icons orcid >}}'
+      href: https://orcid.org/0009-0005-0455-1824
+    - text: '{{< iconify simple-icons researchgate>}}'
+      href: https://www.researchgate.net/profile/Arthur_Oules
+    - text: '{{< iconify academicons google-scholar >}}'
+      href: https://scholar.google.com/citations?user=Sn9YvuAAAAAJ&hl=fr
 ---
 
-W.I.P.
+I am a third year PhD student at the [LBTI](https://lbti.ibcp.fr/?page_id=1826) under the supervision of Laurent Viriot and Giacomo Bernardi (UCSC, Bernardi Lab)
+
+## Education
+
+Master Degree in Biology 2023 – ENS de Lyon
+
+Agrégation SV-STU section B, ranked 26 2022 – ENS de Lyon
+
+Bachelor in Biology – ENS de Lyon 
+
+## Experience
+
+2023–present: PhD under the supervision of Laurent Viriot and Giacomo
+Bernardi, LBTI - UMR 5305, Université Claude Bernard Lyon 1, Lyon,
+France
+Evolution of the trophic apparatus in large herbivorous coral reef fish in
+relation to the diversification of diet micro-specializations
+
+2023: 20 weeks Internship with Giacomo Bernardi, Bernardi lab, University
+of California, Santa Cruz, CA, USA
+Niche partitioning and phylogeography of Surperches (Embiotocidae)
+
+2021: 18 weeks Internship with Laurent Viriot, LBTI – UMR 5305, Université
+Claude Bernard Lyon 1, Lyon, France
+Evolution of the trophic apparatus in Surgeonfish (Acanthuridae) in
+relation to their diet diversification.
+
+2020: 5 weeks Internship with Marie Delattre, LBMC – UMR 5239, École
+Normale Supérieure de Lyon, Lyon, France
+Εxploring the mechani
+
+## Publications
+
+Population Genomics, Local Adaptation and Cryptic Speciation in a Temperate Reef Fish, the Black Surfperch, Embiotoca jacksoni, Using Genome-Wide Resequencing. *Molecular Ecology* 2025. DOI: [10.1111/mec.70073](https://www.doi.org/10.1111/mec.70073)\
+Jason A. Toy\*, Arthur Oulès\*, Gary Longo, H. Bradley Shaffer, Giacomo Bernardi
