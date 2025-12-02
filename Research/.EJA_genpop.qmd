@@ -1,0 +1,83 @@
+---
+date: "08-11-2025"
+title: "Population Genomics, Local Adaptation and Cryptic Speciation in a Temperate Reef Fish, the Black Surfperch, *Embiotoca jacksoni*, Using Genome-Wide Resequencing"
+author:
+  - name: "Jason A. Toy"
+    url: https://jasontoysci.wordpress.com/
+    orcid: 0000-0002-2126-7826
+    degrees: PhD
+    equal-contributor: true
+    affiliations:
+      - ref: odu
+      - ref: ucsc
+  - name: "Arthur Oulès"
+    degrees: M.S
+    orcid: 0009-0005-0455-1824
+    email: arthur.oules@ens-lyon.fr
+    equal-contributor: true
+    affiliations:
+      - ref: ucsc
+      - ref: lbti
+      - ref: ensl
+  - name: "Gary Longo"
+    orcid: 0000-0002-4282-9111
+    url: https://garycharleslongo.wordpress.com/
+    degrees: PhD
+    affiliations:
+      - ref: noaa
+      - ref: ucsc
+  - name: "H. Braley Shaffer"
+    degrees: PhD
+    url: https://www.ioes.ucla.edu/person/brad-shaffer/
+    orcid: 0000-0002-5795-9242
+    affiliations:
+      - ref: ucla
+  - name: "Giacomo Bernardi"
+    degrees: Prof.
+    url: https://bernardi.eeb.ucsc.edu/people/giacomo-bernardi/
+    orcid: 0000-0002-8249-4678
+    email: bernardi@ucsc.edu
+    corresponding: true
+    affiliations:
+      - ref: ucsc
+affiliations:
+  - id: odu
+    name: Old Dominion University
+    city: Norfolk
+    state: Virginia
+    country: USA
+    url: https://www.odu.edu/
+  - id: ucsc
+    name: Department of Ecology and Evolutionary Biology, University of California Santa Cruz
+    city: Santa Cruz
+    state: California
+    country: USA
+    url: https://www.ucsc.edu/
+  - id: lbti
+    name: Laboratoire de Biologie Tissulaire et d'Ingénierie Thérapeutique – UMR 5305 CNRS/Université Lyon 
+    city: Lyon 7
+    country: France
+    url: https://lbti.ibcp.fr/?page_id=1826
+  - id: ensl
+    name: École Normale Supérieure de Lyon, Université Claude Bernard Lyon 1
+    city: Lyon 7
+    country: France
+    url: https://www.ens-lyon.fr/en/
+  - id: noaa
+    name: NOAA National Marine Fisheries Service Southwest Fisheries Science Center
+    city: La jolla
+    state: California
+    country: USA
+    url: https://www.fisheries.noaa.gov/about/southwest-fisheries-science-center
+  - id: ucla
+    name: La Kretz Center for California Conservation Science, Institute of the Environment and Sustainability, University of California Los Angeles
+    city: Los Angeles
+    state: California
+    country: USA
+    url: https://www.ucla.edu/
+citation:
+  url: https://onlinelibrary.wiley.com/doi/10.1111/mec.70073
+  publisher: "Molecular Ecology"
+  abstract: |
+    The black surfperch, *Embiotoca jacksoni*, exhibits limited dispersal due to its lack of a pelagic larval stage and offers a unique model for studying local adaptation and potential cryptic speciation in marine species. This study employs medium-coverage whole genome resequencing to explore population structure, local adaptation, and genetic divergence across a latitudinal gradient from central California to Baja California, Mexico, including offshore islands. We identify strong genetic differentiation between five distinct groups: a coastal group and four island groups (Santa Catalina Island, San Clemente Island, Isla Guadalupe, and Isla San Jerónimo), from Principal Components Analysis (PCA), Fst estimation, ancestry (sNMF), and phylogenetic analyses. For coastal populations, genetic structure correlates with geographic distance, following isolation-by-distance (IBD) expectations. Further, we identify numerous outlier loci associated with adaptive traits, particularly genes linked to reproductive isolation, such as Spermine oxidase, Izumo sperm-egg fusion protein 1, and SPAG1, which are involved in fertilisation success. These loci suggest that reproductive barriers are contributing to divergence among genetic groups. The presence of signatures of both genetic drift and selective pressures, particularly in genes governing fertilisation, indicates that these distinct populations may represent incipient or cryptic species. Our findings highlight the role of low dispersal in fostering local adaptation and speciation in marine systems and underscore the potential for rapid evolutionary responses to environmental gradients. This research provides insights into the complex processes of speciation in marine vertebrates, particularly those with limited gene flow, and offers a baseline for monitoring genetic shifts in response to climate change.
+---

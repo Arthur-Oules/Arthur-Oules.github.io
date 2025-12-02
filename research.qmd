@@ -1,0 +1,19 @@
+---
+title: "Research"
+format:
+  html:
+    toc: false
+listing:
+  contents:
+    - path: https://onlinelibrary.wiley.com/doi/10.1111/mec.70073
+      image: Research/EJA_genpop.png
+      title: >
+        Population Genomics, Local Adaptation and Cryptic Speciation in a Temperate Reef Fish, the Black Surfperch, *Embiotoca jacksoni*, Using Genome-Wide Resequencing
+      author: >
+        Jason A. Toy\*, **Arthur Oulès**\*, Gary Longo, H. Braley Shaffer, Giacomo Bernardi
+      date: "08-11-2025"
+  type: default
+  sort: "date"
+  sort-ui: true
+  filter-ui: true
+---

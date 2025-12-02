@@ -9,7 +9,14 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: about.qmd
+        text: About
+      - href: wildlife_photography.qmd
+        text: Wildlife Photography
+      - href: origami.qmd
+        text: Origami
+      - href: research.qmd
+        text: Research
       - href: teaching.qmd
         text: Teaching
     tools:
@@ -17,12 +24,18 @@ website:
         menu:
           - text: Source Code
             href: https://github.com/Arthur-Oules/Arthur-Oules.github.io
+  page-footer:
+    border: true
+    left: |
+      Powered by [[{{< iconify simple-icons:quarto title='Quarto Logo' label='Quarto Logo' >}}]{style="color:#74aadb;"} Quarto](https://quarto.org).
+    center: |
+      &copy; []{#current-year} Arthur Oulès.
 
 format:
   html:
-    theme:
-      light: flatly
-      dark: darkly
+    theme: 
+      light: [lux, custom.scss]
+      dark: [lux, custom-dark.scss]
     lightbox: true
     css: styles.css
     link-external-newwindow: true

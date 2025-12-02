@@ -1,5 +1,8 @@
 ---
-title: "PCA_Class"
+title: "TP Ecolostats – PCA"
+author: ["Arthur Oulès", "Adapté de [medium.com](https://medium.com/intuition/mathematical-understanding-of-principal-component-analysis-6c761004c2f8)"]
+description: "Lecture on the mathematical aspects of the PCA and its use in ecology."
+categories: Lecture
 editor: source
 freeze: auto
 execute:
@@ -8,7 +11,6 @@ lang: fr
 ---
 
 ## Les mathématiques de l'ACP
-Source : <https://medium.com/intuition/mathematical-understanding-of-principal-component-analysis-6c761004c2f8>
 
 ```{r}
 #| include: false

@@ -1,6 +1,24 @@
 ---
 title: "TD Ecologie-Evolution : Phylogénie"
-
+author:
+  - name: "Arthur Oulès"
+    orcid: 0009-0005-0455-1824
+    email: arthur.oules@ens-lyon.fr
+    affiliation:
+      - name: Laboratoire de Biologie Tissulaire et d'Ingénierie Thérapeutique – UMR 5305
+        city: Lyon 7
+        country: France
+        url: https://lbti.ibcp.fr/?page_id=1826
+  - name: "Marie Sémon"
+    orcid: 0000-0003-3479-7524
+    email: marie.semon@ens-lyon.fr
+    affiliation:
+      - name: Laboratoire de Biologie et Modélisation de la Cellule - UMR 5239 - Inserm 1293
+        city: Lyon
+        country: France
+        url: https://www.ens-lyon.fr/LBMC/
+description: "Introductory workshop on the use of phylogenies as a evolutionary context in research."
+categories: Workshop
 lang: fr
 
 crossref:
@@ -33,10 +51,6 @@ format:
         \rohead{L3 Biosciences - Evolution et Ecologie}
         \lofoot{Ecole Normale Supérieure de Lyon}
     callout-appearance: simple
-
-metadata-files:
-  - metadata/_oules.yml
-  - metadata/_semon.yml
 ---
 
 ::: {layout="[-10,80,-10]"}

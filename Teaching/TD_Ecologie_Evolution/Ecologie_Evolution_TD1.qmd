@@ -1,6 +1,23 @@
 ---
 title: "TD Ecologie-Evolution: Phylogénie et Ecologie"
-
+author:
+  - name: "Arthur Oulès"
+    orcid: 0009-0005-0455-1824
+    email: arthur.oules@ens-lyon.fr
+    affiliation:
+      - name: Laboratoire de Biologie Tissulaire et d'Ingénierie Thérapeutique – UMR 5305
+        city: Lyon 7
+        country: France
+        url: https://lbti.ibcp.fr/?page_id=1826
+  - name: "Björn Wissel"
+    email: bjoern.wissel@univ-lyon1.fr
+    affiliation:
+      - name: Laboratoire d'Ecologie des Hydrosystèmes Naturels et Anthropisés
+        city: Villeurbanne
+        country: France
+        url: https://umr5023.univ-lyon1.fr/
+description: "Workshop on the use of phylogenies in reconstructing ancestral states."
+categories: Workshop
 lang: fr
 
 crossref:
@@ -32,10 +49,6 @@ format:
         \rohead{L3 Biosciences - Evolution et Ecologie}
         \lofoot{Ecole Normale Supérieure de Lyon}
     callout-appearance: simple
-    
-metadata-files:
-  - metadata/_oules.yml
-  - metadata/_wissel.yml
 ---
 
 ::: {}

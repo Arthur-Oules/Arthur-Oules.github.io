@@ -2,54 +2,48 @@
 title: "Arthur Oulès"
 subtitles: |
   Third year Phd student
-draft: true
 about:
   template: trestles
   links:
-    - icon: github
-      href: https://github.com/Arthur-Oules
     - icon: envelope-at
       href: mailto:arthur.oules@gmail.com
     - text: '{{< iconify simple-icons orcid >}}'
       href: https://orcid.org/0009-0005-0455-1824
-    - text: '{{< iconify simple-icons researchgate>}}'
-      href: https://www.researchgate.net/profile/Arthur_Oules
     - text: '{{< iconify academicons google-scholar >}}'
       href: https://scholar.google.com/citations?user=Sn9YvuAAAAAJ&hl=fr
+    - text: '{{< iconify simple-icons researchgate>}}'
+      href: https://www.researchgate.net/profile/Arthur_Oules
+    - icon: github
+      href: https://github.com/Arthur-Oules
+format:
+  html:
+    toc: false
 ---
 
-I am a third year PhD student at the [LBTI](https://lbti.ibcp.fr/?page_id=1826) under the supervision of Laurent Viriot and Giacomo Bernardi (UCSC, Bernardi Lab)
+I am currently a third year PhD student at the [LBTI](https://lbti.ibcp.fr/?page_id=1826) under the supervision of Laurent Viriot and Giacomo Bernardi (UCSC, [Bernardi Lab](https://bernardi.eeb.ucsc.edu/)).\
+In my free time, I enjoy sports like rock climbing, scuba diving and karate-dō shitō-ryū (空手道糸東流). I also enjoy wildlife photography and origami (折り紙) as hobbies.
 
-## Education
+## Education&Professional Experience
 
-Master Degree in Biology 2023 – ENS de Lyon
+Since 2023 \| PhD under the supervision of Laurent Viriot and Giacomo Bernardi \| [LBTI - UMR 5305, Université Claude Bernard Lyon 1, Lyon, France]{.smalltext}\
+[- 3 years contract: *Evolution of the trophic apparatus in large herbivorous coral reef fish in relation to the diversification of diet micro-specializations*]{.smalltext}
 
-Agrégation SV-STU section B, ranked 26 2022 – ENS de Lyon
+2022–2023 \| **Master of Sciences in Biology (2nd year)** \| [Ecole Normale Supérieure de Lyon, Lyon, France]{.smalltext}\
+[- 6 months internship: *Niche partitioning and phylogeography of Surperches *(Embiotocidae) (Giacomo Bernardi, Bernardi lab, UCSC)]{.smalltext}
 
-Bachelor in Biology – ENS de Lyon 
+2021–2022 \| **Agrégation SV-STU section B**, ranked 26 \| [Ecole Normale Supérieure de Lyon, Lyon, France]{.smalltext}
 
-## Experience
+2020–2021 \| **Master of Sciences in Biology (1st year)** \| [Ecole Normale Supérieure de Lyon, Lyon, France]{.smalltext}\
+[- 6 months internship: *Evolution of the trophic apparatus in Surgeonfish (Acanthuridae) in relation to their diet diversification.* (Laurent Viriot, LBTI – UMR 5305)]{.smalltext}
 
-2023–present: PhD under the supervision of Laurent Viriot and Giacomo
-Bernardi, LBTI - UMR 5305, Université Claude Bernard Lyon 1, Lyon,
-France
-Evolution of the trophic apparatus in large herbivorous coral reef fish in
-relation to the diversification of diet micro-specializations
+2019–2020 \| **Bachelor in Biology** \| [Ecole Normale Supérieure de Lyon, Lyon, France]{.smalltext}\
+[- 5 weeks Internship: *Εxploring the mechanisms of programmed genome elimination in* Mesorhabditis belari*.* (Marie Delattre, LBMC – UMR 5239)]{.smalltext}
 
-2023: 20 weeks Internship with Giacomo Bernardi, Bernardi lab, University
-of California, Santa Cruz, CA, USA
-Niche partitioning and phylogeography of Surperches (Embiotocidae)
+2017-2019 \| Preparation for the highly competitive entrance examination to French Engineering Top Schools “Biology, Chemistry, Physics & Earth Sciences” \| [Lycée Roland Garros, Le Tampon, La Réunion]{.smalltext}
 
-2021: 18 weeks Internship with Laurent Viriot, LBTI – UMR 5305, Université
-Claude Bernard Lyon 1, Lyon, France
-Evolution of the trophic apparatus in Surgeonfish (Acanthuridae) in
-relation to their diet diversification.
-
-2020: 5 weeks Internship with Marie Delattre, LBMC – UMR 5239, École
-Normale Supérieure de Lyon, Lyon, France
-Εxploring the mechani
+2016-2017 \| Preparation for the highly competitive entrance examination to French Engineering Top Schools “Maths, Physics, Engineering Sciences” \| [Lycée La Salle Saint-Charles, Saint-Pierre, La Réunion]{.smalltext}
 
 ## Publications
 
-Population Genomics, Local Adaptation and Cryptic Speciation in a Temperate Reef Fish, the Black Surfperch, Embiotoca jacksoni, Using Genome-Wide Resequencing. *Molecular Ecology* 2025. DOI: [10.1111/mec.70073](https://www.doi.org/10.1111/mec.70073)\
-Jason A. Toy\*, Arthur Oulès\*, Gary Longo, H. Bradley Shaffer, Giacomo Bernardi
+Population Genomics, Local Adaptation and Cryptic Speciation in a Temperate Reef Fish, the Black Surfperch, *Embiotoca jacksoni*, Using Genome-Wide Resequencing. *Molecular Ecology* 2025. {{< iconify academicons doi >}} [10.1111/mec.70073](https://www.doi.org/10.1111/mec.70073)\
+[Jason A. Toy\*, Arthur Oulès\*, Gary Longo, H. Bradley Shaffer, Giacomo Bernardi]{.smalltext}

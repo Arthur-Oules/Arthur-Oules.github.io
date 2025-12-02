@@ -1,6 +1,8 @@
 ---
 title: "TD Biodiversité"
-author: Arthur Oulès, adapté de [Thibaut Jombart (2013)](http://adegenet.r-forge.r-project.org/files/MSc-intro-phylo.1.1.pdf)
+author: ["Arthur Oulès", "adapté de [Thibaut Jombart (2013)](http://adegenet.r-forge.r-project.org/files/MSc-intro-phylo.1.1.pdf)"]
+description: "Practical class about the use of phylogenetics methods in R."
+categories: Practical
 editor: source
 format:
   html:

@@ -1,9 +1,16 @@
 ---
 title: "Teaching"
 listing:
+  id: teaching-listing
+  categories: true
   contents:
     - Teaching
     - "!*_correction*"
+  filter-ui: true
+  sort-ui: true
 ---
 
 You can find the materials for my lectures and workshop at the [Biology department](https://biologie.ens-lyon.fr/) of the [Ecole Normale Supérieure de Lyon](https://www.ens-lyon.fr/).
+
+::: {#teaching-listing}
+:::
