@@ -27,9 +27,11 @@ website:
   page-footer:
     border: true
     left: |
-      Powered by [[{{< iconify simple-icons:quarto title='Quarto Logo' label='Quarto Logo' >}}]{style="color:#74aadb;"} Quarto](https://quarto.org).
-    center: |
-      &copy; []{#current-year} Arthur Oulès.
+      [Powered by [[{{< iconify simple-icons:quarto title='Quarto Logo' label='Quarto Logo' >}}]{style="color:#74aadb;"} Quarto](https://quarto.org).]{.smallertext}
+    center: >
+       {{< iconify cib creative-commons >}} {{< iconify cib creative-commons-by >}} {{< iconify cib creative-commons-nc >}} [This work is licensed under <http://creativecommons.org/licenses/by-nc/4.0/>.]{.smallertext}
+    right: |
+     [2025 Arthur Oulès]{.smallertext}
 
 format:
   html:
