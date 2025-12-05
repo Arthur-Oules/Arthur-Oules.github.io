@@ -16,8 +16,8 @@ author:
         city: Villeurbanne
         country: France
         url: https://umr5023.univ-lyon1.fr/
-description: "Workshop on the use of phylogenies in reconstructing ancestral states."
-categories: Workshop
+description: "Tutorial on the use of phylogenies in reconstructing ancestral states."
+categories: Tutorial
 lang: fr
 
 crossref:

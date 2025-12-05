@@ -17,8 +17,8 @@ author:
         city: Lyon
         country: France
         url: https://www.ens-lyon.fr/LBMC/
-description: "Introductory workshop on the use of phylogenies as a evolutionary context in research."
-categories: Workshop
+description: "Introductory tutorial on the use of phylogenies as a evolutionary context in research."
+categories: Tutorial
 lang: fr
 
 crossref:
