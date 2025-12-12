@@ -42,6 +42,41 @@
     "text": "Diversification des régimes alimentaires et radiation évolutive chez les Cichlidés des grands lacs Africains\n\n\n\n\nPhylogénie RAxML des Tropheini calibrée temporellement et faisant apparaître les reconstructions des traits ancestraux pour la spécialisation trophique. (Singh et al 2022) DOI : 10.1002/ece3.9077\n\n\nDocument 2: L’arbre a été reconstitué par maximum de vraisemblance. Les temps de divergences ont été inférés avec RelTime à partir d’un schéma de calibration vicariance-dépendant incluant des fossiles datés et la fragmentation du Gondwana. Les abscisses représentent le temps en millions d’années avant le présent. Les intervalles de confiance des nœuds clefs sont marqués par des boîtes bleues.\n\n\n\nQ9 : Quels sont les deux types d’informations utilisés pour calibrer temporellement cet arbre ? En quoi sont-elles complémentaires ? Sont-elles suffisantes pour calibrer l’entièreté de l’arbre ?\nQ10 : Interpréter le Document 2"
   },
   {
+    "objectID": "research.html",
+    "href": "research.html",
+    "title": "Research",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nPopulation Genomics, Local Adaptation and Cryptic Speciation in a Temperate Reef Fish, the Black Surfperch, Embiotoca jacksoni, Using Genome-Wide Resequencing \n\n\n\n\n\n\n\n\nAug 11, 2025\n\n\nJason A. Toy*, Arthur Oulès*, Gary Longo, H. Braley Shaffer, Giacomo Bernardi\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Personnal Website",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\nW.I.P."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Arthur Oulès",
+    "section": "",
+    "text": "I am currently a third year PhD student at the LBTI under the supervision of Laurent Viriot and Giacomo Bernardi (UCSC, Bernardi Lab).\nIn my free time, I enjoy sports like rock climbing, scuba diving and karate-dō shitō-ryū (空手道糸東流). I also enjoy wildlife photography and origami (折り紙) as hobbies."
+  },
+  {
+    "objectID": "about.html#educationprofessional-experience",
+    "href": "about.html#educationprofessional-experience",
+    "title": "Arthur Oulès",
+    "section": "Education&Professional Experience",
+    "text": "Education&Professional Experience\nSince 2023 | PhD under the supervision of Laurent Viriot and Giacomo Bernardi | LBTI - UMR 5305, Université Claude Bernard Lyon 1, Lyon, France\n- 3 years contract: Evolution of the trophic apparatus in large herbivorous coral reef fish in relation to the diversification of diet micro-specializations\n2022–2023 | Master of Sciences in Biology (2nd year) | Ecole Normale Supérieure de Lyon, Lyon, France\n- 6 months internship: Niche partitioning and phylogeography of Surperches (Embiotocidae) (Giacomo Bernardi, Bernardi lab, UCSC)\n2021–2022 | Agrégation SV-STU section B, ranked 26 | Ecole Normale Supérieure de Lyon, Lyon, France\n2020–2021 | Master of Sciences in Biology (1st year) | Ecole Normale Supérieure de Lyon, Lyon, France\n- 6 months internship: Evolution of the trophic apparatus in Surgeonfish (Acanthuridae) in relation to their diet diversification. (Laurent Viriot, LBTI – UMR 5305)\n2019–2020 | Bachelor in Biology | Ecole Normale Supérieure de Lyon, Lyon, France\n- 5 weeks Internship: Εxploring the mechanisms of programmed genome elimination in Mesorhabditis belari. (Marie Delattre, LBMC – UMR 5239)\n2017-2019 | Preparation for the highly competitive entrance examination to French Engineering Top Schools “Biology, Chemistry, Physics & Earth Sciences” | Lycée Roland Garros, Le Tampon, La Réunion\n2016-2017 | Preparation for the highly competitive entrance examination to French Engineering Top Schools “Maths, Physics, Engineering Sciences” | Lycée La Salle Saint-Charles, Saint-Pierre, La Réunion"
+  },
+  {
+    "objectID": "about.html#publications",
+    "href": "about.html#publications",
+    "title": "Arthur Oulès",
+    "section": "Publications",
+    "text": "Publications\nPopulation Genomics, Local Adaptation and Cryptic Speciation in a Temperate Reef Fish, the Black Surfperch, Embiotoca jacksoni, Using Genome-Wide Resequencing. Molecular Ecology 2025.  10.1111/mec.70073\nJason A. Toy*, Arthur Oulès*, Gary Longo, H. Bradley Shaffer, Giacomo Bernardi"
+  },
+  {
     "objectID": "Teaching/PCA_Class/PCA_Class.html",
     "href": "Teaching/PCA_Class/PCA_Class.html",
     "title": "TP Ecolostats – PCA",
@@ -82,41 +117,6 @@
     "title": "TP Ecolostats – PCA",
     "section": "Analyses de la même famille",
     "text": "Analyses de la même famille\nWORK IN PROGRESS"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Arthur Oulès",
-    "section": "",
-    "text": "I am currently a third year PhD student at the LBTI under the supervision of Laurent Viriot and Giacomo Bernardi (UCSC, Bernardi Lab).\nIn my free time, I enjoy sports like rock climbing, scuba diving and karate-dō shitō-ryū (空手道糸東流). I also enjoy wildlife photography and origami (折り紙) as hobbies."
-  },
-  {
-    "objectID": "about.html#educationprofessional-experience",
-    "href": "about.html#educationprofessional-experience",
-    "title": "Arthur Oulès",
-    "section": "Education&Professional Experience",
-    "text": "Education&Professional Experience\nSince 2023 | PhD under the supervision of Laurent Viriot and Giacomo Bernardi | LBTI - UMR 5305, Université Claude Bernard Lyon 1, Lyon, France\n- 3 years contract: Evolution of the trophic apparatus in large herbivorous coral reef fish in relation to the diversification of diet micro-specializations\n2022–2023 | Master of Sciences in Biology (2nd year) | Ecole Normale Supérieure de Lyon, Lyon, France\n- 6 months internship: Niche partitioning and phylogeography of Surperches (Embiotocidae) (Giacomo Bernardi, Bernardi lab, UCSC)\n2021–2022 | Agrégation SV-STU section B, ranked 26 | Ecole Normale Supérieure de Lyon, Lyon, France\n2020–2021 | Master of Sciences in Biology (1st year) | Ecole Normale Supérieure de Lyon, Lyon, France\n- 6 months internship: Evolution of the trophic apparatus in Surgeonfish (Acanthuridae) in relation to their diet diversification. (Laurent Viriot, LBTI – UMR 5305)\n2019–2020 | Bachelor in Biology | Ecole Normale Supérieure de Lyon, Lyon, France\n- 5 weeks Internship: Εxploring the mechanisms of programmed genome elimination in Mesorhabditis belari. (Marie Delattre, LBMC – UMR 5239)\n2017-2019 | Preparation for the highly competitive entrance examination to French Engineering Top Schools “Biology, Chemistry, Physics & Earth Sciences” | Lycée Roland Garros, Le Tampon, La Réunion\n2016-2017 | Preparation for the highly competitive entrance examination to French Engineering Top Schools “Maths, Physics, Engineering Sciences” | Lycée La Salle Saint-Charles, Saint-Pierre, La Réunion"
-  },
-  {
-    "objectID": "about.html#publications",
-    "href": "about.html#publications",
-    "title": "Arthur Oulès",
-    "section": "Publications",
-    "text": "Publications\nPopulation Genomics, Local Adaptation and Cryptic Speciation in a Temperate Reef Fish, the Black Surfperch, Embiotoca jacksoni, Using Genome-Wide Resequencing. Molecular Ecology 2025.  10.1111/mec.70073\nJason A. Toy*, Arthur Oulès*, Gary Longo, H. Bradley Shaffer, Giacomo Bernardi"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Personnal Website",
-    "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\nW.I.P."
-  },
-  {
-    "objectID": "research.html",
-    "href": "research.html",
-    "title": "Research",
-    "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nPopulation Genomics, Local Adaptation and Cryptic Speciation in a Temperate Reef Fish, the Black Surfperch, Embiotoca jacksoni, Using Genome-Wide Resequencing \n\n\n\n\n\n\n\n\nAug 11, 2025\n\n\nJason A. Toy*, Arthur Oulès*, Gary Longo, H. Braley Shaffer, Giacomo Bernardi\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "Teaching/TD_Biodiversite/TD_Biodiversite.html",
