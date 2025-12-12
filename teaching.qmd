@@ -6,7 +6,7 @@ listing:
   contents:
     - Teaching
     - "!*_correction*"
-    - !Teaching/R_Graphs_Talk
+    - "!Teaching/R_Graphs_Talk"
   filter-ui: true
   sort-ui: true
 ---
