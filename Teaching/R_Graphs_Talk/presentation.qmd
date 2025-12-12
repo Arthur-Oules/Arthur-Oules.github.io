@@ -24,14 +24,9 @@ editor: source
 
 library(here)
 library(tidyverse)
-library(readxl)
-library(prism2R)
-library(patchwork)
-library(scales)
-library(viridis)
 library(knitr)
 library(patchwork)
-library(magick)
+# library(magick)
 ```
 
 ```{r}
@@ -77,15 +72,15 @@ theme_custom <- function() {
 #| echo: true
 #| fig-align: "center"
 
-Monge_data <- read.csv2(here("data", "Analyse_CM_chitosan_2025_extracted_data.csv"))
+blackcap_2024 <- read.csv(here("data", "table_birds_2024.csv"))
 
 boxplot(
-  Bone.marrow ~ Administration.Type,
-  data = Monge_data,
-  xlab = "Administration Type",
-  ylab = "Frequency of Neutrophils"
+  CRIS ~ DIFFUSION,
+  data = blackcap_2024,
+  xlab = "Type de Diffusion",
+  ylab = "Nombre de Cris"
 )
-title("Frequency of Neutrophils in Bone Marrow")
+title("Nombre de cris en réponse à différents types de diffusion")
 ```
 
 ## The R inferno
@@ -258,35 +253,34 @@ function(arg1 = object, ...)
 ## Loading the data {auto-animate="true"}
 
 ```{r}
-#| label: plot-Monge-zero
 #| echo: true
+#| eval: true
 
-Monge_data <- here("data", "Analyse_CM_chitosan_2025_extracted_data.csv") |> 
-  read_csv2()
+blackcap_2024 <- read_csv(here("data", "table_birds_2024.csv")) 
+  
 ```
 
 ```{r}
-kable(head(Monge_data))
+kable(head(blackcap_2024))
 ```
 
 ## "Tidying" the data {auto-animate="true"}
 
 ```{r}
-#| label: plot-Monge-one
 #| echo: true
 #| eval: true
 
-Monge_data <- here("data", "Analyse_CM_chitosan_2025_extracted_data.csv") |> 
-  read_csv2() |> 
-  pivot_longer(
-    cols      = !`Administration Type`,
-    names_to  = "Organ",
-    values_to = "Neutrophils frequency"
+blackcap_2024_refactor <- blackcap_2024 |> 
+  mutate(
+    DIFFUSION = DIFFUSION |>
+      factor(
+        levels = c("MC", "FT_comp", "FT_sif", "FT_gaz", "FG", "FJ")
+      )
   )
 ```
 
 ```{r}
-kable(head(Monge_data))
+kable(head(blackcap_2024_refactor ))
 ```
 
 ## Initialising the plot panel {auto-animate="true"}
@@ -298,13 +292,17 @@ kable(head(Monge_data))
 #| eval: false
 #| code-line-numbers: "2"
 
-Monge_data |> 
-  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
-  geom_jitter(alpha = .35, width = .1) +
-  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
-  facet_grid(rows = vars(Organ), scales = "free") +
+blackcap_2024_refactor |> 
+  ggplot(aes(x = DIFFUSION, y = CRIS)) +
+  geom_jitter(alpha = .15) +
+  geom_boxplot(aes(fill = DIFFUSION), alpha = .75, outliers = FALSE) +
+  facet_grid(rows = vars(ID_MALE)) +
   theme_custom() +
-  theme(legend.position = "none")
+  theme(
+    axis.title.x    = element_blank(),
+    axis.text.x     = element_text(angle = 45, hjust = 1, vjust = 1),
+    legend.position = "bottom",
+  )
 ```
 :::
 
@@ -313,12 +311,8 @@ Monge_data |>
 #| fig-height: 8
 #| fig-width: 6
 
-Monge_data |>
-  mutate(
-    `Administration Type` = `Administration Type` |>
-      replace(list = `Administration Type` == "SL liquide + chitosan", "SL liquide +\n chitosan")
-  ) |> 
-  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`))
+blackcap_2024_refactor |> 
+  ggplot(aes(x = DIFFUSION, y = CRIS))
 ```
 :::
 :::::
@@ -332,13 +326,17 @@ Monge_data |>
 #| eval: false
 #| code-line-numbers: "3"
 
-Monge_data |> 
-  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
-  geom_jitter(alpha = .35, width = .1) +
-  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
-  facet_grid(rows = vars(Organ), scales = "free") +
+blackcap_2024_refactor |> 
+  ggplot(aes(x = DIFFUSION, y = CRIS)) +
+  geom_jitter(alpha = .15) +
+  geom_boxplot(aes(fill = DIFFUSION), alpha = .75, outliers = FALSE) +
+  facet_grid(rows = vars(ID_MALE)) +
   theme_custom() +
-  theme(legend.position = "none")
+  theme(
+    axis.title.x    = element_blank(),
+    axis.text.x     = element_text(angle = 45, hjust = 1, vjust = 1),
+    legend.position = "bottom",
+  )
 ```
 :::
 
@@ -347,13 +345,10 @@ Monge_data |>
 #| fig-height: 8
 #| fig-width: 6
 
-Monge_data |>
-  mutate(
-    `Administration Type` = `Administration Type` |>
-      replace(list = `Administration Type` == "SL liquide + chitosan", "SL liquide +\n chitosan")
-  ) |> 
-  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
-  geom_jitter(alpha = .35, width = .1)
+blackcap_2024_refactor |> 
+  ggplot(aes(x = DIFFUSION, y = CRIS)) +
+  geom_jitter(alpha = .15)
+
 ```
 :::
 :::::
@@ -367,13 +362,17 @@ Monge_data |>
 #| eval: false
 #| code-line-numbers: "4"
 
-Monge_data |> 
-  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
-  geom_jitter(alpha = .35, width = .1) +
-  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
-  facet_grid(rows = vars(Organ), scales = "free") +
+blackcap_2024_refactor |> 
+  ggplot(aes(x = DIFFUSION, y = CRIS)) +
+  geom_jitter(alpha = .15) +
+  geom_boxplot(aes(fill = DIFFUSION), alpha = .75, outliers = FALSE) +
+  facet_grid(rows = vars(ID_MALE)) +
   theme_custom() +
-  theme(legend.position = "none")
+  theme(
+    axis.title.x    = element_blank(),
+    axis.text.x     = element_text(angle = 45, hjust = 1, vjust = 1),
+    legend.position = "bottom",
+  )
 ```
 :::
 
@@ -382,14 +381,10 @@ Monge_data |>
 #| fig-height: 8
 #| fig-width: 6
 
-Monge_data |>
-  mutate(
-    `Administration Type` = `Administration Type` |>
-      replace(list = `Administration Type` == "SL liquide + chitosan", "SL liquide +\n chitosan")
-  ) |> 
-  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
-  geom_jitter(alpha = .35, width = .1) +
-  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE)
+blackcap_2024_refactor |> 
+  ggplot(aes(x = DIFFUSION, y = CRIS)) +
+  geom_jitter(alpha = .15) +
+  geom_boxplot(aes(fill = DIFFUSION), alpha = .75, outliers = FALSE)
 ```
 :::
 :::::
@@ -403,13 +398,17 @@ Monge_data |>
 #| eval: false
 #| code-line-numbers: "5"
 
-Monge_data |> 
-  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
-  geom_jitter(alpha = .35, width = .1) +
-  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
-  facet_grid(rows = vars(Organ), scales = "free") +
+blackcap_2024_refactor |> 
+  ggplot(aes(x = DIFFUSION, y = CRIS)) +
+  geom_jitter(alpha = .15) +
+  geom_boxplot(aes(fill = DIFFUSION), alpha = .75, outliers = FALSE) +
+  facet_grid(rows = vars(ID_MALE)) +
   theme_custom() +
-  theme(legend.position = "none")
+  theme(
+    axis.title.x    = element_blank(),
+    axis.text.x     = element_text(angle = 45, hjust = 1, vjust = 1),
+    legend.position = "bottom",
+  )
 ```
 :::
 
@@ -418,15 +417,11 @@ Monge_data |>
 #| fig-height: 8
 #| fig-width: 6
 
-Monge_data |>
-  mutate(
-    `Administration Type` = `Administration Type` |>
-      replace(list = `Administration Type` == "SL liquide + chitosan", "SL liquide +\n chitosan")
-  ) |> 
-  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
-  geom_jitter(alpha = .35, width = .1) +
-  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
-  facet_grid(rows = vars(Organ), scales = "free")
+blackcap_2024_refactor |> 
+  ggplot(aes(x = DIFFUSION, y = CRIS)) +
+  geom_jitter(alpha = .15) +
+  geom_boxplot(aes(fill = DIFFUSION), alpha = .75, outliers = FALSE) +
+  facet_grid(rows = vars(ID_MALE))
 ```
 :::
 :::::
@@ -440,13 +435,17 @@ Monge_data |>
 #| eval: false
 #| code-line-numbers: "6"
 
-Monge_data |> 
-  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
-  geom_jitter(alpha = .35, width = .1) +
-  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
-  facet_grid(rows = vars(Organ), scales = "free") +
+blackcap_2024_refactor |> 
+  ggplot(aes(x = DIFFUSION, y = CRIS)) +
+  geom_jitter(alpha = .15) +
+  geom_boxplot(aes(fill = DIFFUSION), alpha = .75, outliers = FALSE) +
+  facet_grid(rows = vars(ID_MALE)) +
   theme_custom() +
-  theme(legend.position = "none")
+  theme(
+    axis.title.x    = element_blank(),
+    axis.text.x     = element_text(angle = 45, hjust = 1, vjust = 1),
+    legend.position = "bottom",
+  )
 ```
 :::
 
@@ -455,15 +454,11 @@ Monge_data |>
 #| fig-height: 8
 #| fig-width: 6
 
-Monge_data |>
-  mutate(
-    `Administration Type` = `Administration Type` |>
-      replace(list = `Administration Type` == "SL liquide + chitosan", "SL liquide +\n chitosan")
-  ) |> 
-  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
-  geom_jitter(alpha = .35, width = .1) +
-  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
-  facet_grid(rows = vars(Organ), scales = "free") +
+blackcap_2024_refactor |> 
+  ggplot(aes(x = DIFFUSION, y = CRIS)) +
+  geom_jitter(alpha = .15) +
+  geom_boxplot(aes(fill = DIFFUSION), alpha = .75, outliers = FALSE) +
+  facet_grid(rows = vars(ID_MALE)) +
   theme_custom()
 ```
 :::
@@ -476,15 +471,19 @@ Monge_data |>
 ```{r}
 #| echo: true
 #| eval: false
-#| code-line-numbers: "7"
+#| code-line-numbers: "6-10"
 
-Monge_data |> 
-  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
-  geom_jitter(alpha = .35, width = .1) +
-  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
-  facet_grid(rows = vars(Organ), scales = "free") +
+blackcap_2024_refactor |> 
+  ggplot(aes(x = DIFFUSION, y = CRIS)) +
+  geom_jitter(alpha = .15) +
+  geom_boxplot(aes(fill = DIFFUSION), alpha = .75, outliers = FALSE) +
+  facet_grid(rows = vars(ID_MALE)) +
   theme_custom() +
-  theme(legend.position = "none")
+  theme(
+    axis.title.x    = element_blank(),
+    axis.text.x     = element_text(angle = 45, hjust = 1, vjust = 1),
+    legend.position = "bottom",
+  )
 ```
 :::
 
@@ -493,17 +492,17 @@ Monge_data |>
 #| fig-height: 8
 #| fig-width: 6
 
-Monge_data |>
-  mutate(
-    `Administration Type` = `Administration Type` |>
-      replace(list = `Administration Type` == "SL liquide + chitosan", "SL liquide +\n chitosan")
-  ) |> 
-  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
-  geom_jitter(alpha = .35, width = .1) +
-  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
-  facet_grid(rows = vars(Organ), scales = "free") +
+blackcap_2024_refactor |> 
+  ggplot(aes(x = DIFFUSION, y = CRIS)) +
+  geom_jitter(alpha = .15) +
+  geom_boxplot(aes(fill = DIFFUSION), alpha = .75, outliers = FALSE) +
+  facet_grid(rows = vars(ID_MALE)) +
   theme_custom() +
-  theme(legend.position = "none")
+  theme(
+    axis.title.x    = element_blank(),
+    axis.text.x     = element_text(angle = 45, hjust = 1, vjust = 1),
+    legend.position = "bottom",
+  )
 ```
 :::
 :::::
@@ -515,44 +514,39 @@ Monge_data |>
 ```{r}
 #| echo: true
 #| eval: false
-#| code-line-numbers: "9-37"
 
-plot <- Monge_data |> 
-  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
-  geom_jitter(alpha = .35, width = .1) +
-  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
-  facet_grid(rows = vars(Organ), scales = "free") +
-  theme_custom() +
-  theme(legend.position = "none")
+blackcap_tot_plot <- blackcap_2024_refactor |> 
+  ggplot(aes(x = DIFFUSION, y = CRIS)) +
+  geom_boxplot(aes(fill = DIFFUSION), alpha = .75, outliers = FALSE) +
+  geom_jitter(alpha = .15)
 
-marrow <- magick::image_read(here("images", "marrow.png")) |> 
-  magick::image_background("none") |> 
-  grid::rasterGrob()
+blackcap_nonzero_plot <- blackcap_2024_refactor |>
+  filter(CRIS != 0) |> 
+  ggplot(aes(x = DIFFUSION, y = CRIS)) +
+  geom_boxplot(aes(fill = DIFFUSION), alpha = .75, outliers = FALSE) +
+  geom_jitter(alpha = .15)
 
-lymph <- magick::image_read(here("images", "lymph.png")) |> 
-  magick::image_background("none") |> 
-  grid::rasterGrob()
-  
-spleen <- magick::image_read(here("images", "spleen.png")) |> 
-  magick::image_background("none") |> 
-  grid::rasterGrob()
+blackcap_IDs_plot <- blackcap_2024 |> 
+  mutate(
+    DIFFUSION = DIFFUSION |>
+      factor(
+        levels = c("MC", "FT_comp", "FT_sif", "FT_gaz", "FG", "FJ")
+      )
+  ) |> 
+  ggplot(aes(x = DIFFUSION, y = CRIS)) +
+  geom_boxplot(aes(fill = DIFFUSION), alpha = .75, outliers = FALSE) +
+  geom_jitter(alpha = .15) +
+  facet_grid(rows = vars(ID_MALE))
 
-design <- c(
-  area(1, 1, 7, 1),
-  area(2, 2, 2, 2),
-  area(4, 2, 4, 2),
-  area(6, 2, 6, 2)
-)
-
-plot + wrap_elements(marrow) +
-  wrap_elements(lymph) + wrap_elements(spleen) +
-  plot_layout(
-    widths  = c(3, 1),
-    heights = c(.5, 1, 1, 1, 1, 1, .5),
-    design  = design
-  ) &
+((blackcap_tot_plot / blackcap_nonzero_plot) | blackcap_IDs_plot) +
+  plot_layout(guides = "collect")  +
+  plot_annotation(tag_levels = "A") &
+  theme_custom() &
   theme(
-    plot.background = element_rect(colour = "#191919", fill = "#191919")
+    axis.title.x    = element_blank(),
+    axis.text.x     = element_text(angle = 45, hjust = 1, vjust = 1),
+    legend.position = "bottom",
+    plot.tag = element_text(face = "bold", colour = "white")
   )
 ```
 :::
@@ -562,46 +556,47 @@ plot + wrap_elements(marrow) +
 #| fig-height: 8
 #| fig-width: 6
 
-plot <- Monge_data |>
+blackcap_2024_refactor <- here("data", "table_birds_2024.csv") |> 
+  read_csv() |> 
   mutate(
-    `Administration Type` = `Administration Type` |>
-      replace(list = `Administration Type` == "SL liquide + chitosan", "SL liquide +\n chitosan")
+    DIFFUSION = DIFFUSION |>
+      factor(
+        levels = c("MC", "FT_comp", "FT_sif", "FT_gaz", "FG", "FJ")
+      )
+  )
+
+blackcap_tot_plot <- blackcap_2024_refactor |> 
+  ggplot(aes(x = DIFFUSION, y = CRIS)) +
+  geom_boxplot(aes(fill = DIFFUSION), alpha = .75, outliers = FALSE) +
+  geom_jitter(alpha = .15)
+
+blackcap_nonzero_plot <- blackcap_2024_refactor |>
+  filter(CRIS != 0) |> 
+  ggplot(aes(x = DIFFUSION, y = CRIS)) +
+  geom_boxplot(aes(fill = DIFFUSION), alpha = .75, outliers = FALSE) +
+  geom_jitter(alpha = .15)
+
+blackcap_IDs_plot <- blackcap_2024 |> 
+  mutate(
+    DIFFUSION = DIFFUSION |>
+      factor(
+        levels = c("MC", "FT_comp", "FT_sif", "FT_gaz", "FG", "FJ")
+      )
   ) |> 
-  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
-  geom_jitter(alpha = .35, width = .1) +
-  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
-  facet_grid(rows = vars(Organ), scales = "free") +
-  theme_custom() +
-  theme(legend.position = "none")
+  ggplot(aes(x = DIFFUSION, y = CRIS)) +
+  geom_boxplot(aes(fill = DIFFUSION), alpha = .75, outliers = FALSE) +
+  geom_jitter(alpha = .15) +
+  facet_grid(rows = vars(ID_MALE))
 
-marrow <- magick::image_read(here("images", "marrow.png")) |> 
-  magick::image_background("none") |> 
-  grid::rasterGrob()
-
-lymph <- magick::image_read(here("images", "lymph.png")) |> 
-  magick::image_background("none") |> 
-  grid::rasterGrob()
-  
-spleen <- magick::image_read(here("images", "spleen.png")) |> 
-  magick::image_background("none") |> 
-  grid::rasterGrob()
-
-design <- c(
-  area(1, 1, 7, 1),
-  area(2, 2, 2, 2),
-  area(4, 2, 4, 2),
-  area(6, 2, 6, 2)
-)
-
-plot + wrap_elements(marrow) +
-  wrap_elements(lymph) + wrap_elements(spleen) +
-  plot_layout(
-    widths  = c(3, 1),
-    heights = c(.5, 1, 1, 1, 1, 1, .5),
-    design  = design
-  ) &
+((blackcap_tot_plot / blackcap_nonzero_plot) | blackcap_IDs_plot) +
+  plot_layout(guides = "collect")  +
+  plot_annotation(tag_levels = "A") &
+  theme_custom() &
   theme(
-    plot.background = element_rect(colour = "#191919", fill = "#191919")
+    axis.title.x    = element_blank(),
+    axis.text.x     = element_text(angle = 45, hjust = 1, vjust = 1),
+    legend.position = "bottom",
+    plot.tag = element_text(face = "bold", colour = "white")
   )
 ```
 :::

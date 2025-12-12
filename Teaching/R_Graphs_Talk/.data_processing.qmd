@@ -1,0 +1,75 @@
+---
+title: "Data processing"
+---
+
+```{r}
+library(here)
+library(tidyverse)
+library(patchwork)
+```
+
+```{r}
+theme_custom <- function() {
+  ggplot2::theme_dark() +
+  ggplot2::theme(
+    text              = element_text(colour = "#7f7f7f"),
+    axis.text         = element_text(colour = "#7f7f7f"),
+    # panel.grid        = element_line(colour = "#2b2b2b"),
+    plot.background   = element_rect(fill = "#191919", colour = "#191919"),
+    # panel.background  = element_rect(fill = "#191919"),
+    legend.background = element_rect(fill = "#191919", colour = "#191919")
+    # strip.background  = element_rect(fill = "#191919"),
+    # strip.text        = element_text(colour = "#ffffff")
+  )
+}
+```
+
+
+```{r}
+#| fig-width: 6
+#| fig-height: 8
+
+blackcap_2024_refactor <- here("data", "table_birds_2024.csv") |> 
+  read_csv() |> 
+  mutate(
+    DIFFUSION = DIFFUSION |>
+      factor(
+        levels = c("MC", "FT_comp", "FT_sif", "FT_gaz", "FG", "FJ")
+      )
+  )
+
+blackcap_tot_plot <- blackcap_2024_refactor |> 
+  ggplot(aes(x = DIFFUSION, y = CRIS)) +
+  geom_boxplot(aes(fill = DIFFUSION), alpha = .75, outliers = FALSE) +
+  geom_jitter(alpha = .15)
+
+blackcap_nonzero_plot <- blackcap_2024_refactor |>
+  filter(CRIS != 0) |> 
+  ggplot(aes(x = DIFFUSION, y = CRIS)) +
+  geom_boxplot(aes(fill = DIFFUSION), alpha = .75, outliers = FALSE) +
+  geom_jitter(alpha = .15)
+
+blackcap_IDs_plot <- blackcap_2024 |> 
+  mutate(
+    DIFFUSION = DIFFUSION |>
+      factor(
+        levels = c("MC", "FT_comp", "FT_sif", "FT_gaz", "FG", "FJ")
+      )
+  ) |> 
+  ggplot(aes(x = DIFFUSION, y = CRIS)) +
+  geom_jitter(alpha = .15) +
+  geom_boxplot(aes(fill = DIFFUSION), alpha = .75, outliers = FALSE) +
+  facet_grid(rows = vars(ID_MALE))
+
+((blackcap_tot_plot / blackcap_nonzero_plot) | blackcap_IDs_plot) +
+  plot_layout(guides = "collect")  +
+  plot_annotation(tag_levels = "A") &
+  theme_custom() &
+  theme(
+    axis.title.x    = element_blank(),
+    axis.text.x     = element_text(angle = 45, hjust = 1, vjust = 1),
+    legend.position = "bottom",
+    plot.tag = element_text(face = "bold", colour = "white")
+  )
+```
+
