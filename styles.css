@@ -7,3 +7,7 @@
 .smallertext {
   font-size: 75%;
 }
+
+.centertext {
+  text-align: center;
+}
