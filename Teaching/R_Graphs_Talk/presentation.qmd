@@ -1,0 +1,938 @@
+---
+title: "Graphs and data analyses in R"
+author: "Arthur Oulès"
+date: "01/12/2026"
+date-format: long
+width: 1920
+height: 1080 
+freeze: auto
+format:
+  revealjs:
+    theme: dark
+    slide-number: true
+    footer: "*R graph capabilities 12/01/2026*"
+    code-block-height: 950px
+    css: styles.css
+  pptx: default
+editor: visual
+---
+
+```{r}
+#| label: load-packages
+#| echo: false
+#| eval: true
+
+library(here)
+library(tidyverse)
+library(readxl)
+library(prism2R)
+library(patchwork)
+library(scales)
+library(viridis)
+library(knitr)
+library(patchwork)
+library(magick)
+
+Bolon_palette <- c("#ce7041", "#e5c5bd", "#e2a55e", "#5e718b", "#95aa9a", "#b4bfc5")
+```
+
+```{r}
+#| echo: false
+#| eval: true
+
+theme_custom <- function() {
+  ggplot2::theme_dark() +
+  ggplot2::theme(
+    text              = element_text(colour = "#7f7f7f"),
+    axis.text         = element_text(colour = "#7f7f7f"),
+    # panel.grid        = element_line(colour = "#2b2b2b"),
+    plot.background   = element_rect(fill = "#191919", colour = "#191919"),
+    # panel.background  = element_rect(fill = "#191919"),
+    legend.background = element_rect(fill = "#191919", colour = "#191919")
+    # strip.background  = element_rect(fill = "#191919"),
+    # strip.text        = element_text(colour = "#ffffff")
+  )
+}
+```
+
+## Prism Graphpad {auto-animate="true"}
+
+![](images/prism_table.png){fig-align="center"}
+
+::: {.smalltext .centertext}
+*Prism's Graphpad Spreadsheet view*
+:::
+
+## Prism Graphpad {auto-animate="true"}
+
+::::: {.columns}
+
+::::{.column}
+
+![](images/prism_table.png)
+
+::: {.smalltext .centertext}
+*Prism's Graphpad Spreadsheet view*
+:::
+
+::::
+
+:::: {.column}
+![](images/prism_plot.png)
+
+::: {.smalltext .centertext}
+*Prism's Graphpad Plot view*
+:::
+::::
+:::::
+
+
+## What is R?
+
+::: {.incremental}
+-   Programming language and opensource software based on `Fortran` and `C`
+
+-   Maintained by *The R Foundation*, not-for-profit
+
+-   Designed for statistical computing and data visualisation
+:::
+
+:::: {.fragment}
+![](images/RGUI.png){fig-align="center"}
+
+::: {.centertext .smalltext}
+*R's not-so-user-friendly Graphical Interface*
+:::
+::::
+
+## An example of a quick R graph
+
+```{r}
+#| echo: true
+#| fig-align: "center"
+
+Monge_data <- read.csv2(here("data", "Analyse_CM_chitosan_2025_extracted_data.csv"))
+
+boxplot(
+  Bone.marrow ~ Administration.Type,
+  data = Monge_data,
+  xlab = "Administration Type",
+  ylab = "Frequency of Neutrophils"
+)
+title("Frequency of Neutrophils in Bone Marrow")
+```
+
+## The R inferno
+
+![](images/R_Inferno.png){fig-align="center"}
+
+::: {.centertext .smalltext}
+[*https://www.burns-stat.com/pages/Tutor/R_inferno.pdf*](https://www.burns-stat.com/pages/Tutor/R_inferno.pdf){.uri}
+:::
+
+## What is Posit?
+
+It is and open-source data science software company
+
+![](images/BLOG-posit-rebrand2022.jpg){.nostretch fig-align="center" width="60%"}
+
+## RStudio
+
+::::: {.columns}
+
+:::: {.column  width="30%"}
+
+It's an Integrated Development Environment (IDE) from where you have access:
+
+::: {.fragment .highlight-current-red fragment-index=1}
+-   Your Code
+:::
+
+::: {.fragment .highlight-current-red fragment-index=2}
+-   A R/Python console and terminal
+:::
+
+::: {.fragment .highlight-current-red fragment-index=3}
+-   A File explorer
+:::
+
+::: {.fragment .highlight-current-red fragment-index=4}
+-   To help
+:::
+
+::: {.fragment .highlight-current-red fragment-index=5}
+-   Plots/Presentation/Report Viewer
+:::
+
+::: {.fragment .highlight-current-red fragment-index=6}
+-   To Memory Management
+:::
+
+::: {.fragment .highlight-current-red fragment-index=7}
+-   Version Control (*e.g.* Git)
+:::
+::::
+
+:::: {.column  width="70%"}
+
+::: {.r-stack}
+![](images/Rstudio.png)
+
+![](images/Rstudio_code.png){.fragment fragment-index=1}
+
+
+![](images/Rstudio_console.png){.fragment fragment-index=2}
+
+![](images/Rstudio_files.png){.fragment fragment-index=3}
+
+![](images/Rstudio_help.png){.fragment fragment-index=4}
+
+![](images/Rstudio_viewer.png){.fragment fragment-index=5}
+
+![](images/Rstudio_env.png){.fragment fragment-index=6}
+
+![](images/Rstudio_git.png){.fragment fragment-index=7}
+
+:::
+::::
+
+:::::
+
+## Project-based programming
+
+![](images/project.png)
+
+## The Tidyverse {auto-animate=true}
+
+![](images/Tidyverse.png)
+
+## The Tidyverse {auto-animate=true}
+
+:::: {.columns}
+
+::: {.column}
+\
+\
+
+- `tibble`: A package introducing a new type of dataframe
+
+- `readr`: A package to read multiple file formats to tibbles
+
+- `tidyr`: A package to reformat raw data to a ggplot2-friendly format
+
+- `ggplot2`: A packagage for creating graphics
+:::
+
+::: {.column}
+![](images/Tidyverse.png)
+:::
+
+::::
+
+## `tidyr`&`dplyr` {auto-animate=true}
+
+![](images/pipeoperator_Selina_Cheng.png){fig-align="center"}
+
+::: {.centertext .smalltext}
+*The pipe operator and tidyr.* Credit: [Selina Cheng](https://www.rforecology.com/post/how-to-use-pipes/)
+:::
+
+## `tidyr`&`dplyr` {auto-animate=true}
+
+::::: {.columns}
+
+:::: {.column}
+![](images/pipeoperator_Selina_Cheng.png){fig-align="center"}
+
+::: {.centertext .smalltext}
+*The pipe operator and tidyr.* Credit: [Selina Cheng](https://www.rforecology.com/post/how-to-use-pipes/)
+:::
+
+::::
+
+:::: {.column}
+
+\
+\
+\
+\
+
+```{r}
+#| echo: true
+#| eval: false
+
+object |> function(...)
+
+function(arg1 = object, ...)
+```
+
+
+::::
+
+:::::
+
+## `ggplot2` {auto-animate="true"}
+
+![](images/ggplot2.png){.nostretch fig-align="center" width="400px"}
+
+::: {.centertext}
+[`ggplot2`](https://ggplot2.tidyverse.org/) is an R package allowing the production of graphics using "The Grammar or Graphics".
+:::
+
+## `ggplot2` {auto-animate="true"}
+
+:::: {.columns}
+::: {.column width="50%"}
+![](images/ggplot2.png){fig-align="center"}
+
+[`ggplot2`](https://ggplot2.tidyverse.org/) is an R package allowing the production of graphics using "The Grammar or Graphics".
+:::
+
+::: {.column width="50%"}
+![](images/ggplot2_layers_dark.svg)
+:::
+::::
+
+# Practical applications
+
+## Getting the data {auto-animate="true"}
+
+![](images/exc_hell.png)
+
+## Make the Data R-friendly {auto-animate="true"}
+
+![](images/nice_csv.png){fig-align="center"}
+
+## Loading the data {auto-animate="true"}
+
+```{r}
+#| label: plot-Monge-zero
+#| echo: true
+
+Monge_data <- here("data", "Analyse_CM_chitosan_2025_extracted_data.csv") |> 
+  read_csv2()
+```
+
+```{r}
+kable(head(Monge_data))
+```
+
+## "Tidying" the data {auto-animate="true"}
+
+```{r}
+#| label: plot-Monge-one
+#| echo: true
+#| eval: true
+
+Monge_data <- here("data", "Analyse_CM_chitosan_2025_extracted_data.csv") |> 
+  read_csv2() |> 
+  pivot_longer(
+    cols      = !`Administration Type`,
+    names_to  = "Organ",
+    values_to = "Neutrophils frequency"
+  )
+```
+
+```{r}
+kable(head(Monge_data))
+```
+
+## Initialising the plot panel {auto-animate="true"}
+
+::::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "2"
+
+Monge_data |> 
+  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
+  geom_jitter(alpha = .35, width = .1) +
+  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
+  facet_grid(rows = vars(Organ), scales = "free") +
+  theme_custom() +
+  theme(legend.position = "none")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-height: 8
+#| fig-width: 6
+
+Monge_data |>
+  mutate(
+    `Administration Type` = `Administration Type` |>
+      replace(list = `Administration Type` == "SL liquide + chitosan", "SL liquide +\n chitosan")
+  ) |> 
+  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`))
+```
+:::
+:::::
+
+## Plotting points {auto-animate="true"}
+
+::::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "3"
+
+Monge_data |> 
+  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
+  geom_jitter(alpha = .35, width = .1) +
+  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
+  facet_grid(rows = vars(Organ), scales = "free") +
+  theme_custom() +
+  theme(legend.position = "none")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-height: 8
+#| fig-width: 6
+
+Monge_data |>
+  mutate(
+    `Administration Type` = `Administration Type` |>
+      replace(list = `Administration Type` == "SL liquide + chitosan", "SL liquide +\n chitosan")
+  ) |> 
+  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
+  geom_jitter(alpha = .35, width = .1)
+```
+:::
+:::::
+
+## Plotting distributions as coloured boxplots {auto-animate="true"}
+
+::::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "4"
+
+Monge_data |> 
+  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
+  geom_jitter(alpha = .35, width = .1) +
+  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
+  facet_grid(rows = vars(Organ), scales = "free") +
+  theme_custom() +
+  theme(legend.position = "none")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-height: 8
+#| fig-width: 6
+
+Monge_data |>
+  mutate(
+    `Administration Type` = `Administration Type` |>
+      replace(list = `Administration Type` == "SL liquide + chitosan", "SL liquide +\n chitosan")
+  ) |> 
+  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
+  geom_jitter(alpha = .35, width = .1) +
+  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE)
+```
+:::
+:::::
+
+## Separating the different categories {auto-animate="true"}
+
+::::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "5"
+
+Monge_data |> 
+  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
+  geom_jitter(alpha = .35, width = .1) +
+  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
+  facet_grid(rows = vars(Organ), scales = "free") +
+  theme_custom() +
+  theme(legend.position = "none")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-height: 8
+#| fig-width: 6
+
+Monge_data |>
+  mutate(
+    `Administration Type` = `Administration Type` |>
+      replace(list = `Administration Type` == "SL liquide + chitosan", "SL liquide +\n chitosan")
+  ) |> 
+  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
+  geom_jitter(alpha = .35, width = .1) +
+  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
+  facet_grid(rows = vars(Organ), scales = "free")
+```
+:::
+:::::
+
+## Tuning theme {auto-animate="true"}
+
+::::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "6"
+
+Monge_data |> 
+  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
+  geom_jitter(alpha = .35, width = .1) +
+  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
+  facet_grid(rows = vars(Organ), scales = "free") +
+  theme_custom() +
+  theme(legend.position = "none")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-height: 8
+#| fig-width: 6
+
+Monge_data |>
+  mutate(
+    `Administration Type` = `Administration Type` |>
+      replace(list = `Administration Type` == "SL liquide + chitosan", "SL liquide +\n chitosan")
+  ) |> 
+  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
+  geom_jitter(alpha = .35, width = .1) +
+  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
+  facet_grid(rows = vars(Organ), scales = "free") +
+  theme_custom()
+```
+:::
+:::::
+
+## Removing redondant information {auto-animate="true"}
+
+::::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "7"
+
+Monge_data |> 
+  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
+  geom_jitter(alpha = .35, width = .1) +
+  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
+  facet_grid(rows = vars(Organ), scales = "free") +
+  theme_custom() +
+  theme(legend.position = "none")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-height: 8
+#| fig-width: 6
+
+Monge_data |>
+  mutate(
+    `Administration Type` = `Administration Type` |>
+      replace(list = `Administration Type` == "SL liquide + chitosan", "SL liquide +\n chitosan")
+  ) |> 
+  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
+  geom_jitter(alpha = .35, width = .1) +
+  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
+  facet_grid(rows = vars(Organ), scales = "free") +
+  theme_custom() +
+  theme(legend.position = "none")
+```
+:::
+:::::
+
+## The extra step {auto-animate="true"}
+
+::::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "9-37"
+
+plot <- Monge_data |> 
+  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
+  geom_jitter(alpha = .35, width = .1) +
+  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
+  facet_grid(rows = vars(Organ), scales = "free") +
+  theme_custom() +
+  theme(legend.position = "none")
+
+marrow <- magick::image_read(here("images", "marrow.png")) |> 
+  magick::image_background("none") |> 
+  grid::rasterGrob()
+
+lymph <- magick::image_read(here("images", "lymph.png")) |> 
+  magick::image_background("none") |> 
+  grid::rasterGrob()
+  
+spleen <- magick::image_read(here("images", "spleen.png")) |> 
+  magick::image_background("none") |> 
+  grid::rasterGrob()
+
+design <- c(
+  area(1, 1, 7, 1),
+  area(2, 2, 2, 2),
+  area(4, 2, 4, 2),
+  area(6, 2, 6, 2)
+)
+
+plot + wrap_elements(marrow) +
+  wrap_elements(lymph) + wrap_elements(spleen) +
+  plot_layout(
+    widths  = c(3, 1),
+    heights = c(.5, 1, 1, 1, 1, 1, .5),
+    design  = design
+  ) &
+  theme(
+    plot.background = element_rect(colour = "#191919", fill = "#191919")
+  )
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-height: 8
+#| fig-width: 6
+
+plot <- Monge_data |>
+  mutate(
+    `Administration Type` = `Administration Type` |>
+      replace(list = `Administration Type` == "SL liquide + chitosan", "SL liquide +\n chitosan")
+  ) |> 
+  ggplot(aes(x = `Administration Type`, y = `Neutrophils frequency`)) +
+  geom_jitter(alpha = .35, width = .1) +
+  geom_boxplot(aes(fill = `Administration Type`), alpha = .45, outliers = FALSE) +
+  facet_grid(rows = vars(Organ), scales = "free") +
+  theme_custom() +
+  theme(legend.position = "none")
+
+marrow <- magick::image_read(here("images", "marrow.png")) |> 
+  magick::image_background("none") |> 
+  grid::rasterGrob()
+
+lymph <- magick::image_read(here("images", "lymph.png")) |> 
+  magick::image_background("none") |> 
+  grid::rasterGrob()
+  
+spleen <- magick::image_read(here("images", "spleen.png")) |> 
+  magick::image_background("none") |> 
+  grid::rasterGrob()
+
+design <- c(
+  area(1, 1, 7, 1),
+  area(2, 2, 2, 2),
+  area(4, 2, 4, 2),
+  area(6, 2, 6, 2)
+)
+
+plot + wrap_elements(marrow) +
+  wrap_elements(lymph) + wrap_elements(spleen) +
+  plot_layout(
+    widths  = c(3, 1),
+    heights = c(.5, 1, 1, 1, 1, 1, .5),
+    design  = design
+  ) &
+  theme(
+    plot.background = element_rect(colour = "#191919", fill = "#191919")
+  )
+```
+:::
+:::::
+
+## Second example {auto-animate="true"}
+
+::::: {.columns}
+
+:::: {.column}
+
+![](images/prism_table.png)
+
+::: {.smalltext .centertext}
+*Prism's Graphpad Spreadsheet view*
+:::
+
+::::
+
+:::: {.column}
+![](images/prism_plot.png)
+
+::: {.smalltext .centertext}
+*Prism's Graphpad Plot view*
+:::
+::::
+:::::
+
+## Second example {auto-animate="true"}
+
+::::: {.columns}
+
+::: {.column width="40%"}
+```{r}
+#| echo: true
+
+NPs_path <- here("data", "Data NPs.prism")
+get_table_names(NPs_path)
+```
+:::
+
+:::: {.column width="60%"}
+
+![](images/prism_table.png)
+
+::: {.smalltext .centertext}
+*Prism's Graphpad Spreadsheet view*
+:::
+
+::::
+
+:::::
+
+## Second example {auto-animate="true"}
+
+:::: {.columns}
+::: {.column width="60%"}
+```{r}
+#| echo: true
+#| eval: false
+
+NPs_param <- tibble(
+  NPs      = read_prism(NPs_path, sheet = "Diameter") |> colnames(),
+  Diameter = read_prism(NPs_path, sheet = "Diameter") |>
+    filter(row_number() == 1) |> 
+    pivot_longer(cols = everything(), names_to = "NPs", values_to = "Diameter") |> 
+    pull(Diameter),
+  PDI      = read_prism(NPs_path, sheet = "PDI") |>
+    filter(row_number() == 1) |> 
+    pivot_longer(cols = everything(), names_to = "NPs", values_to = "PDI") |> 
+    pull(PDI),
+  Zeta     = read_prism(NPs_path, sheet = "Zeta") |>
+    filter(row_number() == 1) |> 
+    pivot_longer(cols = everything(), names_to = "NPs", values_to = "Zeta") |> 
+    pull(Zeta)
+) |> 
+  mutate(
+    Rep = str_split_i(NPs, pattern = "_", 2) |> as.numeric(),
+    NPs = str_split_i(NPs, pattern = "_", 1)
+  ) |> 
+  select(NPs, Rep, Diameter, PDI, Zeta)
+
+kable(head(NPs_param))
+```
+:::
+
+::: {.column width="40%"}
+```{r}
+NPs_param <- tibble(
+  NPs      = read_prism(NPs_path, sheet = "Diameter") |> colnames(),
+  Diameter = read_prism(NPs_path, sheet = "Diameter") |>
+    filter(row_number() == 1) |> 
+    pivot_longer(cols = everything(), names_to = "NPs", values_to = "Diameter") |> 
+    pull(Diameter),
+  PDI      = read_prism(NPs_path, sheet = "PDI") |>
+    filter(row_number() == 1) |> 
+    pivot_longer(cols = everything(), names_to = "NPs", values_to = "PDI") |> 
+    pull(PDI),
+  Zeta     = read_prism(NPs_path, sheet = "Zeta") |>
+    filter(row_number() == 1) |> 
+    pivot_longer(cols = everything(), names_to = "NPs", values_to = "Zeta") |> 
+    pull(Zeta)
+) |> 
+  mutate(
+    Rep = str_split_i(NPs, pattern = "_", 2) |> as.numeric(),
+    NPs = str_split_i(NPs, pattern = "_", 1)
+  ) |> 
+  select(NPs, Rep, Diameter, PDI, Zeta)
+
+kable(head(NPs_param))
+```
+:::
+::::
+
+## Second example {auto-animate="true"}
+
+:::: {.columns}
+::: {.column width="40%"}
+```{r}
+#| echo: true
+#| eval: false
+
+Diameter_plot <- NPs_param |>
+  ggplot(mapping = aes(x = NPs, y = Diameter, fill = NPs)) +
+  geom_boxplot() +
+  geom_point() +
+  scale_fill_manual(values = Bolon_palette) +
+  coord_cartesian(ylim = c(0, 150)) +
+  labs(title = "Diameter (nm)")
+
+PDI_plot <- NPs_param |>
+  ggplot(mapping = aes(x = NPs, y = PDI, fill = NPs)) +
+  geom_boxplot() +
+  geom_point() +
+  scale_fill_manual(values = Bolon_palette) +
+  coord_cartesian(ylim = c(0, 0.30)) +
+  theme() +
+  labs(title = "PDI (U.A.)")
+
+Zeta_plot <- NPs_param |>
+  ggplot(mapping = aes(x = NPs, y = Zeta, fill = NPs)) +
+  geom_boxplot() +
+  geom_point() +
+  scale_fill_manual(values = Bolon_palette) +
+  coord_cartesian(ylim = c(-50, 0)) +
+  labs(title = "Zêta Potential (mV)")
+
+Diameter_plot + PDI_plot + Zeta_plot +
+  plot_layout(guides = "collect") &
+  theme_custom() &
+  theme(axis.text.x  = element_blank(),
+        axis.title.y = element_blank())
+```
+:::
+
+::: {.column width="60%"}
+```{r}
+NPs_param <- tibble(
+  NPs      = read_prism(NPs_path, sheet = "Diameter") |> colnames(),
+  Diameter = read_prism(NPs_path, sheet = "Diameter") |>
+    filter(row_number() == 1) |> 
+    pivot_longer(cols = everything(), names_to = "NPs", values_to = "Diameter") |> 
+    pull(Diameter),
+  PDI      = read_prism(NPs_path, sheet = "PDI") |>
+    filter(row_number() == 1) |> 
+    pivot_longer(cols = everything(), names_to = "NPs", values_to = "PDI") |> 
+    pull(PDI),
+  Zeta     = read_prism(NPs_path, sheet = "Zeta") |>
+    filter(row_number() == 1) |> 
+    pivot_longer(cols = everything(), names_to = "NPs", values_to = "Zeta") |> 
+    pull(Zeta)
+) |> 
+  mutate(
+    Rep = str_split_i(NPs, pattern = "_", 2) |> as.numeric(),
+    NPs = str_split_i(NPs, pattern = "_", 1)
+  ) |> 
+  select(NPs, Rep, Diameter, PDI, Zeta)
+
+Diameter_plot <- NPs_param |>
+  ggplot(mapping = aes(x = NPs, y = Diameter, fill = NPs)) +
+  geom_boxplot() +
+  geom_point() +
+  scale_fill_manual(values = Bolon_palette) +
+  coord_cartesian(ylim = c(0, 150)) +
+  labs(title = "Diameter (nm)")
+
+PDI_plot <- NPs_param |>
+  ggplot(mapping = aes(x = NPs, y = PDI, fill = NPs)) +
+  geom_boxplot() +
+  geom_point() +
+  scale_fill_manual(values = Bolon_palette) +
+  coord_cartesian(ylim = c(0, 0.30)) +
+  theme() +
+  labs(title = "PDI (U.A.)")
+
+Zeta_plot <- NPs_param |>
+  ggplot(mapping = aes(x = NPs, y = Zeta, fill = NPs)) +
+  geom_boxplot() +
+  geom_point() +
+  scale_fill_manual(values = Bolon_palette) +
+  coord_cartesian(ylim = c(-50, 0)) +
+  labs(title = "Zêta Potential (mV)")
+
+Diameter_plot + PDI_plot + Zeta_plot + plot_layout(guides = "collect") &
+  theme_custom() &
+  theme(axis.text.x = element_blank(), axis.title.y = element_blank())
+```
+:::
+::::
+
+
+## Third Example {auto-animate="true"}
+
+:::: {.columns}
+
+::: {.column}
+
+```{r}
+#| echo: true
+#| eval: false
+
+here("data", "Biodistribution 202501 500 ms.prism") |> 
+  read_prism(sheet = "Raw data") |> 
+  mutate(across(c(!X1), \(x) x/x[1]*100)) |> 
+  pivot_longer(cols = !X1, names_to = "NPs", values_to = "Fluorescence") |>
+  rename("Time" = "X1") |> 
+  mutate(
+    Rep = str_split_i(NPs, pattern = "_", 2) |> as.numeric(),
+    NPs = str_split_i(NPs, pattern = "_", 1)
+  ) |> 
+  select(NPs, Rep, Time, Fluorescence) |>
+  ggplot(aes(x = Time, y = Fluorescence, colour = NPs, group = NPs)) +
+  geom_point() +
+  stat_summary(fun = median, geom = "line") +
+  facet_grid(rows = vars(NPs)) +
+  theme_custom() +
+  theme(legend.position = "none") +
+  labs(x = "Time (h)", y = "Fluorescence (percent of t0)")
+```
+:::
+
+::: {.column}
+
+```{r}
+#| fig-height: 9
+#| fig-width: 7
+
+here("data", "Biodistribution 202501 500 ms.prism") |> 
+  read_prism(sheet = "Raw data") |> 
+  mutate(across(c(!X1), \(x) x/x[1]*100)) |> 
+  pivot_longer(cols = !X1, names_to = "NPs", values_to = "Fluorescence") |>
+  rename("Time" = "X1") |> 
+  mutate(
+    Rep = str_split_i(NPs, pattern = "_", 2) |> as.numeric(),
+    NPs = str_split_i(NPs, pattern = "_", 1)
+  ) |> 
+  select(NPs, Rep, Time, Fluorescence) |>
+  ggplot(aes(x = Time, y = Fluorescence, colour = NPs, group = NPs)) +
+  geom_point() +
+  stat_summary(fun = median, geom = "line") +
+  facet_grid(rows = vars(NPs)) +
+  theme_custom() +
+  theme(legend.position = "none") +
+  labs(x = "Time (h)", y = "Fluorescence (percent of t0)")
+```
+
+:::
+::::
+
+## Complex Figures
+
+![](images/EJA_flex.jpg){fig-align="center"}
+
+::: {.centertext .smalltext}
+Genetic population structure of the Black Surfperch *Embiotoca jacksoni*. DOI: [10.1111/mec.70073](https://www.doi.org/10.1111/mec.70073)
+:::
+
+## Quarto: a Complete Environment for Researchers
+
+::: {.r-stack}
+
+```{=html}
+<iframe width="1600" height="900" src="https://arthur-oules.github.io/about.html" title="Webpage example"></iframe>
+```
+
+:::
