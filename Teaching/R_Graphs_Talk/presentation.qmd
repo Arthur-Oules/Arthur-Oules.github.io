@@ -1,7 +1,16 @@
 ---
-draft: true
 title: "Graphs and data analyses in R"
-author: "Arthur Oulès"
+author:
+  - name: "Arthur Oulès"
+    orcid: 0009-0005-0455-1824
+    email: arthur.oules@ens-lyon.fr
+    affiliation:
+      - name: Laboratoire de Biologie Tissulaire et d'Ingénierie Thérapeutique – UMR 5305
+        city: Lyon 7
+        country: France
+        url: https://lbti.ibcp.fr/?page_id=1826
+description: "Lecture on the use of R and RStudio for producing graphs."
+categories: Lecture
 date: "01/12/2026"
 date-format: long
 width: 1920
