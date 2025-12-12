@@ -1,6 +1,15 @@
 ---
 title: "TP Ecolostats – PCA"
-author: ["Arthur Oulès", "Adapté de [medium.com](https://medium.com/intuition/mathematical-understanding-of-principal-component-analysis-6c761004c2f8)"]
+author:
+  - name: "Arthur Oulès"
+    orcid: 0009-0005-0455-1824
+    email: arthur.oules@ens-lyon.fr
+    affiliation:
+      - name: Laboratoire de Biologie Tissulaire et d'Ingénierie Thérapeutique – UMR 5305
+        city: Lyon 7
+        country: France
+        url: https://lbti.ibcp.fr/?page_id=1826
+  - name: "Adapté de [medium.com](https://medium.com/intuition/mathematical-understanding-of-principal-component-analysis-6c761004c2f8)"
 description: "Lecture on the mathematical aspects of the PCA and its use in ecology."
 categories: Lecture
 editor: source
@@ -10,7 +19,7 @@ execute:
 lang: fr
 ---
 
-## Les mathématiques de l'ACP
+## Les Mathématiques de l'ACP
 
 ```{r}
 #| include: false
@@ -22,7 +31,7 @@ library(knitr)
 set.seed(248655)
 ```
 
-Considérons une matrice $x$ de taille $n \times p$ représentant $n$ individus et leurs $p$ paramètres associés :
+Considérons une matrice réelle $X \in \mathcal{M}_{n,p}(\mathbb{R})$ de taille $n \times p$ représentant $n$ individus et leurs $p$ paramètres associés :
 
 ```{r}
 #| echo: false
@@ -42,17 +51,18 @@ pretty_data <- data |>
 kable(head(pretty_data))
 ```
 
-On peut également considérer qu'il s'agit de $n$ réalisations de $p$ variables aléatoires $X_{1}, \dots, X_{p}$.\
-Ainsi, une ligne de $x$ correspond à un individu que l'on représente par le vecteur ligne $x_{i}$ avec ses $p$ paramètres :
+On peut également considérer qu'il s'agit de $n$ réalisations de $p$ variables aléatoires $X_{1}, \dots, X_{p}$ telles que $\forall i \in [\![1,p]\!], X_{i} \sim \mathcal{N}(\mu, \sigma^{2})$.\
+Ainsi, une ligne de $X$ correspond à un individu que l'on représente par le vecteur ligne $\vec{x_{i}} \in \mathbb{R}^{p}$ avec ses $p$ paramètres, qui sont une réalisation des $X_{i}$ :
 
 $$
-x_{i} = \begin{bmatrix} x_{1} \dots x_{p}\end{bmatrix}_{i} \text{ et } x_{i}^T = \begin{bmatrix}
+\vec{x_{i}} = \begin{bmatrix} x_{1} \dots x_{p}\end{bmatrix}_{i} \text{ et } \vec{x_{i}}^T = \begin{bmatrix}
       x_{1}\\
       \vdots \\
       x_{p}
     \end{bmatrix}_{i} \text{ sa transposée.}
 $$
-On peut représenter le jeu de données, la matrice $x$, par $n$ points dans un espace à $p$ dimensions comme dans notre exemple :
+
+On peut représenter le jeu de données, la matrice $X$, par $n$ points dans un espace à $p$ dimensions comme dans notre exemple :
 
 ```{r}
 #| echo: false
@@ -65,7 +75,7 @@ ggplot(data) +
   theme_minimal()
 ```
 
-Pour faciliter les calculs, on centre et réduit les $X_{p}$ variables aléatoires :
+Pour faciliter les calculs, on centre et réduit les $X_{p}$ variables aléatoires :
 
 ```{r}
 #| echo: false
@@ -102,9 +112,9 @@ ggplot(data = data_anim) +
   theme_minimal()
 ```
 
-On cherche à trouver un axe représenté par un vecteur $w$ de l'espace des paramètres, donc à $p$ dimensions, tel qu'il maximise la variance du jeu de données, ou nuage de point, projetée sur celui-ci.
+On cherche à trouver un axe représenté par un vecteur $\vec{w} \in \mathbb{R}^{p}$ de l'espace des paramètres, donc à $p$ dimensions, tel qu'il maximise la variance du jeu de données, ou nuage de point, projetée sur celui-ci.
 
-C'est aussi équivalent à minimiser la somme du carré des résidus :
+C'est aussi équivalent à minimiser la somme du carré des résidus :
 
 ```{r}
 #| echo: false
@@ -138,29 +148,29 @@ MSE <- ggplot(data = data_anim) +
 subplot(ggplotly(variance), ggplotly(MSE))
 ```
 
-Posons le problème mathématiquement :
+Posons le problème mathématiquement :
 
-![Projection de $x_{i}$ sur $w$](figures/angle.png){#fig-proj}
+![Projection de $\vec{x_{i}}$ sur $\vec{w}$](figures/angle.png){#fig-proj}
 
-Soit $x_{i}$ une composante de $x$ et $w$ un vecteur unitaire (donc $\|w\| = 1$ par définition). On a :
-
-$$
-\text{cos}(\theta) = \frac{x_{i} \cdot w}{\|x_{i}\|\|w\|}
-$$
-
-Tel que la projection orthogonale de $x_{i}$ sur $w$ est de norme :
+Soit $\vec{x_{i}}$ un vecteur ligne de $X$ et $\vec{w} \in \mathbb{R}^{p}, \vec{w} \cdot \vec{w} = \|\vec{w}\| = 1$ un vecteur unitaire. On a :
 
 $$
-\|x_{i}\| \text{cos}(\theta) = \|x_{i}\|  \frac{x_{i} \cdot w}{\|x_{i}\|\|w\|} = x_{i} \cdot w
+\text{cos}(\theta) = \frac{\vec{x_{i}} \cdot \vec{w}}{\|\vec{x_{i}}\|\|\vec{w}\|}
 $$
 
-On a donc le résidu associé :
+Tel que la projection orthogonale de $\vec{x_{i}}$ sur $\vec{w}$ est de norme :
+
+$$
+\|\vec{x_{i}}\| \text{cos}(\theta) = \|\vec{x_{i}}\|  \frac{\vec{x_{i}} \cdot \vec{w}}{\|\vec{x_{i}}\|\|\vec{w}\|} = \vec{x_{i}} \cdot \vec{w}
+$$
+
+On a donc le résidu associé :
 
 \begin{align}
 
-\| x_{i} - (x_{i} \cdot w)w \|^2 &= (x_{i} - (x_{i} \cdot w)w) \cdot  (x_{i} - (x_{i} \cdot w)w) \\
-                                 &= \|x_{i}\|^2 - 2(w \cdot x_{i})^2 + (x_{i} \cdot w)^2w \cdot w \\
-                                 &= x_{i} \cdot x_{i} - (w \cdot x_{i})^2
+\| \vec{x_{i}} - (\vec{x_{i}} \cdot \vec{w})\vec{w} \|^2 &= (\vec{x_{i}} - (\vec{x_{i}} \cdot \vec{w})\vec{w}) \cdot  (\vec{x_{i}} - (\vec{x_{i}} \cdot \vec{w})\vec{w}) \\
+                                 &= \|\vec{x_{i}}\|^2 - 2(\vec{w} \cdot \vec{x_{i}})^2 + (\vec{x_{i}} \cdot \vec{w})^2\vec{w} \cdot \vec{w} \\
+                                 &= \vec{x_{i}} \cdot \vec{x_{i}} - (\vec{w} \cdot \vec{x_{i}})^2
 
 \end{align}
 
@@ -168,63 +178,83 @@ On a donc la somme des rédisus ou Mean Squared Error (MSE)
 
 \begin{align}
 
-\text{MSE}(w) &= \frac{1}{n} \sum_{i = 1}^n(\|x_{i}\|^2 - (w \cdot x_{i})^2) \\
-&= \frac{1}{n} \sum_{i = 1}^n\|x_{i}\|^2 - \frac{1}{n} \sum_{i = 1}^n(w \cdot x_{i})^2 \\
+\text{MSE}(\vec{w}) &= \frac{1}{n} \sum_{i = 1}^n(\|\vec{x_{i}}\|^2 - (\vec{w} \cdot \vec{x_{i}})^2) \\
+                    &= \frac{1}{n} \sum_{i = 1}^n\|\vec{x_{i}}\|^2 - \frac{1}{n} \sum_{i = 1}^n(\vec{w} \cdot \vec{x_{i}})^2 \\
 
 \end{align}
 
-On veut trouver $w$ tel que $\text{MSE}(w)$ soit minimale. Le premier terme est constant en fonction de $w$, il reste donc à maximiser le second terme (il y a un $-$ !). On remarque que le second terme peut s'écrire $\frac{1}{n} \sum_{i = 1}^n(w \cdot x_{i})^2 = E\left[(w \cdot x_{i})^2\right]$ or on a la relation $\text{Var}(X) = E[X^2] - E[X]^2$ d'où l'égalite :
+On veut trouver $\vec{w}$ tel que $\text{MSE}(\vec{w})$ soit minimale. Le premier terme est constant en fonction de $\vec{w}$, il reste donc à maximiser le second terme (il y a un $-$ !). On remarque que le second terme peut s'écrire $\frac{1}{n} \sum_{i = 1}^n(\vec{w} \cdot \vec{x_{i}})^2 = \mathbb{E}\left[(\vec{w} \cdot \vec{x_{i}})^2\right]$ or on a la relation $\text{Var}(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2$ d'où l'égalité :
 
 \begin{align}
 
-\frac{1}{n} \sum_{i = 1}^n(w \cdot x_{i})^2 &= (\frac{1}{n} \sum_{i = 1}^n w \cdot x_{i})^2 + \text{Var}(w \cdot x_{i}) \\
-&= \text{Var}(w \cdot x_{i})
+\frac{1}{n} \sum_{i = 1}^n(\vec{w} \cdot \vec{x_{i}})^2 &= (\frac{1}{n} \sum_{i = 1}^n \vec{w} \cdot \vec{x_{i}})^2 + \text{Var}(\vec{w} \cdot \vec{x_{i}}) \\
+&= \text{Var}(\vec{w} \cdot \vec{x_{i}})
 
 \end{align}
 
-Car $w \cdot x_{i} = x_{i}$ puisque $w$ est unitaire et les $X_{p}$ sont centrées donc de moyennes nulles donc $\frac{1}{n} \sum_{i = 1}^n x_{i} = 0$.
+Car $\sum_{i = 1}^n \vec{w} \cdot \vec{x_{i}} = (\sum_{i = 1}^n\vec{x_{i}}) \cdot \vec{w} = 0$ puisque les $X_{p}$ sont des variables centrées de moyennes nulles donc $\frac{1}{n} \sum_{i = 1}^n \|\vec{x_{i}}\| = 0$.
 
-Ainsi on a :
-
-$$
-\text{MSE}(w) = \frac{1}{n}\sum_{i = 1}^n \|x_{i}\|^2 - \text{Var}(w \cdot x_{i})
-$$
-
-Minimiser MSE revient donc à maximiser la variance des projections des $x_{i}$ mais comment faire ?
-
-En rappelant :
+Ainsi on a :
 
 $$
-\text{Var}(x_{i}) = \frac{1}{p}x_{i}^Tx_{i} = \frac{1}{p} \sum_{j = 1}^px_{j, (i)}^2
+\text{MSE}(\vec{w}) = \frac{1}{n}\sum_{i = 1}^n \|\vec{x_{i}}\|^2 - \text{Var}(\vec{w} \cdot \vec{x_{i}})
 $$
 
-On obtient :
+Minimiser MSE revient donc à maximiser la variance des projections des $\vec{x_{i}}$ mais comment faire ?
+
+En rappelant :
+
+$$
+X \vec{w}^{T} = \begin{bmatrix} x_{1,1} & \dots  & x_{1,p} \\
+                                 \vdots & \ddots & \vdots \\
+                                x_{n,1} & \dots  & x_{n,p}  \end{bmatrix} \times \begin{bmatrix} w_{1} \\ 
+                                                                                                 \vdots \\
+                                                                                                 w_{p} \end{bmatrix} = \begin{bmatrix} \sum_{i = 1}^{p} w_{i}.x_{i, 1}\\
+                 \vdots \\
+                 \sum_{i = 1}^{p} w_{i}.x_{i, n} \end{bmatrix} =
+\begin{bmatrix} \vec{w} \cdot \vec{x_{1}} \\
+                        \vdots \\
+                \vec{w} \cdot \vec{x_{2}} \end{bmatrix}
+$$
+et
+
+$$
+(X\vec{w}^{T})^{T}(X\vec{w}^{T}) = \sum_{i = 1}^{n} (\vec{x_{i}} \cdot \vec{w})^{2}
+$$
+
+On obtient :
 
 \begin{align}
 
-\sigma_{w}^2 = \text{Var}(w \cdot x_{i}) &= \frac{1}{n} \sum_{i = 1}^n(w \cdot x_{i})^2 \\
-&= \frac{1}{n}(xw)^T(xw) \\
-&= \frac{1}{n}w^Tx^Txw \\
-\sigma_{w}^2 &= w^Tcov_{x^T,x}w
+\sigma_{\vec{w}}^{2} = \text{Var}(\vec{w} \cdot \vec{x_{i}}) &= \frac{1}{n} \sum_{i = 1}^{n}(\vec{w} \cdot \vec{x_{i}})^{2} \\
+                                                             &= \frac{1}{n}(X\vec{w}^{T})^{T}(X\vec{w}^{T}) \\
+                                                             &=\frac{1}{n} \vec{w} X^{T} X \vec{w}^{T} \\
+                                        \sigma_{\vec{w}}^{2} &= \vec{w} cov_{X^{T}, X} \vec{w}^{T}
 
 \end{align}
 
-avec $cov_{x^T,x}$ la matrice de variance-covariance des $X_{p}$ variables aléatoires correspondants à nos paramètres :
+avec $\vec{w}^{T}$ le vecteur colonne unitaire de taille $n \times 1$ et $cov_{X^T,X}$ la matrice de variance-covariance des $X_{p}$ variables aléatoires correspondants à nos paramètres :
+
 \begin{align}
 
-cov_{x^T,x} = \text{Cov}\left[x^T,x\right] &= E\left[(x - \mu_{x})^T(x - \mu_{x})\right] \\
-&= E\left[x^Tx\right] \text{ en centrant les } X_{p}\\
-\text{En développant :} \\
-cov_{x^T,x} &= \begin{bmatrix} \text{Var}(X_{1}) & \dots & \text{Cov}(X_{1}, X_{p}) \\
-                              \vdots & \ddots & \vdots \\
-                              \text{Cov}(X_{p}, X_{1}) & \dots & \text{Var}(X_{p}) \end{bmatrix}
+cov_{X^T, X} = \text{Cov}\left[X^T, X\right] &= \mathbb{E}\left[(X - \mu_{X})^T(X - \mu_{X})\right] \\
+                                             &= \mathbb{E}\left[X^TX\right] \text{ en centrant les } X_{p}\\
+\end{align}
+
+En développant :
+
+\begin{align}
+
+cov_{X^T,X} &= \begin{bmatrix} \text{Var}(X_{1})        & \dots  & \text{Cov}(X_{1}, X_{p}) \\
+                                          \vdots        & \ddots & \vdots \\
+                               \text{Cov}(X_{p}, X_{1}) & \dots  & \text{Var}(X_{p}) \end{bmatrix}
 
 \end{align}
 
-*N.B* : Attention à la dimensionnalité, $\frac{1}{n}x^Tx = cov_{x^T,x}$ est une **matrice** de covariance (de dimension $p \times p$) alors que $\frac{1}{n}xx^T = \frac{1}{n} \sum_{i = 1}^nx_{i}^2$ est un nombre (de dimension $1 \times 1$).
+*N.B* : Attention à la dimensionnalité, $\frac{1}{n}X^TX = cov_{X^T,X}$ est une **matrice** de covariance (de dimension $p \times p$) alors que $\frac{1}{n}XX^T = \frac{1}{n} \sum_{i = 1}^nx_{i}^2$ est un nombre (de dimension $1 \times 1$).
 
 Ainsi, minimiser $\text{MSE}(w)$ revient à trouver $w$, vecteur unitaire, tel que $\sigma_{w}^2$ soit minimisé.\
-Pour minimiser $\sigma_{w}^2$, on peut utiliser l'opérateur Lagrangien avec la contrainte que $w$ doit être un vecteur unitaire, c'est à dire que $\|w\| = w^Tw = 1$ comme suit :
+Pour minimiser $\sigma_{w}^2$, on peut utiliser l'opérateur Lagrangien avec la contrainte que $w$ doit être un vecteur unitaire, c'est à dire que $\|w\| = w^Tw = 1$ comme suit :
 
 \begin{align}
 
@@ -234,7 +264,7 @@ Pour minimiser $\sigma_{w}^2$, on peut utiliser l'opérateur Lagrangien avec la 
 
 \end{align}
 
-On a donc à l'optimum, en posant les dérivées partielles nulles, le système d'équations :
+On a donc à l'optimum, en posant les dérivées partielles nulles, le système d'équations :
 
 \begin{align}
 
@@ -245,15 +275,14 @@ cov_{x^T,x}w &= \lambda w
 
 Ce qui revient à trouver les valeurs et vecteurs propres de la matrice de covariance de X ! De plus le vecteur propre associé à la valeur propre la plus élevée maximisera la covariance.
 
-Et ça nous arrange bien car la matrice de covariance a des propriétés intéressantes : c'est une matrice carrée, positive, symétrique et inversible. Donc il existe une décomposition en valeurs propres de cette matrice tel que $cov_{x^T,x}$ se factorise sous la forme :
+Et ça nous arrange bien car la matrice de covariance a des propriétés intéressantes : c'est une matrice carrée, positive, symétrique et inversible. Donc il existe une décomposition en valeurs propres de cette matrice tel que $cov_{x^T,x}$ se factorise sous la forme :
 
 $$
 cov_{x^T,x} = x^Tx = W \Lambda W^{-1}
-$$
-Avec $W$, de taille $p \times p$, la matrice diagonlae des vecteurs propres et $\Lambda$, de taille $p \times p$, la matrice des valeurs propres de $cov_{x^T,x}$.\
+$$ Avec $W$, de taille $p \times p$, la matrice diagonlae des vecteurs propres et $\Lambda$, de taille $p \times p$, la matrice des valeurs propres de $cov_{x^T,x}$.\
 Les vecteurs propres ainsi trouvés sont tous unitaires et orthogonaux et forment une base de l'espace à $p$ dimensions de départ.
 
-On a alors les coordonnées de notre nuage de points initial dans le nouveau repère défini par $W$ qui sont données par :
+On a alors les coordonnées de notre nuage de points initial dans le nouveau repère défini par $W$ qui sont données par :
 
 $$
 T = xW
@@ -261,14 +290,14 @@ $$
 
 On appelle T la matrice des poids.
 
-En pratique, la diagonalisation de $cov_{x^T,x}$ est gourmande en calculs car elle nécessite le passer par l'intermédiaire $x^T$. Une "astuce" informatique consiste à réaliser une décomposition en valeurs singulières de $x$ tel que :
+En pratique, la diagonalisation de $cov_{x^T,x}$ est gourmande en calculs car elle nécessite le passer par l'intermédiaire $x^T$. Une "astuce" informatique consiste à réaliser une décomposition en valeurs singulières de $x$ tel que :
 
 $$
 x = U \Sigma V^T
 $$
 
 avec U une matrice unitaire (càd $UU^T = I$) de taille $n \times n$, V une matrice unitaire (càd $UU^T = I$) de taille $p \times p$ et $\Sigma$ une matrice diagonale rectangulaire de taille $n \times p$ dont les coefficients diagonaux sont les $\sqrt{\lambda_{i}}$ non nuls.\
-On a alors la relation :
+On a alors la relation :
 
 $$
 x^Tx = V (\Sigma^T\Sigma) V^T =  W \Lambda W^{-1}
@@ -408,7 +437,7 @@ iris |>
 
 [Aide](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/prcomp) de la fonction `prcomp()`.
 
-On commence par deux types de graphiques : Un Screeplot et un cercle des corrélations.
+On commence par deux types de graphiques : Un Screeplot et un cercle des corrélations.
 
 ```{r}
 #| echo: false
@@ -418,7 +447,7 @@ On commence par deux types de graphiques : Un Screeplot et un cercle des corrél
 fviz_eig(iris_pca, addlabels = TRUE) + fviz_pca_var(iris_pca, col.var = "black")
 ```
 
-La fonction `fviz_pca_var()` permet de colorer les vecteurs des variables par le carré de leur cosinus avec les vecteurs propres :
+La fonction `fviz_pca_var()` permet de colorer les vecteurs des variables par le carré de leur cosinus avec les vecteurs propres :
 
 ```{r}
 iris_pca |>
@@ -429,7 +458,7 @@ iris_pca |>
   )
 ```
 
-Une autre manière de visualiser ces contributions :
+Une autre manière de visualiser ces contributions :
 
 ```{r}
 library(corrplot)
@@ -448,7 +477,7 @@ fviz_contrib(iris_pca,
                top  = 10)
 ```
 
-On peut maintenant regarder ce qu'il se passe du côté des individus :
+On peut maintenant regarder ce qu'il se passe du côté des individus :
 
 ```{r}
 iris_pca |> fviz_pca_ind(
@@ -458,7 +487,7 @@ iris_pca |> fviz_pca_ind(
 )
 ```
 
-Il semble y avoir plusieurs groupes, ajoutons une variable catégorielle pour aider à la visualisation :
+Il semble y avoir plusieurs groupes, ajoutons une variable catégorielle pour aider à la visualisation :
 
 ```{r}
 iris_pca |> fviz_pca_ind(
@@ -494,19 +523,19 @@ Par contre les axes 2 et 3 sont moins informatifs dans ce cas, comme prédis par
 
 ## A retenir de l'ACP
 
-*   C'est une analyse exploratoire d'un jeu de données *a priori* corrélées, pas un test statistique. Elle permet de décrire la variance d'un jeu de données
+-   C'est une analyse exploratoire d'un jeu de données *a priori* corrélées, pas un test statistique. Elle permet de décrire la variance d'un jeu de données
 
-*   Cette analyse permet de réduire la dimensionnalité des données et les résume par des composantes principales
+-   Cette analyse permet de réduire la dimensionnalité des données et les résume par des composantes principales
 
-* Ces composantes principales sont orthogonales (*i. e* non corrélés) et participent de manière décroissante à la variance totale du jeu de données
+-   Ces composantes principales sont orthogonales (*i. e* non corrélés) et participent de manière décroissante à la variance totale du jeu de données
 
-* Le nouvel espace est Euclidien, on peut y mesurer des distances et des angles. Attention cependant à leur interprétation !
+-   Le nouvel espace est Euclidien, on peut y mesurer des distances et des angles. Attention cependant à leur interprétation !
 
 ## Analyses de la même famille
 
 WORK IN PROGRESS
 
-<!-- Source : <http://factominer.free.fr/factomethods/index_fr.html> -->
+<!-- Source : <http://factominer.free.fr/factomethods/index_fr.html> -->
 
 <!-- ### Méthodes Classiques -->
 
@@ -547,4 +576,3 @@ WORK IN PROGRESS
 <!-- Quand un groupe d'individus est décrit par un groupe de variables quantitatives et/ou qualitatives, on propose comme analyse un cas particulier de l'AFM appelé Analyse Factorielle de Données Mixtes. -->
 
 <!-- ### Analyses discriminantes -->
-
