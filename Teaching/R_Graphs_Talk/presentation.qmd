@@ -1,4 +1,5 @@
 ---
+draft: true
 title: "Graphs and data analyses in R"
 author:
   - name: "Arthur Oulès"
@@ -11,7 +12,6 @@ author:
         url: https://lbti.ibcp.fr/?page_id=1826
 description: "Lecture on the use of R and RStudio for producing graphs."
 categories: Lecture
-date: "01/12/2026"
 date-format: long
 width: 1920
 height: 1080
@@ -20,7 +20,7 @@ format:
   revealjs:
     theme: dark
     slide-number: true
-    footer: "*R graph capabilities 12/01/2026*"
+    footer: "*Graphs and data analyses in R*"
     code-block-height: 950px
     css: styles.css
 editor: source
