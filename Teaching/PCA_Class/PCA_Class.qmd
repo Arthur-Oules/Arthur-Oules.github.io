@@ -494,11 +494,14 @@ iris |>
 On commence par deux types de graphiques : Un Screeplot et un cercle des corrélations.
 
 ```{r}
-#| echo: false
+#| echo: true
 #| label: fig-screecirc
 #| fig-cap: Screeplot et cercle des corrélations pour Iris
 
-(fviz_eig(iris_pca, addlabels = TRUE) + coord_cartesian(ylim = c(0, 100))) | (fviz_pca_var(iris_pca, col.var = "black") + coord_cartesian(ratio = 1, xlim = c(-1.25, 1.25), ylim = c(-1.25, 1.25)))
+(fviz_eig(iris_pca, addlabels = TRUE) +
+ coord_cartesian(ylim = c(0, 100))) |
+  (fviz_pca_var(iris_pca, col.var = "black") +
+   coord_cartesian(ratio = 1, xlim = c(-1.25, 1.25), ylim = c(-1.25, 1.25)))
 ```
 
 La fonction `fviz_pca_var()` permet de colorer les vecteurs des variables par le carré de leur cosinus avec les vecteurs propres :
@@ -522,14 +525,16 @@ corrplot(var$cos2, is.corr = FALSE)
 
 fviz_cos2(iris_pca, choice = "var", axes = 1:2)
 
-fviz_contrib(iris_pca,
+(fviz_contrib(iris_pca,
              choice = "var",
              axes   = 1,
-             top    = 10) + 
-fviz_contrib(iris_pca,
+             top    = 10) +
+  coord_cartesian(ylim = c(0, 100))) |
+(fviz_contrib(iris_pca,
              choice = "var",
              axes   = 2,
-             top    = 10)
+             top    = 10) +
+   coord_cartesian(ylim = c(0, 100)))
 ```
 
 On peut maintenant regarder ce qu'il se passe du côté des individus :
