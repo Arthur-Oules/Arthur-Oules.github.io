@@ -20,6 +20,7 @@ lang: fr
 ---
 
 ## Les Mathématiques de l'ACP
+### Définitions
 
 ```{r}
 #| include: false
@@ -132,6 +133,8 @@ ggplot(data = data_anim) +
   theme_minimal()
 ```
 
+### L'ACP : Une régression linéaire
+
 On cherche à trouver un axe représenté par un vecteur unitaire $\vec{w} \in \mathbb{R}^{p}, \|\vec{w}\| = 1$ (et sa notation matricielle en vecteur colonne) de l'espace des paramètres, donc à $p$ dimensions, tel qu'il maximise la variance du jeu de données, ou nuage de point, projetée sur celui-ci.
 
 Graphiquement, cela équivaut à minimiser la somme du carré des résidus :
@@ -170,7 +173,7 @@ subplot(ggplotly(variance), ggplotly(MSE))
 
 On peut s'en convaincre géométriquement et mathématiquement :
 
-![Projection de $\vec{x_{i}}$ sur $\vec{w}$](figures/angle.svg){#fig-proj width="70%"}
+![Projection de $\vec{x_{i}}$ sur $\vec{w}$](figures/angle.svg){#fig-proj width="50%"}
 
 D'après le théorème de Pyhagore, on a :
 
@@ -279,6 +282,8 @@ cov_{X^{T}, X} &= \begin{bmatrix} \text{Var}(X_{1}) & \dots  & \text{Cov}(X_{1},
 
 :::
 
+### Un problème d'optimisation
+
 Ainsi, minimiser $\text{MSE}(\vec{w})$ revient à trouver $\vec{w}$, vecteur unitaire, tel que $\sigma_{\vec{w}}^2$ soit minimisé.
 
 Pour se faire, on peut utiliser le multiplicateur de Lagrange $\lambda \in \mathbb{R}$, qui permet de poser mathématiquement des problèmes d'optimisation, avec la contrainte que $\vec{w}$ doit être un vecteur unitaire, c'est à dire que $\|\vec{w}\| = \vec{w}^T\vec{w} = 1$ comme suit :
@@ -318,24 +323,27 @@ $$
 T = XW
 $$
 
-On appelle $T$ la matrice des poids.
+On appelle $T$ la matrice des poids, la matrice des coordonnées du jeu de données dans le nouvel espace.
 
-En pratique, la diagonalisation de $cov_{X^T,X}$ est gourmande en calculs car elle nécessite le passer par l'intermédiaire $X^T$. Une "astuce" informatique consiste à réaliser une décomposition en valeurs singulières de $X$ tel que :
+### La décomposition en valeur singulières
+
+En pratique, Le calcul de $cov_{X^T,X}$ est gourmand. Une "astuce" informatique consiste à réaliser une décomposition en valeurs singulières de $X$ tel que :
 
 $$
-x = U \Sigma V^T
+X = U \Sigma V^T
 $$
 
-avec $U$ une matrice unitaire (càd $UU^T = I$) de dimension $n \times n$, $V$ une matrice unitaire de dimension $p \times p$ et $\Sigma$ une matrice diagonale rectangulaire de dimension $n \times p$ dont les coefficients diagonaux sont les $\sqrt{\lambda_{i}}$ non nulles.\
+avec $U$ une matrice unitaire (càd $UU^T = I$) de dimension $n \times n$, $V$ une matrice unitaire de dimension $p \times p$ et $\Sigma$ une matrice diagonale rectangulaire de dimension $n \times p$ dont les coefficients diagonaux sont les $\sqrt{\lambda_{i}}$ non nulles.
+
+![Interprétation graphique de la Décomposition en Valeurs Singulières](figures/Singular-Value-Decomposition.svg){#fig-svd width="50%"}
+
 On a alors la relation :
 
 $$
-X^TX = V (\Sigma^T\Sigma) V^T =  W \Lambda W^{-1}
+X^TX = V \Sigma^T U^T U \Sigma V^T = V (\Sigma^T\Sigma) V^T =  W \Lambda W^{-1}
 $$
 
-On retrouve une décomposition en valeurs propres. En décomposant $X$ en valeurs singulières, on s'évite de passer par le calcul de son inverse.
-
-![Interprétation graphique de la Décomposition en Valeurs Singulières](figures/Singular-Value-Decomposition.png){#fig-svd}
+On retrouve la décomposition en valeurs propres de la matrice de variance-covariance. En décomposant $X$ en valeurs singulières, on s'évite le calcul explicite de $cov_{X^T,X}$ !
 
 ## Exemple simple à trois dimensions
 
@@ -374,7 +382,8 @@ iris |> plot_ly(
       xaxis      = list(title = "Sepal Width"),
       yaxis      = list(title = "Petal Width"),
       zaxis      = list(title = "Petal Length"),
-      aspectmode = 'data'
+      aspectmode = 'data',
+      camera     = list(projection = list(type = "orthographic"))
     )
   )
 ```
@@ -404,7 +413,8 @@ iris |>
       xaxis      = list(title = "Sepal Width"),
       yaxis      = list(title = "Petal Width"),
       zaxis      = list(title = "Petal Length"),
-      aspectmode = 'data'
+      aspectmode = 'data',
+      camera     = list(projection = list(type = "orthographic"))
     )
   )
 ```
@@ -435,7 +445,8 @@ iris |>
       xaxis      = list(title = "PC 1"),
       yaxis      = list(title = "PC 2"),
       zaxis      = list(title = "PC 3"),
-      aspectmode = 'data'
+      aspectmode = 'data',
+      camera     = list(projection = list(type = "orthographic"))
     )
   )
 ```
