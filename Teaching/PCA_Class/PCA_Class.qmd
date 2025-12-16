@@ -255,7 +255,7 @@ On obtient :
 
 \end{align}
 
-avec $cov_{X^T,X}$ la matrice de variance-covariance des $X_{p}$ variables aléatoires de dimension $p \times p$ correspondants à nos paramètres :
+avec $cov_{X^T,X} \in \mathcal{M}_{p}(\mathbb{R})$ la matrice de variance-covariance des $X_{p}$ variables aléatoires de dimension $p \times p$ correspondants à nos paramètres :
 
 \begin{align}
 
@@ -264,6 +264,7 @@ cov_{X^{T}, X} = \text{Cov}\left[X^{T}, X\right] &= \mathbb{E}\left[(X - \mu_{X}
 \end{align}
 
 ::: {.callout-note}
+
 En développant :
 
 \begin{align}
@@ -290,7 +291,7 @@ Pour se faire, on peut utiliser le multiplicateur de Lagrange $\lambda \in \math
 
 \begin{align}
 
-               \mathcal{L}(\vec{w}, \lambda) &\equiv \sigma_{\vec{w}}^2 - \lambda(\vec{w}^T\vec{w} - 1) \\
+               \mathcal{L}(\vec{w}, \lambda) &= \sigma_{\vec{w}}^2 - \lambda(\vec{w}^T\vec{w} - 1) \\
 &\begin{cases}
 \frac{\partial\mathcal{L}}{\partial \lambda} =      (\vec{w}^T\vec{w} - 1) \\
       \frac{\partial\mathcal{L}}{\partial w} =      2cov_{X^T,X}\vec{w} - 2\lambda \vec{w}
@@ -306,15 +307,26 @@ cov_{X^T,X}\vec{w} &= \lambda \vec{w}
 
 \end{cases}
 
-Ce qui revient à trouver les valeurs et vecteurs propres de la matrice de covariance de $X$ ! De plus le vecteur propre associé à la valeur propre la plus élevée maximisera la covariance.
+Ce qui revient à trouver les valeurs et vecteurs propres de $cov_{X^T,X}$ !
 
-Et ça nous arrange bien car la matrice de covariance a des propriétés intéressantes : c'est une matrice carrée (ici de dimensions $p \times p$), positive, symétrique et inversible. Donc il existe une décomposition en valeurs propres de cette matrice telle que $cov_{X^T,X}$ se factorise sous la forme :
+On a aussi :
+
+\begin{align}
+
+cov_{X^T,X}\vec{w} = \lambda \vec{w} &\Rightarrow \vec{w}^Tcov_{X^T,X}\vec{w} = \vec{w}^{T}\lambda \vec{w} = \|\vec{w}\|^{2}\lambda \\
+                                     &\Rightarrow \sigma_{\vec{w}}^{2}= \lambda \\
+
+\end{align}
+
+Donc le vecteur propre associé à la valeur propre la plus élevée maximisera la covariance projetée sur $\vec{w}$.
+
+Et ça nous arrange bien car la matrice de covariance a des propriétés intéressantes : c'est une matrice carrée, positive, symétrique et inversible. Donc il existe une décomposition en valeurs propres de cette matrice telle que $cov_{X^T,X}$ se factorise sous la forme :
 
 $$
-cov_{X^T,X} = X^TX = W \Lambda W^{-1}
+cov_{X^{T},X} = X^{T}X = W \Lambda W^{-1}
 $$
 
-Avec $W$, de dimension $p \times p$, la matrice diagonale des vecteurs propres et $\Lambda$, de dimension $p \times p$, la matrice des valeurs propres de $cov_{X^T,X}$.\
+Avec $W \in \mathcal{M}_{p}(\mathbb{R})$ la matrice des vecteurs propres (tous les $\vec{w}$ !) et $\Lambda \in \mathcal{M}_{p}(\mathbb{R})$ la matrice diagonale des valeurs propres de $cov_{X^T,X}$.\
 Les vecteurs propres ainsi trouvés sont tous unitaires et orthogonaux et forment une base de l'espace à $p$ dimensions de départ.
 
 On a alors les coordonnées de notre nuage de points initial dans le nouveau repère défini par $W$ qui sont données par :
@@ -323,7 +335,8 @@ $$
 T = XW
 $$
 
-On appelle $T$ la matrice des poids, la matrice des coordonnées du jeu de données dans le nouvel espace.
+On appelle $T \in \mathcal{M}_{n,p}(\mathbb{R})$ matrice des scores.\
+Et la matrice $W$ des vecteurs propres contient les poids ("loadings"), c'est-à-dire les combinaisons linéaires des paramètres initiaux qui donnent les vecteurs propres (leurs coordonnées dans le référentiel des vecteurs propres).
 
 ### La décomposition en valeur singulières
 
