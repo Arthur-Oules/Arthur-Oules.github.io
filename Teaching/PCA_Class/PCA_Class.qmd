@@ -501,7 +501,8 @@ On commence par deux types de graphiques : Un Screeplot et un cercle des corré
 (fviz_eig(iris_pca, addlabels = TRUE) +
  coord_cartesian(ylim = c(0, 100))) |
   (fviz_pca_var(iris_pca, col.var = "black") +
-   coord_cartesian(ratio = 1, xlim = c(-1.25, 1.25), ylim = c(-1.25, 1.25)))
+   coord_cartesian(ratio = 1, xlim = c(-1.25, 1.25), ylim = c(-1.25, 1.25)) +
+   theme_classic())
 ```
 
 La fonction `fviz_pca_var()` permet de colorer les vecteurs des variables par le carré de leur cosinus avec les vecteurs propres :
@@ -512,7 +513,8 @@ iris_pca |>
     col.var       = "cos2",
     gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
     repel         = TRUE # Avoid text overlapping
-  )
+  ) +
+  theme_classic()
 ```
 
 Une autre manière de visualiser ces contributions :
@@ -522,8 +524,6 @@ library(corrplot)
 
 var <- get_pca_var(iris_pca)
 corrplot(var$cos2, is.corr = FALSE)
-
-fviz_cos2(iris_pca, choice = "var", axes = 1:2)
 
 (fviz_contrib(iris_pca,
              choice = "var",
