@@ -521,14 +521,15 @@ var <- get_pca_var(iris_pca)
 corrplot(var$cos2, is.corr = FALSE)
 
 fviz_cos2(iris_pca, choice = "var", axes = 1:2)
+
 fviz_contrib(iris_pca,
              choice = "var",
-             axes  = 1,
-             top   = 10) + 
-  fviz_contrib(iris_pca,
-               choice = "var",
-               axes   = 2,
-               top  = 10)
+             axes   = 1,
+             top    = 10) + 
+fviz_contrib(iris_pca,
+             choice = "var",
+             axes   = 2,
+             top    = 10)
 ```
 
 On peut maintenant regarder ce qu'il se passe du côté des individus :
@@ -581,7 +582,7 @@ Par contre les axes 2 et 3 sont moins informatifs dans ce cas, comme prédis par
 
 -   Cette analyse permet de réduire la dimensionnalité des données et les résume par des composantes principales
 
--   Ces composantes principales sont orthogonales (*i. e* non corrélés) et participent de manière décroissante à la variance totale du jeu de données
+-   Ces composantes principales sont orthogonales (*i. e* non corrélées) et participent de manière décroissante à la variance totale du jeu de données
 
 -   Le nouvel espace est Euclidien, on peut y mesurer des distances et des angles. Attention cependant à leur interprétation !
 
