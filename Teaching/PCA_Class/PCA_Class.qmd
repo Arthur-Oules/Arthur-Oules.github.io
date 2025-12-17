@@ -49,17 +49,18 @@ Ce qui donne en pratique :
 #| label: tbl-values
 #| tbl-cap: "Extrait de $p = 2$ traits de $n = 50$ individus"
 
-x <- rnorm(50, mean = 5, sd = .5)
-y <- 2*x + rnorm(50)
-data <- data.frame(x, y)
-rm(x, y)
+data <- tibble(
+  x = rnorm(50, mean = 5, sd = .5),
+  y = 2*x + rnorm(50)
+)
 
-pretty_data <- data |> 
+data |> 
   mutate(Individus = row_number()) |> 
   rename("Trait 1" = x, "Trait 2" = y) |> 
-  select(c(Individus, "Trait 1", "Trait 2"))
+  select(c(Individus, "Trait 1", "Trait 2")) |> 
+  head() |> 
+  kable()
 
-kable(head(pretty_data))
 ```
 
 On peut également considérer qu'il s'agit d'un tableau de $n$ réalisations de $p$ variables aléatoires $X_{1}, \dots, X_{p}$ telles que $\forall j \in [\![1,p]\!], X_{j} \sim \mathcal{N}(\mu, \sigma^{2})$. Ainsi, une colonne correspond à $n$ tirages de la variable aléatoire $X_{j \in [\![1,p]\!]}$.\
@@ -103,11 +104,11 @@ Pour center-réduire, on pose $Z = \frac{X - \mu_{X}}{\sigma_{x}}$ ainsi $Z \sim
 
 data <- data |>
   mutate(
-    scale_x = scale(x),
-    scale_y = scale(y)
+    scale_x = scale(x)[ ,1],
+    scale_y = scale(y)[, 1]
   )
 
-angle <- data.frame(theta = round(seq.int(0, pi/2, length.out = 22)[-c(1, 22)], digits = 2))
+angle <- data.frame(theta = round(seq.int(0, pi/2, length.out = 22)[-1], digits = 2))
 
 data_anim <- cbind(data, "angle" = angle$theta[1])
 
@@ -116,10 +117,17 @@ for (i in 2:dim(angle)[1]) {
 }
 
 data_anim <- data_anim |> 
+  tibble() |> 
+  mutate(θ = round(angle*180/pi)) |> 
+  mutate(norm = scale_x*cos(angle) + scale_y*sin(angle)) |> 
   mutate(
-    x_proj = (scale_x*cos(angle) + scale_y*sin(angle))*cos(angle),
-    y_proj = (scale_x*cos(angle) + scale_y*sin(angle))*sin(angle)
-  )
+    x_proj = norm*cos(angle),
+    y_proj = norm*sin(angle)
+  ) |> 
+  group_by(angle) |> 
+  mutate(variance = sd(norm)) |> 
+  mutate(MSE = mean(scale_x**2 + scale_y**2) - mean(norm**2))
+    
 ```
 
 ```{r}
@@ -146,36 +154,50 @@ Graphiquement, cela équivaut à minimiser la somme du carré des résidus :
 
 variance <- ggplot(data = data_anim) +
   geom_segment(
-    aes(frame = angle, x = scale_x, xend = x_proj, y = scale_y, yend = y_proj),
+    aes(frame = θ, x = scale_x, xend = x_proj, y = scale_y, yend = y_proj),
     linetype = 2,
     colour   = "grey"
   ) +
-  geom_abline(aes(frame = angle, slope = tan(angle), intercept = 0), colour = "grey") +
-  geom_point(aes(frame = angle, x = scale_x, y = scale_y)) + 
-  geom_point(aes(frame = angle, x = x_proj, y = y_proj), colour = "red") +
+  geom_abline(aes(frame = θ, slope = tan(angle), intercept = 0), colour = "grey") +
+  geom_point(aes(frame = θ, x = scale_x, y = scale_y)) + 
+  geom_point(aes(frame = θ, x = x_proj, y = y_proj), colour = "red") +
+  geom_text(
+    aes(
+      frame = θ,
+      x = 1, y = -2.5,
+      label = paste0("σ<sup>2</sup><sub>θ</sub> = ", as.character(round(variance, digits = 4)))
+    )
+  ) +
   coord_fixed(ratio = 1) +
   theme_minimal()
 
 MSE <- ggplot(data = data_anim) +
   geom_segment(
-    aes(frame = angle, x = scale_x, xend = x_proj, y = scale_y, yend = y_proj),
+    aes(frame = θ, x = scale_x, xend = x_proj, y = scale_y, yend = y_proj),
     linetype = 1,
     colour   = "red"
   ) +
-  geom_abline(aes(frame = angle, slope = tan(angle), intercept = 0), colour = "grey") +
-  geom_point(aes(frame = angle, x = x_proj, y = y_proj), colour = "grey") +
-  geom_point(aes(frame = angle, x = scale_x, y = scale_y)) + 
+  geom_abline(aes(frame = θ, slope = tan(angle), intercept = 0), colour = "grey") +
+  geom_point(aes(frame = θ, x = x_proj, y = y_proj), colour = "grey") +
+  geom_point(aes(frame = θ, x = scale_x, y = scale_y)) +
+  geom_text(
+    aes(
+      frame = θ,
+      x = 1, y = -2.5,
+      label = paste0("MSE(θ) = ", as.character(round(MSE, digits = 4)))
+    )
+  ) +
   coord_fixed(ratio = 1) +
   theme_minimal()
 
-subplot(ggplotly(variance), ggplotly(MSE))
+subplot(ggplotly(variance), ggplotly(MSE))  |>  animation_opts(frame = 150)
 ```
 
 On peut s'en convaincre géométriquement et mathématiquement :
 
 ![Projection de $\vec{x_{i}}$ sur $\vec{w}$](figures/angle.svg){#fig-proj width="50%"}
 
-D'après le théorème de Pyhagore, on a :
+On a l'égalité vectorielle :
 
 $$
 \text{Résidu} = \vec{x_{i}} - (\vec{x_{i}} \cdot \vec{w})\vec{w}
@@ -220,7 +242,7 @@ $$
 \text{MSE}(\vec{w}) = \frac{1}{n}\sum_{i = 1}^n \|\vec{x_{i}}\|^2 - \text{Var}(\vec{x_{i}} \cdot \vec{w})
 $$
 
-Minimiser $\text{MSE}(\vec{w})$ revient donc à maximiser la variance des projections des $\vec{x_{i}}$ mais comment faire ?
+Minimiser $\text{MSE}(\vec{w})$ revient donc bien à maximiser la variance des projections des $\vec{x_{i}}$ mais comment faire ?
 
 En rappelant :
 
