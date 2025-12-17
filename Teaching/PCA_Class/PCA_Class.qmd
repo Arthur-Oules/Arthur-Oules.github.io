@@ -108,7 +108,7 @@ data <- data |>
     scale_y = scale(y)[, 1]
   )
 
-angle <- data.frame(theta = round(seq.int(0, pi/2, length.out = 22)[-1], digits = 2))
+angle <- data.frame(theta = round(seq.int(0, pi/2, length.out = 12)[-1], digits = 2))
 
 data_anim <- cbind(data, "angle" = angle$theta[1])
 
@@ -190,7 +190,7 @@ MSE <- ggplot(data = data_anim) +
   coord_fixed(ratio = 1) +
   theme_minimal()
 
-subplot(ggplotly(variance), ggplotly(MSE))  |>  animation_opts(frame = 150)
+subplot(ggplotly(variance), ggplotly(MSE))  |>  animation_opts(frame = 500)
 ```
 
 On peut s'en convaincre géométriquement et mathématiquement :
