@@ -3,6 +3,7 @@ title: "Arthur Oulès"
 subtitles: |
   Third year Phd student
 about:
+  id: about-content
   template: trestles
   links:
     - icon: envelope-at
@@ -20,8 +21,10 @@ format:
     toc: false
 ---
 
+::: {#about-content}
 I am currently a third year PhD student at the [LBTI](https://lbti.ibcp.fr/?page_id=1826) under the supervision of Laurent Viriot and Giacomo Bernardi (UCSC, [Bernardi Lab](https://bernardi.eeb.ucsc.edu/)).\
-In my free time, I enjoy sports like rock climbing, scuba diving and karate-dō shitō-ryū (空手道糸東流). I also enjoy wildlife photography and origami (折り紙) as hobbies.
+In my free time, I enjoy sports like rock climbing, scuba diving and karate-dō shitō-ryū. I also enjoy wildlife photography and origami as hobbies.
+:::
 
 ## Education&Professional Experience
 
