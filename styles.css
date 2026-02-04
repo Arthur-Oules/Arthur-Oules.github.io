@@ -1,5 +1,9 @@
 /* css styles */
 
+* {
+  line-height: 1.2;
+}
+
 .smalltext {
   font-size: 85%;
 }
@@ -10,4 +14,25 @@
 
 .centertext {
   text-align: center;
+}
+
+.rightjust {
+  text-align: end;
+  margin-top: -15px;
+  margin-bottom: -15px;
+}
+
+.customindent1 {
+  text-indent: -9em;
+  padding-left: 9em;
+}
+
+.customindent2 {
+  text-indent: -11em;
+  padding-left: 11em;
+}
+
+.customindent3 {
+  text-indent: -21ex;
+  padding-left: 21ex;
 }

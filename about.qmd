@@ -12,7 +12,7 @@ about:
       href: https://orcid.org/0009-0005-0455-1824
     - text: '{{< iconify academicons google-scholar >}}'
       href: https://scholar.google.com/citations?user=Sn9YvuAAAAAJ&hl=fr
-    - text: '{{< iconify simple-icons researchgate>}}'
+    - text: '{{< iconify simple-icons researchgate >}}'
       href: https://www.researchgate.net/profile/Arthur_Oules
     - icon: github
       href: https://github.com/Arthur-Oules
@@ -22,31 +22,78 @@ format:
 ---
 
 ::: {#about-content}
-I am currently a third year PhD student at the [LBTI](https://lbti.ibcp.fr/?page_id=1826) under the supervision of Laurent Viriot and Giacomo Bernardi (UCSC, [Bernardi Lab](https://bernardi.eeb.ucsc.edu/)).\
+I am currently a third year PhD student at the [LBTI](https://lbti.ibcp.fr/?page_id=1826) under the supervision of Laurent Viriot and Giacomo Bernardi (UCSC, [Bernardi Lab](https://bernardi.eeb.ucsc.edu/)).\
 In my free time, I enjoy sports like rock climbing, scuba diving and karate-dō shitō-ryū. I also enjoy wildlife photography and origami as hobbies.
 :::
 
 ## Education&Professional Experience
 
-Since 2023 \| PhD under the supervision of Laurent Viriot and Giacomo Bernardi \| [LBTI - UMR 5305, Université Claude Bernard Lyon 1, Lyon, France]{.smalltext}\
-[- 3 years contract: *Evolution of the trophic apparatus in large herbivorous coral reef fish in relation to the diversification of diet micro-specializations*]{.smalltext}
+Since 2023 \| PhD in functionnal anatomy of Actinopterygian
 
-2022–2023 \| **Master of Sciences in Biology (2nd year)** \| [Ecole Normale Supérieure de Lyon, Lyon, France]{.smalltext}\
-[- 6 months internship: *Niche partitioning and phylogeography of Surperches *(Embiotocidae) (Giacomo Bernardi, Bernardi lab, UCSC)]{.smalltext}
+::: {.rightjust .smalltext}
+LBTI – UMR 5305, Université Claude Bernard Lyon 1, Lyon, France
+:::
 
-2021–2022 \| **Agrégation SV-STU section B**, ranked 26 \| [Ecole Normale Supérieure de Lyon, Lyon, France]{.smalltext}
+::: {.smalltext .customindent1}
+3 years contract: *Evolution of the trophic apparatus in large herbivorous coral reef fish in relation to the diversification of diet micro-specializations* (Laurent Viriot and Giacomo Bernardi)
+:::
 
-2020–2021 \| **Master of Sciences in Biology (1st year)** \| [Ecole Normale Supérieure de Lyon, Lyon, France]{.smalltext}\
-[- 6 months internship: *Evolution of the trophic apparatus in Surgeonfish (Acanthuridae) in relation to their diet diversification.* (Laurent Viriot, LBTI – UMR 5305)]{.smalltext}
+2022–2023 \| **Master of Sciences in Biology (2^nd^ year)**
 
-2019–2020 \| **Bachelor in Biology** \| [Ecole Normale Supérieure de Lyon, Lyon, France]{.smalltext}\
-[- 5 weeks Internship: *Εxploring the mechanisms of programmed genome elimination in* Mesorhabditis belari*.* (Marie Delattre, LBMC – UMR 5239)]{.smalltext}
+::: {.rightjust .smalltext}
+Ecole Normale Supérieure de Lyon, Lyon, France
+:::
 
-2017-2019 \| Preparation for the highly competitive entrance examination to French Engineering Top Schools “Biology, Chemistry, Physics & Earth Sciences” \| [Lycée Roland Garros, Le Tampon, La Réunion]{.smalltext}
+::: {.smalltext .customindent2}
+6 months internship: *Niche partitioning and phylogeography of Surperches* (Embiotocidae) (Giacomo Bernardi, Bernardi lab, UCSC)
+:::
 
-2016-2017 \| Preparation for the highly competitive entrance examination to French Engineering Top Schools “Maths, Physics, Engineering Sciences” \| [Lycée La Salle Saint-Charles, Saint-Pierre, La Réunion]{.smalltext}
+2021–2022 \| **Agrégation SV-STU section B**, ranked 26
+
+::: {.rightjust .smalltext}
+Ecole Normale Supérieure de Lyon, Lyon, France
+:::
+
+2020–2021 \| **Master of Sciences in Biology (1^st^ year)** 
+
+::: {.rightjust .smalltext}
+Ecole Normale Supérieure de Lyon, Lyon, France
+:::
+
+::: {.smalltext .customindent2}
+6 months internship: *Evolution of the trophic apparatus in Surgeonfish (Acanthuridae) in relation to their diet diversification.* (Laurent Viriot, LBTI – UMR 5305)
+:::
+
+2019–2020 \| **Bachelor in Biology**
+
+::: {.rightjust .smalltext}
+Ecole Normale Supérieure de Lyon, Lyon, France
+:::
+
+::: {.smalltext .customindent3}
+5 weeks Internship: *Εxploring the mechanisms of programmed genome elimination in *Mesorhabditis belari*.* (Marie Delattre, LBMC – UMR 5239)
+:::
+
+2017-2019 \| CPGE BCPST
+
+::: {.rightjust .smalltext}
+Lycée Roland Garros, Le Tampon, La Réunion
+:::
+
+[Preparation for the highly competitive entrance examination to French Engineering Top Schools “Biology, Chemistry, Physics & Earth Sciences”]{.smalltext}
+
+2016-2017 \| CPGE MPSI
+
+::: {.rightjust .smalltext}
+Lycée La Salle Saint-Charles, Saint-Pierre, La Réunion
+:::
+
+[Preparation for the highly competitive entrance examination to French Engineering Top Schools “Maths, Physics, Engineering Sciences”]{.smalltext}
 
 ## Publications
 
 Population Genomics, Local Adaptation and Cryptic Speciation in a Temperate Reef Fish, the Black Surfperch, *Embiotoca jacksoni*, Using Genome-Wide Resequencing. *Molecular Ecology* 2025. {{< iconify academicons doi >}} [10.1111/mec.70073](https://www.doi.org/10.1111/mec.70073)\
-[Jason A. Toy\*, Arthur Oulès\*, Gary Longo, H. Bradley Shaffer, Giacomo Bernardi]{.smalltext}
+
+::: {.rightjust .smalltext}
+Jason A. Toy\*, **Arthur Oulès**\*, Gary Longo, H. Bradley Shaffer, Giacomo Bernardi
+:::
