@@ -2,3 +2,7 @@
 /_freeze/
 /PCA_Class_files/
 /PCA_Class.html
+**/*.quarto_ipynb
+.test.html
+.test.qmd
+.test_files
