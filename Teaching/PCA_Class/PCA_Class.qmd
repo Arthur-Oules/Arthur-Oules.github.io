@@ -1,6 +1,5 @@
 ---
 title: "TP Ecolostats – PCA"
-server: shiny
 author:
   - name: "Arthur Oulès"
     orcid: 0009-0005-0455-1824
@@ -24,14 +23,12 @@ lang: fr
 ### Définitions
 
 ```{r}
-#| context: setup
 #| include: false
 
 library(tidyverse)
 library(patchwork)
 library(plotly)
 library(knitr)
-library(shiny)
 
 set.seed(248655)
 ```
@@ -130,7 +127,6 @@ On cherche à trouver un axe représenté par un vecteur unitaire $\vec{w} \in \
 Graphiquement, cela équivaut à minimiser la somme du carré des résidus :
 
 ```{r}
-#| context: setup
 #| echo: false
 
 data <- tibble(
@@ -141,129 +137,98 @@ data <- tibble(
     scale_x = scale(x)[ ,1],
     scale_y = scale(y)[, 1]
   )
-```
 
-::: {#fig-Shinytest}
+angle <- data.frame(theta = seq(0, pi/2, by = pi/36))
+
+# angle <- data.frame(theta = c(0, pi/16, pi/8, 3*pi/16, pi/4, 5*pi/16, 3*pi/8, 7*pi/16, .995*pi/2))
+
+data_anim <- cbind(data, "angle" = angle$theta[1])
+
+for (i in 2:dim(angle)[1]) {
+  data_anim <- rbind(data_anim, cbind(data, "angle" = angle$theta[i]))
+}
+
+data_anim <- data_anim |> 
+  tibble() |> 
+  mutate(θ = round(angle*180/pi)) |> 
+  mutate(norm = scale_x*cos(angle) + scale_y*sin(angle)) |> 
+  mutate(
+    x_proj = norm*cos(angle),
+    y_proj = norm*sin(angle)
+  )
+
+# data_res <- data_anim |> 
+#   group_by(θ) |> 
+#   mutate(sigma2 = sd(norm)) |> 
+#   mutate(MSE = mean(scale_x**2 + scale_y**2) - mean(norm**2)) |>
+#   distinct(θ, .keep_all = TRUE) |>
+#   select(θ, sigma2, MSE)
+#     
+```
 
 ```{r}
 #| echo: false
+#| label: fig-VarMSE
+#| fig-cap: Equivalence entre MSE et Variance sur l'exemple de notre jeu de données
 
-plotOutput("angleplot")
-```
+variance <- data_anim |>
+  ggplot() +
+  geom_segment(
+    aes(
+      frame = θ,
+      x = scale_x, xend = x_proj,
+      y = scale_y, yend = y_proj
+    ),
+    linetype = 2,
+    colour   = "grey"
+  ) +
+  geom_abline(aes(frame = θ, slope = tan(angle), intercept = 0), colour = "grey") +
+  geom_point(aes(frame = θ, x = scale_x, y = scale_y)) + 
+  geom_point(aes(frame = θ, x = x_proj, y = y_proj), colour = "red") +
+  # geom_text(
+  #   data = data_res,
+  #   aes(
+  #     frame = θ,
+  #     x = .8, y = -2.5,
+  #     size  = .5,
+  #     label = paste("σ<sup>2</sup><sub>θ</sub> = ", as.character(round(sigma2, digits = 3)))
+  #   )
+  # ) +
+  coord_fixed(ratio = 1) +
+  labs(
+    x = "Trait 1 centré-réduit",
+    y = "Trait 2 centré-réduit"
+  ) +
+  theme_minimal()
 
-```{r}
-#| echo: false
-#| height: 200px
+# ggplotly(variance) |> animation_opts(frame = 500, mode = "next")
 
-sliderInput(
-  "angle",
-  "Value of θ in degrees", 
-  min     = 0,
-  max     = 90,
-  value   = 30,
-  step    = 15,
-  # animate = animationOptions(
-  #   interval    = 500,
-  #   loop        = FALSE,
-  #   playButton  = "PLAY",
-  #   pauseButton = "PAUSE"
-  # ),
-  width   = "100%",
-  post    = "°"
-)
-```
+MSE <- ggplot(data = data_anim) +
+  geom_segment(
+    aes(frame = θ, x = scale_x, xend = x_proj, y = scale_y, yend = y_proj),
+    linetype = 1,
+    colour   = "red"
+  ) +
+  geom_abline(aes(frame = θ, slope = tan(angle), intercept = 0), colour = "grey") +
+  geom_point(aes(frame = θ, x = x_proj, y = y_proj), colour = "grey") +
+  geom_point(aes(frame = θ, x = scale_x, y = scale_y)) +
+  # geom_text(
+  #   aes(
+  #     frame = θ,
+  #     x = .8, y = -2.5,
+  #     size  = .5,
+  #     label = paste0("MSE(θ) = ", as.character(round(MSE, digits = 3)))
+  #   )
+  # ) +
+  coord_fixed(ratio = 1) +
+  labs(
+    x = "Trait 1 centré-réduit"
+  ) +
+  theme_minimal()
 
-Equivalence entre MSE et Variance sur l'exemple de notre jeu de données.
-:::
-
-```{r}
-#| echo: false
-#| context: server
-
-output$angleplot <- renderPlot({
-  
-  p1 <- ggplot(data = data) +
-    geom_segment(
-      aes(
-        x = scale_x, xend = (scale_x*cos(input$angle*pi/180) + scale_y*sin(input$angle*pi/180))*cos(input$angle*pi/180),
-        y = scale_y, yend = (scale_x*cos(input$angle*pi/180) + scale_y*sin(input$angle*pi/180))*sin(input$angle*pi/180)
-      ),
-      linetype = 2,
-      colour   = "grey"
-    ) +
-    geom_abline(
-      aes(slope = tan(input$angle*pi/180), intercept = 0),
-      colour = "grey"
-      ) +
-    geom_point(aes(x = scale_x, y = scale_y)) +
-    geom_point(
-      aes(
-        x = (scale_x*cos(input$angle*pi/180) + scale_y*sin(input$angle*pi/180))*cos(input$angle*pi/180),
-        y = (scale_x*cos(input$angle*pi/180) + scale_y*sin(input$angle*pi/180))*sin(input$angle*pi/180)
-      ),
-      colour = "red"
-    ) +
-    annotate(
-      geom = "text",
-      x = .2, y = -2.5,
-      hjust = 0,
-      size  = 5.5,
-      label = paste("σ[θ]^2 ==", as.character(round(sd(data$scale_x*cos(input$angle*pi/180) + data$scale_y*sin(input$angle*pi/180)), digits = 4))),
-      parse = TRUE
-    ) +
-    coord_fixed(ratio = 1, xlim = c(-3.5, 2.5), ylim = c(-3.5, 2.5)) +
-    labs(
-      x = "Trait 1 centré-réduit",
-      y = "Trait 2 centré-réduit"
-    ) +
-    theme_minimal()
-    
-  p2 <- ggplot(data = data) +
-    geom_segment(
-      aes(
-        x = scale_x, xend = (scale_x*cos(input$angle*pi/180) + scale_y*sin(input$angle*pi/180))*cos(input$angle*pi/180),
-        y = scale_y, yend = (scale_x*cos(input$angle*pi/180) + scale_y*sin(input$angle*pi/180))*sin(input$angle*pi/180)
-      ),
-      linetype = 1,
-      colour   = "red"
-    ) +
-    geom_abline(
-      aes(slope = tan(input$angle*pi/180), intercept = 0),
-      colour = "grey"
-    ) +
-    geom_point(
-      aes(
-        x = (scale_x*cos(input$angle*pi/180) + scale_y*sin(input$angle*pi/180))*cos(input$angle*pi/180),
-        y = (scale_x*cos(input$angle*pi/180) + scale_y*sin(input$angle*pi/180))*sin(input$angle*pi/180)
-      ), colour = "grey"
-    ) +
-    geom_point(
-      aes(x = scale_x, y = scale_y)
-    ) +
-    annotate(
-      geom = "text",
-      x = .2, y = -2.5,
-      hjust = 0,
-      size  = 5.5,
-      label = paste(
-        "MSE(θ) =",
-        as.character(
-          round(
-            mean(data$scale_x**2 + data$scale_y**2) - mean((data$scale_x*cos(input$angle*pi/180) + data$scale_y*sin(input$angle*pi/180))**2),
-            digits = 4
-          )
-        )
-      )
-    ) +
-    coord_fixed(ratio = 1, xlim = c(-3.5, 2.5), ylim = c(-3.5, 2.5)) +
-    labs(
-      x = "Trait 1 centré-réduit"
-    ) +
-    theme_minimal() +
-    theme(axis.title.y = element_blank())
-
-  p1 + p2
-})
+subplot(ggplotly(variance), ggplotly(MSE), shareX = TRUE, shareY = TRUE) |>
+  animation_opts(frame = 500) |>
+  animation_slider(currentvalue = list(prefix = "Valeur de θ = ", suffix = "°"))
 ```
 
 On peut s'en convaincre géométriquement et mathématiquement :
