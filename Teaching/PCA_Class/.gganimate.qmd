@@ -1,0 +1,60 @@
+---
+title: "plotly"
+format: html
+---
+
+
+```{r}
+library(tidyverse)
+library(plotly)
+library(latex2exp)
+```
+
+## Test with gganimate
+
+```{r}
+library(gganimate)
+```
+
+```{r}
+data_anim |>
+  ggplot() +
+  geom_segment(
+    aes(
+      x = scale_x, xend = x_proj,
+      y = scale_y, yend = y_proj
+    ),
+    linetype = 2,
+    colour   = "grey"
+  ) +
+  geom_abline(aes(slope = tan(angle), intercept = 0), colour = "grey") +
+  geom_point(aes(x = scale_x, y = scale_y)) + 
+  geom_point(aes(x = x_proj, y = y_proj), colour = "red") +
+  geom_text(
+    aes(
+      x = .8, y = -2.5,
+      label = TeX(paste("$\\theta =", as.character(θ), "\\degree, \\sigma_{θ}^{2} =", as.character(round(variance, digits = 3)), "$"))
+    ),
+    size  = 4.5,
+    parse = TRUE
+  ) +
+  coord_fixed(ratio = 1) +
+  labs(
+    x = "Trait 1 centré-réduit",
+    y = "Trait 2 centré-réduit"
+  ) +
+  theme_minimal() +
+  transition_time(θ) +
+  gganimate::ease_aes()
+```
+
+## Raw plotly
+
+```{r}
+fig <- data_anim |> 
+  plot_ly(
+    x = ~scale_x,
+    y = ~scale_y,
+    color = "black"
+  )
+```
