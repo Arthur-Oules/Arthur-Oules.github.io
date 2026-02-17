@@ -102,7 +102,7 @@ Pour center-réduire, on pose $Z = \frac{X - \mu_{X}}{\sigma_{x}}$ ainsi $Z \sim
 
 ```{r}
 #| echo: false
-#| label: fig-traitssclaed
+#| label: fig-traitsscaled
 #| fig-cap: Biplot des deux traits d'intérêt centrés et réduits
 
 data |>
