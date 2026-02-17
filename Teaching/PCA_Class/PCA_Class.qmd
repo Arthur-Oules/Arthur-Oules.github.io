@@ -155,19 +155,20 @@ data_anim <- data_anim |>
     y_proj = norm*sin(angle)
   )
 
-# data_res <- data_anim |> 
-#   group_by(θ) |> 
-#   mutate(sigma2 = sd(norm)) |> 
-#   mutate(MSE = mean(scale_x**2 + scale_y**2) - mean(norm**2)) |>
-#   distinct(θ, .keep_all = TRUE) |>
-#   select(θ, sigma2, MSE)
-#     
+data_res <- data_anim |>
+  group_by(θ) |>
+  mutate(sigma2 = sd(norm)) |>
+  mutate(MSE = mean(scale_x**2 + scale_y**2) - mean(norm**2)) |>
+  distinct(θ, .keep_all = TRUE) |>
+  select(θ, sigma2, MSE)
+
 ```
 
 ```{r}
 #| echo: false
 #| label: fig-VarMSE
-#| fig-cap: Equivalence entre MSE et Variance sur l'exemple de notre jeu de données
+#| fig-cap: Equivalence entre Variance (à gauche) et MSE (à droite) sur l'exemple de notre jeu de données
+#| fig-height: 7
 
 variance <- data_anim |>
   ggplot() +
@@ -183,23 +184,17 @@ variance <- data_anim |>
   geom_abline(aes(frame = θ, slope = tan(angle), intercept = 0), colour = "grey") +
   geom_point(aes(frame = θ, x = scale_x, y = scale_y)) + 
   geom_point(aes(frame = θ, x = x_proj, y = y_proj), colour = "red") +
-  # geom_text(
-  #   data = data_res,
-  #   aes(
-  #     frame = θ,
-  #     x = .8, y = -2.5,
-  #     size  = .5,
-  #     label = paste("σ<sup>2</sup><sub>θ</sub> = ", as.character(round(sigma2, digits = 3)))
-  #   )
-  # ) +
-  coord_fixed(ratio = 1) +
+  coord_fixed(ratio = 1, xlim = c(-2.5, 2.5), ylim = c(-2.5, 2.5)) +
   labs(
     x = "Trait 1 centré-réduit",
     y = "Trait 2 centré-réduit"
   ) +
   theme_minimal()
 
-# ggplotly(variance) |> animation_opts(frame = 500, mode = "next")
+variance_curve <- ggplot(data_res, aes(x = θ, y = sigma2)) +
+  geom_smooth(color = "grey", se = FALSE) +
+  geom_point(aes(frame = θ), colour = "red") +
+  theme_minimal()
 
 MSE <- ggplot(data = data_anim) +
   geom_segment(
@@ -210,21 +205,22 @@ MSE <- ggplot(data = data_anim) +
   geom_abline(aes(frame = θ, slope = tan(angle), intercept = 0), colour = "grey") +
   geom_point(aes(frame = θ, x = x_proj, y = y_proj), colour = "grey") +
   geom_point(aes(frame = θ, x = scale_x, y = scale_y)) +
-  # geom_text(
-  #   aes(
-  #     frame = θ,
-  #     x = .8, y = -2.5,
-  #     size  = .5,
-  #     label = paste0("MSE(θ) = ", as.character(round(MSE, digits = 3)))
-  #   )
-  # ) +
-  coord_fixed(ratio = 1) +
+  coord_fixed(ratio = 1, xlim = c(-2.5, 2.5), ylim = c(-2.5, 2.5)) +
   labs(
     x = "Trait 1 centré-réduit"
   ) +
   theme_minimal()
 
-subplot(ggplotly(variance), ggplotly(MSE), shareX = TRUE, shareY = TRUE) |>
+MSE_curve <- ggplot(data_res, aes(x = θ, y = MSE)) +
+  geom_smooth(color = "grey", se = FALSE) +
+  geom_point(aes(frame = θ), colour = "red") +
+  theme_minimal()
+
+subplot(
+  ggplotly(variance), ggplotly(MSE),
+  ggplotly(variance_curve), ggplotly(MSE_curve),
+  nrows = 2, heights = c(.7, .3)
+) |>
   animation_opts(frame = 500) |>
   animation_slider(currentvalue = list(prefix = "Valeur de θ = ", suffix = "°"))
 ```
