@@ -140,8 +140,6 @@ data <- tibble(
 
 angle <- data.frame(theta = seq(0, pi/2, by = pi/36))
 
-# angle <- data.frame(theta = c(0, pi/16, pi/8, 3*pi/16, pi/4, 5*pi/16, 3*pi/8, 7*pi/16, .995*pi/2))
-
 data_anim <- cbind(data, "angle" = angle$theta[1])
 
 for (i in 2:dim(angle)[1]) {
