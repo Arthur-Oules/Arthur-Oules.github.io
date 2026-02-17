@@ -6,3 +6,6 @@
 .test.html
 .test.qmd
 .test_files
+.shinylive_test.html
+.shinylive_test_files/
+shinylive-sw.js
