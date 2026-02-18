@@ -43,6 +43,7 @@ format:
     link-external-newwindow: true
     link-external-icon: true
     toc: true
+    linestretch: 1.2
 
 execute:
     freeze: auto
