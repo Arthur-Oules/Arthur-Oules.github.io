@@ -45,7 +45,7 @@ install.packages("msaR")
 install.packages("ape")
 install.packages("phytools")
 install.packages("phangorn")
-install.packages("viridis")
+install.packages("apex")
 ```
 
 Notre seconde source de package sera [Bioconductor](https://www.bioconductor.org/) qui centralise de nombreux packages avec un usages orienté vers la bioinformatique et tout particulièrement le traitement de données issues de wet-lab.\
@@ -59,7 +59,6 @@ if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
 BiocManager::install("msa")
-BiocManager::install("ggtree")
 ```
 
 ### Chargement des packages et données
@@ -83,10 +82,7 @@ library(msa)
 library(msaR)
 library(phangorn)
 library(phytools)
-
-# For visualization
-library(ggtree)
-library(viridis)
+library(apex)
 ```
 
 Pour le beau geste, une version plus compacte :
@@ -95,15 +91,16 @@ Pour le beau geste, une version plus compacte :
 #| echo: false
 #| eval: false
 
-c("here", "tidyverse", "reshape2", "rentrez", "ape", "msa", "msaR", "phytools", "phangorn",
-  "ggtree", "viridis") |>
+c("here",     "tidyverse",
+  "rentrez",  "ape",      "msa", "msaR",
+  "phytools", "phangorn", "apex") |>
   lapply(library, character.only = TRUE) |> invisible()
 ```
 
 C'est aussi l'occasion de faire une révision sur les objets dans R et de découvrir l'opérateur pipe `|>`.\
 Deuxième point, la fonction `lapply()`. Tapez `?lapply` dans la console ou utilisez la touche `F1` avec le curseur de saisie sur la fonction depuis la console, cette commande appelle l'aide de R pour une fonction donnée. Toutes les fonctions, qu'elles soient dans R de base ou dans un package ont une aide (plus ou moins garnie...).
 
-Quel est l'intérêt de la famille de fonctions apply ? (5 minutes)
+*Quel est l'intérêt de la famille de fonctions apply ?*
 
 #### Chargement des fonctions externes
 
@@ -132,16 +129,16 @@ Ce fichier de travail est un "Quarto MarkDown", c'est un fichier texte dans lequ
 Maintenant, commençons les choses sérieuses !\
 Dans le cadre de ce TP/TD, nous allons apprendre à générer des arbres phylogénétiques à partir de séquences ADN récupérées sur GenBank par diverses méthodes de construction d'arbre et les comparer entre elles.
 
-Quel est le protocole général pour construire un arbre phylogénétique à partir de séquences ADN ? (5 minutes)
+*Quel est le protocole général pour construire un arbre phylogénétique à partir de séquences ADN ?*
 
 ### Acquisition des séquences
 
 Nous allons commencer par récupérer les séquences d’intérêts sur Genbank directement depuis `R`.\
-Qu'est-ce que [GenBank](https://www.ncbi.nlm.nih.gov/genbank/) ? (5 minutes)
+*Qu'est-ce que [GenBank](https://www.ncbi.nlm.nih.gov/genbank/) ?*
 
 #### Chargement des données
 
-Charger le fichier `data/usflu.annot.csv` avec la fonction `read_csv()` et le visualiser. (5 minutes)
+*Charger le fichier `data/usflu.annot.csv` avec la fonction `read_csv()` et le visualiser.*
 
 ```{r}
 #| error: false
@@ -156,9 +153,9 @@ view(annotations)
 ```
 
 Aller sur [GenBank](https://www.ncbi.nlm.nih.gov/nucleotide/) et entrer un numéro d'accès dans la barre de recherche. À quoi correspond cette séquence ?\
-Pourquoi l'indication "Segment 4" ?\
-À quoi correspond la protéine codée par ce gène ? Quel est le rapport avec le nom du variant ?\
-Pourquoi s'intéresser à cette séquence en particulier ? (10 minutes)
+*Pourquoi l'indication "Segment 4" ?*\
+*À quoi correspond la protéine codée par ce gène ? Quel est le rapport avec le nom du variant ?*\
+*Pourquoi s'intéresser à cette séquence en particulier ?*
 
 #### Récupération des séquences par lot
 
@@ -178,7 +175,7 @@ annotations |>
 Ce bloc de code utilise la fonction `Get_sequence()` que j'ai codée et que nous avons chargée avec la fonction `source()` plus tôt. vous êtes peut-être curieux de savoir à quoi elle ressemble !\
 Rien de plus simple, comme pour l'aide vous pouvez utiliser la touche `F2` ou taper `View(Get_sequence)` dans la console R.
 
-Cette fonction se base sur la fonction `entrez_fetch()` du package `rentrez`. Que permet-elle de faire ? (5 minutes)
+*Cette fonction se base sur la fonction `entrez_fetch()` du package `rentrez`. Que permet-elle de faire ?*
 
 Dans le bloc de code précédent, nous avons sauvegardé le résultat de l'opération dans le fichier `output/usflu_sequences.fasta`. Ouvrez le manuellement ou grâce à la commande suivante :
 
@@ -191,13 +188,13 @@ shell(here("output", "usflu_sequences.fasta"))
 
 ### Alignement des séquences
 
-Rappeler le principe de l'alignement de séquences. (5minutes)\
+*Rappeler le principe de l'alignement de séquences.*\
 
 Le package `msa` (Multiple Sequence Alignment) permet d'utiliser les algorithmes classiques d'alignement de multiples séquences directement depuis `R`.\
-Ouvrir la page d'aide de la fonction `msa()`.\
-Quels sont les algorithmes disponibles ? Sous quelle forme doit-on fournir les séquences à la fonction ? (5 minutes)
+Ouvrez la page d'aide de la fonction `msa()`.\
+*Quels sont les algorithmes disponibles ? Sous quelle forme doit-on fournir les séquences à la fonction ?*
 
-Commencer par ouvrir le fichier fasta généré dans un format accepté par la fonction `msa()`.
+Commencez par ouvrir le fichier .fasta généré dans un format accepté par la fonction `msa()`.
 
 ```{r}
 usflu_sequences <- readDNAStringSet(file = here("output", "usflu_sequences.fasta"))
@@ -205,7 +202,7 @@ usflu_sequences
 ```
 
 On va utiliser l'algorithme [MUSCLE](https://en.wikipedia.org/wiki/MUSCLE_(alignment_software)) pour générer notre alignement. Pour les curieux, vous pouvez lire [ici](https://help.geneious.com/hc/en-us/articles/360044627712-Which-multiple-alignment-algorithm-should-I-use) une description des algorithmes plus connus et utilisés.\
-Utiliser la fonction `msa()` avec les bons paramètres pour générer un alignement. (5 minutes)
+*Utilisez la fonction `msa()` avec les bons paramètres pour générer un alignement.*
 
 ```{r}
 alignment <- msa(usflu_sequences, method = "Muscle", type = "dna", order = "input")
@@ -222,25 +219,25 @@ msaR(here("output", "alignement.fasta"), menu = FALSE, overviewbox = F)
 ```
 
 Maintenant que nous avons aligné nos séquences, nous pouvons passer à la suite !\
-Rappeler les différentes méthodes de construction d'arbres phylogénétiques que vous connaissez. (5 minutes)
+*Rappelez les différentes méthodes de construction d'arbres phylogénétiques que vous connaissez.*
 
 ### Méthode de distances
 
-Rappeler le principe des méthodes de distance et en citer deux exemples.\
-Quelles sont les différences entre ces méthodes ? (5 minutes)
+*Rappelez le principe des méthodes de distance et en citer deux exemples.*\
+*Quelles sont les différences entre ces méthodes ?*
 
 #### Calcul d'une matrice de distances
 
-Nous allons calculer une matrice des distances à partir de nos alignements à l'aide la fonction `dist.dna()`. Ouvrir l'aide de cette fonction.\
-Combien de modèles de substitution sont disponibles ? Comparer à la fonction `dist.ml()`. Aller sur [ce lien](http://www.iqtree.org/doc/Substitution-Models) (et [celui-ci](https://en.wikipedia.org/wiki/Models_of_DNA_evolution) pour approfondir) et regarder les différents modèles.\
-Quelles sont les différences entre ces modèles ? Nous allons utiliser le modèle `TN93`, pourquoi ce nom ? Quelles sont ses particularités ? Utiliser la fonction `dist.dna()` pour générer une matrice de distance. (5 minutes)
+Nous allons calculer une matrice des distances à partir de nos alignements à l'aide la fonction `dist.dna()`. *Ouvrir l'aide de cette fonction.*\
+*Combien de modèles de substitution sont disponibles ?* Comparer à la fonction `dist.ml()`. Aller sur [ce lien](http://www.iqtree.org/doc/Substitution-Models) (et [celui-ci](https://en.wikipedia.org/wiki/Models_of_DNA_evolution) pour approfondir) et regarder les différents modèles.\
+*Quelles sont les différences entre ces modèles ? Nous allons utiliser le modèle* `TN93`*, pourquoi ce nom ? Quelles sont ses particularités ? Utiliser la fonction* `dist.dna()` *pour générer une matrice de distance.*
 
 ```{r}
 alignment_BIN <- msaConvert(alignment, type = "ape::DNAbin") 
 distance_matrix <- dist.dna(alignment_BIN, model = "TN93")
 ```
 
-Nous allons visualiser la matrice de distance avec `ggplot2`, un des nombreux packages composant le [Tidyverse](https://www.tidyverse.org/). Décrire la structure de cette portion de code. (5 minutes)
+Nous allons visualiser la matrice de distance avec `ggplot2`, un des nombreux packages composant le [Tidyverse](https://www.tidyverse.org/). *Décrire la structure de cette portion de code.*
 
 ```{r}
 distance_matrix |>
@@ -248,7 +245,7 @@ distance_matrix |>
   as.data.frame.table() |>
   ggplot(mapping = aes(x = Var1, y = Var2, fill = Freq)) +
   geom_raster() +
-  scale_fill_viridis(name = "Distance") +
+  scale_fill_continuous(name = "Distance", palette = c("#440154FF", "#31688EFF", "#35B779FF", "#FDE725FF")) +
   scale_x_discrete(position = "top") +
   scale_y_discrete(limits = rev) +
   ggtitle("Heatmap de la matrice des distances") +
@@ -256,21 +253,20 @@ distance_matrix |>
   theme(axis.title = element_blank())
 ```
 
-Pourquoi les valeurs en diagonale de la matrice sont nulles ? Identifiez-vous des tendances ? (5 minutes)
+*Pourquoi les valeurs en diagonale de la matrice sont nulles ? Identifiez-vous des tendances ?*
 
 #### Construction et visualisation d'un arbre par UPGMA
 
-Générer et visualiser un arbre avec l'algorithme UPGMA à l'aide des fonction `upgma()` et `plot()`. Commenter cet arbre. (5 minutes)
+*Générez et visualiser un arbre avec l'algorithme UPGMA à l'aide des fonction `upgma()` et `plot()`. Commentez cet arbre.*
 
 ```{r}
 UPGMA_tree <- upgma(distance_matrix)
-plot(UPGMA_tree, main = "Arbre UPGMA", cex = .6)
-# ggtree(UPGMA_tree) + geom_tiplab() + ggtitle("Arbre UPGMA")
+plot(UPGMA_tree, main = "Arbre construit par UPGMA", cex = .6)
 ```
 
 #### Construction d'un arbre par Neighbour-Joining
 
-Ouvrir l'aide de la fonction `NJ()`. Générer l'arbre et le visualiser avec la fonction plot().
+*Ouvrir l'aide de la fonction* `NJ()`*. Générer l'arbre et le visualiser avec la fonction* `plot()`*.*
 
 ```{r}
 NJ_tree <- distance_matrix |> NJ()
@@ -278,62 +274,95 @@ plot(NJ_tree)
 ```
 
 Nous allons en profiter pour explorer la structure des arbres phylogénétiques en tant qu'objet sur R.\
-Pour commencer, explorer la structure de l'objet `NJ_tree` à l'aide de la fonction `class()` et de l'opérateur `$`\
-Lire la documentation de la fonction `read.tree`.\
-Enregistrer l'arbre dans un fichier `.txt` à l'aide de la fonction `ape::write.tree()`. Comment est structuré ce fichier texte ?\
-Utiliser les fonctions `plot()` et `nodelabel()` pour afficher l'arbre et les numéros des nœuds. (10 minutes)
+Pour commencer, explorez la structure de l'objet `NJ_tree` à l'aide de la fonction `class()` et de l'opérateur `$`\
+Lisez la documentation de la fonction `read.tree`.\
+Enregistrer l'arbre dans un fichier `.txt` à l'aide de la fonction `ape::write.tree()`. *Comment est structuré ce fichier texte ?*\
 
 ```{r}
 class(NJ_tree)
 NJ_tree
 NJ_tree |> ape::write.tree(here("output", "NJ_tree.txt"))
-plot(NJ_tree, cex = .6)
-nodelabels(frame = "none", cex = .6)
 ```
 
-Nous allons voir comment visualiser ce même arbre en utilisant le package ggtree.\
-Commenter le bloc de code suivant. Cette représentation vous semble-t-elle pertinente pour cette méthode ? (5 minutes)
+*Utiliser les fonctions* `plot()` *et* `nodelabel()` *pour afficher l'arbre et les numéros des nœuds.*
 
 ```{r}
-#| error: false
-#| warning: false
-
-ggtree(NJ_tree) + geom_tiplab() + geom_nodelab() + ggtitle("NJ non raciné")
+plot(NJ_tree, cex = .6)
+nodelabels(frame = "none", cex = .6)
 ```
 
 Ajoutons des annotations à cet arbre :
 
 ```{r}
-#| error: false
-#| warning: false
+#| height: 600
+#| width: 800
 
-ggtree(NJ_tree, layout = "circular") %<+% annotations +
-  geom_tiplab(aes(color = year)) +
-  scale_color_viridis(option = "turbo") +
-  ggtitle("NJ non raciné") +
-  theme(legend.position = "right")
+plot(NJ_tree, show.tip = FALSE)
+title("Arbre non-raciné construit par Neighbour-Joining")
+myPal <- colorRampPalette(c("red","yellow","green","blue"))
+tiplabels(annotations$year, bg = num2col(annotations$year, col.pal = myPal), cex = .5)
+temp <- pretty(1993:2008, 5)
+legend("bottomleft", fill = num2col(temp, col.pal = myPal), leg = temp, ncol = 2)
 ```
 
-A quoi correspondent les couleurs des feuilles de l'arbre ?\
-Nous allons raciner l'arbre de manière arbitraire. À partir de la figure précédente, quelle séquence vous semble pertinente pour raciner l'arbre ?\
-Raciner l'arbre à l'aide de la fonction `root()`. (5 minutes)\
+*A quoi correspondent les couleurs des feuilles de l'arbre ?*\
+*Cette représentation vous semble-t-elle adaptée à cette méthode de construction ?*\
+
+```{r}
+NJ_tree |> plot(type = "unrooted", show.tip = FALSE)
+title("Arbre non-raciné construit par Neighbour-Joining")
+myPal <- colorRampPalette(c("red","yellow","green","blue"))
+tiplabels(annotations$year, bg = num2col(annotations$year, col.pal = myPal), cex = .5)
+temp <- pretty(1993:2008, 5)
+legend("bottomleft", fill = num2col(temp, col.pal = myPal), leg = temp, ncol = 2)
+```
+
+Nous allons raciner l'arbre. *À partir de la figure précédente, quelle séquence vous semble pertinente pour raciner l'arbre ?*\
+*Racinez l'arbre à l'aide de la fonction* `root()`*.*\
 
 ```{r}
 NJ_tree_rooted <- NJ_tree |> root(outgroup = "CY012128") |> ladderize()
-ggtree(NJ_tree_rooted) %<+% annotations +
-  geom_tiplab(aes(color = year)) +
-  scale_color_viridis(option = "turbo") +
-  ggtitle("NJ raciné") +
-  theme(legend.position = "right") +
-  geom_rootedge(rootedge = .01) +
-  theme_tree2()
 ```
 
-Commenter cet arbre. (5 minutes)
+```{r}
+plot(NJ_tree_rooted, show.tip = FALSE)
+title("Arbre raciné construit par Neighbour-Joining")
+myPal <- colorRampPalette(c("red","yellow","green","blue"))
+tiplabels(annotations$year, bg = num2col(annotations$year, col.pal = myPal), cex = .5)
+temp <- pretty(1993:2008, 5)
+legend("bottomleft", fill = num2col(temp, col.pal = myPal), leg = temp, ncol = 2)
+axisPhylo()
+```
+
+*Commentez cet arbre.*
 
 #### Quelle méthode choisir ?
 
-On va se servir de la matrice de distance d'origine pour tester l'adéquation de la méthode choisie pour reconstruire l'arbre aux données de départ.
+On va se servir de la matrice de distance d'origine pour tester l'adéquation de la méthode choisie pour représenter les données de départ.
+
+```{r}
+data_UPGMA <- data.frame(
+    x = as.vector(distance_matrix),
+    y = UPGMA_tree |> cophenetic() |> as.dist() |> as.vector()
+)
+ggplot(
+  data = data_UPGMA,
+  mapping = aes(x = x, y = y)
+) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  ggtitle("Est-ce que l'UPGMA est appropriée ?") +
+  xlab("Distances par paires d'origine") +
+  ylab("Distances par paires de l'arbre") +
+  theme_bw()
+cor(data_UPGMA$x, data_UPGMA$y)^2
+```
+
+Lisez l'aide de la fonction `cophenetic()`. *Quelle valeur calcule-t-elle ? Quel type d'objet renvoie-t-elle ?*\
+*Que représente ce graphique ? Comment l'interpréter ?*\
+*Comment est calculé le coefficient de corrélation ?*
+
+Recommençons avec l'arbre généré par Neighbour-Joining :
 
 ```{r}
 data_NJ <- data.frame(
@@ -354,44 +383,20 @@ ggplot(data = data_NJ, mapping = aes(x = x, y = y)) +
   theme_bw()
 ```
 
-Lire l'aide de la fonction `cophenetic()`. Quelle valeur calcule-t-elle ? Quel type d'objet renvoie-t-elle ?\
-Que représente ce graphique ? Comment l'interpréter ?\
-Comment est calculé le coefficient de corrélation ? (10 minutes)\
-\
-Recommençons avec l'arbre généré par UPGMA :
+*Qu'en concluez-vous sur cette méthode par rapport à l'UPGMA ?*
 
-```{r}
-data_UPGMA <- data.frame(
-    x = as.vector(distance_matrix),
-    y = UPGMA_tree |> cophenetic() |> as.dist() |> as.vector()
-)
-ggplot(
-  data = data_UPGMA,
-  mapping = aes(x = x, y = y)
-) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, color = "red") +
-  ggtitle("Est-ce que l'UPGMA est appropriée ?") +
-  xlab("Distances par paires d'origine") +
-  ylab("Distances par paires de l'arbre") +
-  theme_bw()
-cor(data_UPGMA$x, data_UPGMA$y)^2
-```
+#### Estimation de la précision d'un arbre par Bootstrap
 
-Qu'en concluez-vous sur cette méthode par rapport au Neighbour-Joining ? (5 minutes)
-
-#### Estimation de la précision d'e l'arbre'un arbre par Bootstrap
-
-Rappeler le principe général du Bootstrap.\
-À quoi sert-il dans ce contexte ? (5 minutes)
+*Rappelez le principe général du Bootstrap.*\
+*À quoi sert-il dans ce contexte ?*
 
 ##### Calcul des valeurs de Bootstrap
 
 Nous allons générer les indices de bootstrap pour chaque nœud de l'arbre.\
-Commenter le bloc de code suivant :
+*Commenter le bloc de code suivant :*
 
 ```{r}
-bootstrap_rooted_NJ <- boot.phylo(
+NJ_tree_rooted$node.label <- boot.phylo(
   NJ_tree_rooted,
   alignment_BIN,
   \(x) {x |>
@@ -400,7 +405,6 @@ bootstrap_rooted_NJ <- boot.phylo(
       root(outgroup = "CY012128")
   }
 )
-NJ_tree_rooted$node.label <- bootstrap_rooted_NJ
 ```
 
 ##### Visualisation de l'arbre bootstrappé
@@ -408,33 +412,25 @@ NJ_tree_rooted$node.label <- bootstrap_rooted_NJ
 Nous allons afficher l'arbre précédent avec les valeurs de bootstrap que nous venons de calculer :
 
 ```{r}
-options(ignore.negative.edge = TRUE)
-
-ggtree(NJ_tree_rooted) %<+% annotations +
-  geom_tiplab(aes(color = year)) +
-  scale_color_viridis(option = "turbo") +
-  geom_label2(
-    aes(
-      subset = !isTip,
-      label = label,
-    )
-  ) +
-  ggtitle("NJ raciné avec Bootstrap") +
-  theme(legend.position = "right") +
-  geom_rootedge(rootedge = .01) +
-  theme_tree2()
+plot(NJ_tree_rooted, show.tip = FALSE, edge.width = 2)
+title("Arbre raciné construit par Neighbour-Joining avec Bootstrap")
+tiplabels(frame = "none", pch = 20, col = transp(num2col(annotations$year, col.pal = myPal), .7), cex = 3, fg = "transparent")
+axisPhylo()
+temp <- pretty(1993:2008, 5)
+legend("topright", fill = transp(num2col(temp, col.pal = myPal), .7), leg = temp, ncol = 2)
+nodelabels(NJ_tree_rooted$node.label, cex = .6)
 ```
 
-Commenter cet arbre. Comment améliorer cet arbre en considérant les valeurs de bootstrap ? (5 minutes)
+*Commentez cet arbre. Comment améliorer cet arbre en considérant les valeurs de bootstrap ?*
 
 ##### On retire les noeuds faibles
 
-Commenter le bloc de code suivant :
+*Commentez le bloc de code suivant :*
 
 ```{r}
 NJ_tree_rooted_collapsed <- NJ_tree_rooted
 toCollapse <- match(
-  which(bootstrap_rooted_NJ < 70) + length(NJ_tree_rooted$tip.label),
+  which(NJ_tree_rooted$node.label < 70) + length(NJ_tree_rooted$tip.label),
  NJ_tree_rooted$edge[, 2]
 )
 NJ_tree_rooted_collapsed$edge.length[toCollapse] <- 0
@@ -444,22 +440,20 @@ NJ_tree_rooted_collapsed <- di2multi(NJ_tree_rooted_collapsed, tol = 0.00001)
 Affichons notre nouvel arbre :
 
 ```{r}
-ggtree(NJ_tree_rooted_collapsed) %<+% annotations +
-  geom_tiplab(aes(color = year)) +
-  scale_color_viridis(option = "turbo") +
-  geom_label2(
-    aes(
-      subset = !isTip,
-      label = label,
-    )
-  ) +
-  ggtitle("NJ raciné avec Bootstrap et sans les noeuds faibles") +
-  theme(legend.position = "right") +
-  geom_rootedge(rootedge = .01) +
-  theme_tree2()
+plot(NJ_tree_rooted_collapsed, show.tip = FALSE, edge.width = 2)
+title("Noeuds soutenus de l'arbre raciné construit par Neighbour-Joining")
+tiplabels(
+  NJ_tree_rooted_collapsed$tip.label,
+  bg  = transp(num2col(annotations$year, col.pal = myPal), .7),
+  cex = .5,
+  fg  = "transparent"
+)
+axisPhylo()
+temp <- pretty(1993:2008, 5)
+legend("topright", fill = transp(num2col(temp, col.pal = myPal), .7), leg = temp, ncol = 2)
 ```
 
-Le comparer au précédent, comment a-t-il été modifié ? (5 minutes)
+*Le comparer au précédent, comment a-t-il été modifié ?*
 
 ### Maximum de parcimonie
 
@@ -478,7 +472,7 @@ class(alignment_phyDat)
 Générons un arbre par Neighbour-Joining qui permettra d'initialiser l'algorithme de maximum de parcimonie.
 
 ```{r}
-MP_tree_init <- alignment_BIN |> dist.dna(model = "TN93") |> NJ()
+MP_tree_init <- alignment_BIN |> dist.dna(model = "raw") |> nj()
 ```
 
 #### Génération de l'arbre le plus parcimonieux
@@ -500,19 +494,24 @@ MP_tree
 Comparer les scores de parcimonie des deux arbres.
 
 ```{r}
-ggtree(MP_tree, layout = "circular") %<+% annotations +
-  geom_tiplab(aes(color = year)) +
-  scale_color_viridis(option = "turbo") +
-  ggtitle("Arbre maximum de parcimonie") +
-  theme(legend.position = "right")
+plot(MP_tree, type = "unrooted", show.tip = FALSE, edge.width = 2)
+title("Arbre raciné construit par maximum de parcimonie")
+tiplabels(
+  MP_tree$tip.label,
+  bg  = transp(num2col(annotations$year, col.pal = myPal), .7),
+  cex = .5,
+  fg  = "transparent"
+)
+temp <- pretty(1993:2008, 5)
+legend("bottomleft", fill = transp(num2col(temp, col.pal = myPal), .7), leg = temp, ncol = 2)
 ```
 
 Commenter l'arbre généré.\
-Comment expliquer la similarité avec les arbres précédents ? (10 minutes)
+*Comment expliquer la similarité avec les arbres précédents ?*
 
 ### Maximum de vraisemblance
 
-Rappeler le principe du maximum de vraisemblance. (5 minutes)
+*Rappelez le principe du maximum de vraisemblance.*
 
 #### Initialisation de l'algorithme
 
@@ -527,10 +526,10 @@ ML_tree_init <- alignment_BIN |> dist.dna(model = "TN93") |> NJ()
 Utiliser la fonction `pml()` pour calculer la vraisemblance de l'arbre initial avec le paramètre `k = 4`. Ce paramètre décrit le nombre de classes de vitesses évolutives utilisées dans le modèle, la valeur `k = 4` est une valeur par défaut courante.
 
 ```{r}
-pml(ML_tree_init, alignment_phyDat, k = 4)
+pml(ML_tree_init, alignment_phyDat, optBf = FALSE, optQ = FALSE, k = 4)
 ```
 
-La fonction a bien tourné mais elle est sensible à la nature des données, on va donc vérifier que le jeu de données est bien propre :
+La fonction a bien tourné mais elle est sensible à la nature des données, on va donc vérifier le jeu de données :
 
 ```{r}
 alignment_phyDat |> as.character() |> table()
@@ -539,7 +538,7 @@ alignment_phyDat |> as.character() |> table()
 Certains caractères de nos séquences ne correspondent pas aux bases azotées traditionnelles !\
 Lire [cette page](https://www.dnabaser.com/articles/IUPAC%20ambiguity%20codes.html) et identifier à quoi correspondent les lettres différentes de a, t, c et g. À quoi correspondent les `'-'` ? (5 minutes).\
 
-Enregistrons leur position dans un objet :
+Enregistrons leur position dans un vecteur :
 
 ```{r}
 na.posi <- which(
@@ -552,7 +551,7 @@ na.posi <- which(
 ```
 
 Voyons la distribution de ces lettres :\
-Commenter le bloc ce code ci-après. (5 minutes)
+*Commentez le bloc ce code ci-après.*
 
 ```{r}
 apply(
@@ -595,7 +594,7 @@ Utiliser la fonction `optim.pml()` pour générer l'arbre optimal avec les param
 Le modèle GTR est le moins contraint des modèles de substitutions, il permet des taux de substitutions et des proportions de bases azotées tous différents.\
 Cependant, une des hypothèses de ce modèle est l'homogénéité des taux de substitutions sur tous les sites, hypothèse souvent violée par les données expérimentales. On inclut en plus dans le modèle un modèle Gamma discret à 4 catégories de de taux de substitution.\
 Une autre hypothèse supposée par ces deux modèles est le fait que tous les sites soient potentiellement variables, cependant, il arrive que certains sites soient particulièrement stables et ne varient pas, ce sont des invariants.\
-Plus d'informations sur ces modèles sur le [site de Batien Boussau](https://boussau.github.io/tutorials/COME_tutorials/8_RevBayesTutorial/#the-discrete-gamma-model-of-among-site-rate-variation).
+Plus d'informations sur ces modèles sur le [site de Bastien Boussau](https://boussau.github.io/tutorials/COME_tutorials/8_RevBayesTutorial/#the-discrete-gamma-model-of-among-site-rate-variation).
 
 Il est également possible d'utiliser la fonction `modelTest()` pour tester plusieurs modèles à la fois et utiliser leurs scores de vraisemblance (ou autre métrique associée comme l'AIC) pour choisir le modèle approprié.
 
@@ -617,14 +616,16 @@ La distribution gamma est une distribution dont la forme est contrôlée par un 
 ```{r}
 gamma_distr <- bind_rows(
   tibble(value = rgamma(1000, .5), shape = ".5"),
-  tibble(value = rgamma(1000, 1), shape = ".1"),
-  tibble(value = rgamma(1000, 10), shape = "10"),
-  tibble(value = rgamma(1000, 10), shape = "100")
+  tibble(value = rgamma(1000, .1), shape = ".1"),
+  tibble(value = rgamma(1000, 1),  shape = "1"),
+  tibble(value = rgamma(1000, 10), shape = "10")
 )
 
 gamma_distr |>
   ggplot() +
   geom_density(aes(x = value, fill = shape), alpha = .35) +
+  facet_wrap(vars(shape), scales = "free") +
+  scale_fill_discrete(name = "Shape parameter") +
   theme_classic()
 ```
 
@@ -637,7 +638,7 @@ tibble(value = rgamma(1000, ML_tree$shape)) |>
   theme_classic()
 ```
 
-Que dire des paramètres optimaux obtenus ? (5 minutes)
+*Que dire des paramètres optimaux obtenus ?*
 
 Comparons notre arbre optimal avec l'arbre initial généré par Neighbour-Joining :
 
@@ -646,46 +647,47 @@ anova(ML_tree_init_L, ML_tree) # Likelihood Ratio Test -> test statistique de di
 AIC(ML_tree_init_L, ML_tree)
 ```
 
-Lire l'aide de la fonction `AIC`. À quoi sert le Critère d'Information d'Akaike ? Pourquoi utiliser l'ANOVA et l'AIC ? (5 minutes)
+Lisez l'aide de la fonction `AIC`. *À quoi sert le Critère d'Information d'Akaike ? Pourquoi utiliser l'ANOVA et l'AIC ?*
 
 Affichons notre super arbre !
 
 ```{r}
 ML_tree_rooted <- ML_tree$tree |> root(outgroup = "CY012128") |> ladderize()
-ggtree(ML_tree_rooted) %<+% annotations +
-  geom_tiplab(aes(color = year)) +
-  scale_color_viridis(option = "turbo") +
-  geom_label2(
-    aes(
-      subset = !isTip,
-      label = label,
-    )
-  ) +
-  ggtitle("Maximum de vraisemblance") +
-  theme(legend.position = "right") +
-  geom_rootedge(rootedge = .01) +
-  theme_tree2()
+
+
+plot(ML_tree_rooted, show.tip = FALSE, edge.width = 2)
+title("Noeuds soutenus de l'arbre raciné construit par Neighbour-Joining")
+tiplabels(
+  ML_tree_rooted$tip.label,
+  bg  = transp(num2col(annotations$year, col.pal = myPal), .7),
+  cex = .5,
+  fg  = "transparent"
+)
+axisPhylo()
+temp <- pretty(1993:2008, 5)
+legend("topright", fill = transp(num2col(temp, col.pal = myPal), .7), leg = temp, ncol = 2)
 ```
 
-Observez-vous des différences avec les arbres précédents ? (5 minutes)
+*Observez-vous des différences avec les arbres précédents ?*
 
 ### Exercice en autonomie
 
-Ouvrez le fichier `data/Phyllostomid_annot.csv` dans `R`. Il contient des numéros d'accès de gènes de chauves-souris de la famille des [Phyllostomidae](https://en.wikipedia.org/wiki/Leaf-nosed_bat).
+*Ouvrez le fichier* `data/Phyllostomid_annot.csv` *dans* `R`*.* Il contient des numéros d'accès de gènes de chauves-souris de la famille des [Phyllostomidae](https://en.wikipedia.org/wiki/Leaf-nosed_bat).
 
 ```{r}
 phyllostomid_meta <- read_csv2(here("data", "Phyllostomid_annot.csv"))
 phyllostomid_meta
 ```
 
-Choisissez un de ces gènes, cherchez son emplacement dans le génome, sa fonction et justifiez son choix.
+*Choisissez un de ces gènes, cherchez son emplacement dans le génome, sa fonction et justifiez son choix.*
 
-Ensuite, ouvrez le fichier fasta correspondant dans le dossier `data/phyllostomids/` et construisez un arbre phylogénétique comme vu dans la partie précédente à l'aide la méthode de votre choix (points bonus pour le maximum de vraisemblance ;) ).
+*Ensuite, ouvrez le fichier .fasta correspondant dans le dossier* `data/phyllostomids/` *et construisez un arbre phylogénétique comme vu dans la partie précédente à l'aide la méthode de votre choix (points bonus pour le maximum de vraisemblance ;) ).*
+
+Pour information, voici le code utilisé pour récupérer toutes les séquences au format .fasta :
 
 ```{r}
 #| eval: false
 
-# Pour information, voici le code utilisé pour récupérer toutes les séquences au format fasta
 for (gene in colnames(phyllostomid_meta)[-c(1, 2)]) {
   print(gene)
   phyllostomid_meta |> # Example for one gene, repeat with the others
@@ -697,30 +699,16 @@ for (gene in colnames(phyllostomid_meta)[-c(1, 2)]) {
 }
 ```
 
-Choisissez un ou plusieurs autres jeux de séquence et construisez un arbre phylogénétique à l'aide de la même méthode que précédemment.
+*Choisissez un ou plusieurs autres jeux de séquence et construisez un arbre phylogénétique à l'aide de la même méthode que précédemment.*
 
-Les arbres sont-ils identiques ?
+*Les arbres sont-ils identiques ?*
 
 ### Construire un arbre phylogénétique à l'aide de plusieurs gènes
 
-On a donc un jeu de donnée de plusieurs gènes recouvrant plusieurs espèces de ces chauve-souris.\
-Comment peut-on combiner toutes ces informations pour générer un arbre phylogénétique à l'aide de l'entièreté des informations ?
+On a donc un jeu de données de plusieurs gènes recouvrant plusieurs espèces de ces chauve-souris.\
+*Comment peut-on combiner toutes ces informations pour générer un arbre phylogénétique à l'aide de l'entièreté des informations ?*
 
 Nous allons utiliser le package `apex` pour traiter tous ces gènes à la fois.
-
-```{r}
-#| echo: false
-#| eval: false
-
-install.packages("apex")
-```
-
-```{r}
-#| output: false
-#| warning: false
-
-library(apex)
-```
 
 Commençons par aligner les séquences de chacun de ces gènes (la fonction `purrr::map` joue le même rôle que la fonction `lapply` mais version `tidyverse`) :
 
@@ -763,7 +751,7 @@ Illustration de la construction par supermatrice (Zou *et al* 2024 DOI: [10.3390
 
 On commence par joindre bout-à-bout les différentes séquences et analyse ensuite ce "super-alignement" comme précédemment :
 
-Utilisez la fonction `apex::concatenate` sur les alignements au format `multiphyDat` pour générer le "super-alignement".
+*Utilisez la fonction* `apex::concatenate` *sur les alignements au format* `multiphyDat` *pour générer le "super-alignement".*
 
 ```{r}
 phyllostomids_alignment_concat <- apex::concatenate(phyllostomids_alignments)
@@ -775,7 +763,7 @@ On peut visualiser cet alignement à l'aide de la fonction `image` :
 image(phyllostomids_alignment_concat)
 ```
 
-Maintenant, générez un arbre phylogénétique à partir de ce "super-alignement" avec la méthode de votre choix.
+*Maintenant, générez un arbre phylogénétique à partir de ce "super-alignement" avec la méthode de votre choix.*
 
 ```{r}
 #| eval: false
@@ -858,7 +846,7 @@ plot(phyllostomid_supertree_rooted)
 
 ### Calibrer un arbre temporellement
 
-Quelles sont les différentes étapes, informations et hypothèses à faire pour calibrer temporellement un arbre phylogénétique ? (5 minutes)
+*Quelles sont les différentes étapes, informations et hypothèses à faire pour calibrer temporellement un arbre phylogénétique ?*
 
 On va utiliser notre arbre généré par supermatrice. Commençons par identifier les différents nœuds de notre arbre :
 
@@ -894,16 +882,7 @@ phyllostomids_supermatrix_tree_rooted_cal <- phyllostomids_supermatrix_tree_root
   )
 ```
 
-On peut maintenant afficher notre arbre calibré temporellement avec une échelle stratigraphique à l'aide du pachage `phytools` :
-
-```{r}
-#| eval: false
-install.packages("phytools")
-```
-
-```{r}
-library(phytools)
-```
+On peut maintenant afficher notre arbre calibré temporellement avec une échelle stratigraphique à l'aide du package `phytools` :
 
 ```{r}
 phyllostomids_supermatrix_tree_rooted_cal |> 
@@ -911,9 +890,9 @@ phyllostomids_supermatrix_tree_rooted_cal |>
 phytools::geo.legend()
 ```
 
-Que pouvez-vous dire de l'évolution du nombre de clade en fonction du temps ?
+*Que pouvez-vous dire de l'évolution du nombre de clade en fonction du temps ?*
 
-## Utilisation des arbres phylogénétiques comme contexte évolutif
+## Utilisation des arbres phylogénétiques comme contexte évolutif (adapté de Montoya *et al* 2026 preprint DOI: [10.64898/2026.03.13.711658](https://doi.org/10.64898/2026.03.13.711658))
 
 On va continuer d'étudier nos chauves-souris. Plutôt que d'utiliser les arbres générés précédemment, nous allons utilisés des arbres publiés dans la littérature :
 
@@ -958,11 +937,11 @@ head(phyllostomid$mandible)
 Il existe différents modèles d'évolution de traits discrets basés sur des matrices de transition.\
 En voici certains disponibles dans le package `ape` :
 
--   "SYM" symétrique, les taux de transitions entre traits peuvent être différents mais sont toujours symétriques (P(1 -\> 2) = P(2 -\> 1))
+-   "SYM" SYMétrique, les taux de transitions entre traits peuvent être différents mais sont toujours symétriques (P(1 -\> 2) = P(2 -\> 1))
 
--   "ER" equal-rates model, les taux de transitions sont égaux pour tous les traits
+-   "ER" Equal-Rates model, les taux de transitions sont égaux pour tous les traits
 
--   "ARD" all-rates-different mode, tous les taux de transitions peuvent être différents
+-   "ARD" All-Rates-Different mode, tous les taux de transitions peuvent être différents
 
 Ces modèles fonctionnent de manière analogue aux modèles de substitutions de bases azotées vus précédemment. Comment le justifier ?
 
@@ -977,18 +956,14 @@ On a un trait discret à deux états qui représente l'intensité de mastication
 Utilisons l'AIC afin de sélectionner le modèle le plus adapté à la modélisation de l'évolution de ce trait :
 
 ```{r}
-# Note that every element should be named according to the tip labels
-# Evaluating the best model for the reconstruction of the ancestral states
-
 c("sym" = AIC(ace(phyllostomid$grp1, phyllostomid$tree, type = "discrete", model = "SYM", marginal = TRUE)),
   "er"  = AIC(ace(phyllostomid$grp1, phyllostomid$tree, type = "discrete", model = "ER",  marginal = TRUE)),
   "ard" = AIC(ace(phyllostomid$grp1, phyllostomid$tree, type = "discrete", model = "ARD", marginal = TRUE)))
 ```
 
-Ici, il y a égalité entre les modèles "SYM" et "ER", retenons le modèle "SYM" :
+Ici, il y a égalité entre les modèles "SYM" et "ER", on tetiendra le modèle "SYM" :
 
 ```{r}
-# Reconstruction of ancestral states
 phyllostomid_anc_rec_diet1 <-  ace(
   as.character(phyllostomid$grp1),
   phyllostomid$tree,
@@ -1008,7 +983,6 @@ phyllostomid_anc_rec_diet_tree1 <-  mapping.asr(
   as.character(phyllostomid$grp1)
 )
 
-# Visualizing the final hypothesis
 plot(phyllostomid_anc_rec_diet_tree1, fsize = 0.5, ftype = "i")
 ```
 
@@ -1023,9 +997,6 @@ head(phyllostomid$grp3)
 Reproduisez l'analyse précédente avec ce nouveau trait. (15 minutes)
 
 ```{r}
-# Note that every element should be named according to the tip labels
-# Evaluating the best model for the reconstruction of the ancestral states
-
 model_choice <- c(
   "sym" = AIC(ace(phyllostomid$grp3, phyllostomid$tree, type = "discrete", model = "SYM", marginal = TRUE)) |> suppressWarnings(),
   "er"  = AIC(ace(phyllostomid$grp3, phyllostomid$tree, type = "discrete", model = "ER",  marginal = TRUE)) |> suppressWarnings(),
@@ -1036,7 +1007,6 @@ model_choice
 ```
 
 ```{r}
-# Reconstruction of ancestral states
 phyllostomid_anc_rec_diet2 <-  ace(
   as.character(phyllostomid$grp3),
   phyllostomid$tree,
@@ -1054,12 +1024,10 @@ phyllostomid_anc_rec_diet_tree2 <-  mapping.asr(
 
 colors        = c("red","pink","orange","darkred")
 names(colors) = c("Frugivory","Animalivory", "Nectarivory", "Sanguivory")
-
-# Visualizing the final hypothesis
 plot(phyllostomid_anc_rec_diet_tree2, col = colors, fsize = 0.5, ftype = "i")
 ```
 
-Quelle(s) différence(s) avec la reconstruction précédente ?
+*Quelle(s) différence(s) avec la reconstruction précédente ?*
 
 #### Evolution d'un trait continu (et multivarié !)
 

@@ -211,3 +211,32 @@ PCA_tree_plot <- function(pca,
       panel.grid.minor = element_blank()
     )
 }
+
+num2col <- function (x,
+                     col.pal = heat.colors,
+                     reverse = FALSE,
+                     x.min   = min(x, na.rm = TRUE),
+                     x.max   = max(x, na.rm = TRUE),
+                     na.col  = "transparent") {
+  x[x < x.min] <- x.min
+  x[x > x.max] <- x.max
+  x <- x - x.min
+  x.max <- x.max - x.min
+  x <- x/x.max
+  x <- round(x * 100)
+  x[x <= 0] <- 1
+  if (!reverse) {
+    pal <- col.pal(100)
+  }
+  else {
+    pal <- rev(col.pal(100))
+  }
+  res <- pal[x]
+  res[is.na(res)] <- na.col
+  return(res)
+}
+
+transp <- function (col, alpha = 0.5)  {
+  res <- apply(col2rgb(col), 2, function(c) rgb(c[1]/255, c[2]/255, c[3]/255, alpha))
+  return(res)
+}
