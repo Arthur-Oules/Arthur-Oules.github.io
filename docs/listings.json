@@ -6,6 +6,8 @@
   {
     "listing": "/teaching.html",
     "items": [
+      "/Teaching/R_Graphs_Talk/presentation.html",
+      "/Teaching/TD_Biodiversite/TD_Biodiversite.knit.html",
       "/Teaching/TD_Biodiversite/TD_Biodiversite.html",
       "/Teaching/TD_Ecologie_Evolution/Ecologie_Evolution_TD1.html",
       "/Teaching/TD_Phylogeny/TD_Phylogeny.html",

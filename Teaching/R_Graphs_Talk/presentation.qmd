@@ -1,5 +1,4 @@
 ---
-draft: true
 title: "Graphs and data analyses in R"
 author:
   - name: "Arthur Oulès"

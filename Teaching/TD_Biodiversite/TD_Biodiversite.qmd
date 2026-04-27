@@ -181,6 +181,7 @@ Dans le bloc de code précédent, nous avons sauvegardé le résultat de l'opér
 
 ```{r}
 #| error: false
+#| eval: false
 #| warning: false
 
 shell(here("output", "usflu_sequences.fasta"))
