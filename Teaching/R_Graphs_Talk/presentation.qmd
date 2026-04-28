@@ -10,6 +10,7 @@ author:
         country: France
         url: https://lbti.ibcp.fr/?page_id=1826
 description: "Lecture on the use of R and RStudio for producing graphs."
+image: images/thumbnail.png
 categories: Lecture
 date-format: long
 width: 1920
