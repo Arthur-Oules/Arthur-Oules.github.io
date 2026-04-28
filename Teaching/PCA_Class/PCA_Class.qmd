@@ -9,7 +9,7 @@ author:
         city: Lyon 7
         country: France
         url: https://lbti.ibcp.fr/?page_id=1826
-  - name: "Adapté de [medium.com](https://medium.com/intuition/mathematical-understanding-of-principal-component-analysis-6c761004c2f8)"
+  - name: "Adapté de [Cosma Shalizi, Chapter 16: Principal Component Analysis](https://www.stat.cmu.edu/~cshalizi/uADA/16/lectures/17.pdf)"
 description: "Lecture on the mathematical aspects of the PCA and its use in ecology."
 image: figures/miniature.png
 categories: Lecture
