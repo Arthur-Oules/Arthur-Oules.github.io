@@ -2,6 +2,7 @@
 title: "TD Biodiversité"
 author: ["Arthur Oulès", "adapté de [Thibaut Jombart (2013)](http://adegenet.r-forge.r-project.org/files/MSc-intro-phylo.1.1.pdf)"]
 description: "Workshop on the use of phylogenetics methods in R."
+image: images/unnamed-chunk-45-1.png
 categories: Workshop
 editor: source
 format:
